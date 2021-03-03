@@ -1,5 +1,6 @@
 # MoneyManager
 A Money management software for today's youth
+
 ---
 ## Steps for installation of the project in you device
 
