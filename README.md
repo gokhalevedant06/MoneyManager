@@ -37,7 +37,6 @@ A Money management software for today's youth
 ## Setting up the git repository
 - Run the following commands in you command prompt
 ```
-  git init
   git add .
   git commit -m "Message for commit must be descriptive"
   git remote add origin https://github.com/Mitrajeet-Golsangi/MoneyManager.git
