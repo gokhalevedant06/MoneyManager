@@ -12,4 +12,4 @@ A Money management software for today's youth
 ---
 ## Installation
 - Navigate yourelf to the master Branch
-![Master Branch]
+![Master Branch](C:\Users\Admin\Desktop\VIT Information\First Year\F DIV\Capstone Project\Git README\Picture 1)
