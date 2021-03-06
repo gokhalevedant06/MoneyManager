@@ -12,7 +12,8 @@
                 <div class="border-bottom border-dark mb-4"></div>
             </div>
             <div class="card-body">
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" novalidate method='POST'>
+                    {% csrf_token %}
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Username<sup class="text-danger">*</sup></label>
                         <div class="col">
@@ -54,7 +55,7 @@
                         </div>
                     </div>
                     <div class="border-bottom border-dark mb-4"></div>
-                    <button id="r_btn" class="btn btn-block btn-success">Submit</button>
+                    <button id="r_btn" class="btn btn-block btn-success" type="submit">Submit</button>
                 </form>
             </div>
         </div>
