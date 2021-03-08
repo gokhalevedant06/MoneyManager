@@ -1,89 +1,99 @@
-
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Home{% endblock title %}
 
 {% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/user_info.css">
-    <title>User_info</title>
-</head>
-<body>
-<div class="container">
-    <h3>User Information</h3></div>
-    <!--<form action="" method="GET" class="form">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/user_info.css' %}">
+        <title>User_info</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <h3>User Information</h3>
+        </div>
+        <!--<form action="" method="GET" class="form">
         <label for="fname" class="content">First Name:</label>
         <input type="text"><br>
         <label for="lname" class="content">Last Name:</label>
         <input type="text">
     </form>
---> 
-<div class="content ">
-    
-    <form class=" needs-validation" novalidate>
-        <div class=" position-relative">
-          <label for="validationTooltip01" class="form-label">First name:</label>
-          <input type="text" class="form-control" id="validationTooltip01" value="Enter your first name" required>
-         </div>
-         
-        
-         <div class=" position-relative">
-          <label for="validationTooltip02" class="form-label">Last name:</label>
-          <input type="text" class="form-control" id="validationTooltip02" value="Enter your last name" required>
-         </div>
-        
-        
-        
-        <div class=" position-relative">
-          <label for="validationTooltip03" class="form-label">Income(In Rupees):</label>
-          <input type="number" class="form-control" id="validationTooltip03" required>
-          </div>
-         <!-- <div class=" position-relative">
+-->
+        <div class="content ">
+
+            <form class=" needs-validation" novalidate>
+                <div class="form-group">
+                    <label for="validationTooltip01" class="form-label">First name:</label>
+                    <input type="text" class="form-control" id="validationTooltip01" value="Enter your first name"
+                        required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="validationTooltip02" class="form-label">Last name:</label>
+                    <input type="text" class="form-control" id="validationTooltip02" value="Enter your last name"
+                        required>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="validationTooltip03" class="form-label">Income(In Rupees):</label>
+                    <input type="number" class="form-control" id="validationTooltip03" required>
+                </div>
+                <!-- <div class="form-group">
             <label for="validationTooltip03" class="form-label">Gender:</label>
             <input type="radio" class="form-control" id="validationTooltip03" required>
             <option value="Male"></option>
             <option value="Female"></option>
             <option value="Other"></option>
             </div> -->
-            <div class="row">
-                <div class="column">
-            <div class=" position-relative">
-                <label for="validationTooltip05" class="form-label">Gender</label>
-                <select class="form-control" id="validationTooltip05" required>
-                  <option selected disabled value="">--select--</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Other</option>
-                </select>
-              </div>
-            </div>
-           <div class="column"> <div class=" position-relative">
-          <label for="validationTooltip04" class="form-label">Profession</label>
-          <select class="form-control" id="validationTooltip04" required>
-            <option selected disabled value="">--select--</option>
-            <option>Employee</option>
-            <option>Freelancer</option>
-            <option>Businessman</option>
-          </select>
-        </div></div>
-    </div>
-        <!--<div class=" position-relative">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="validationTooltip05" class="form-label">Gender</label>
+                            <select class="form-control" id="validationTooltip05" required>
+                                <option selected disabled value="">--select--</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="validationTooltip04" class="form-label">Profession</label>
+                            <select class="form-control" id="validationTooltip04" required>
+                                <option selected disabled value="">--select--</option>
+                                <option>Employee</option>
+                                <option>Freelancer</option>
+                                <option>Businessman</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="form-group">
           <label for="validationTooltip05" class="form-label"></label>
           <input type="text" class="form-control" id="validationTooltip05" required>
           </div>-->
-          
-        <div class="button">
-          <button style="width: 90%;"  class="btn btn-primary" type="submit">Submit</button>
+
+                <div class="form-group">
+                    <div class="button">
+                        <button class="btn btn-success btn-block" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+
         </div>
-      </form>
-      
-    </div>
-  </div>
-</body>
+        </div>
+    </body>
+
 </html>
 {% endblock content %}

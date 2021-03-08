@@ -1,6 +1,5 @@
 html,
 body {
-  background-image: url("/static/img/login_background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
@@ -17,11 +16,11 @@ body {
   margin-right: 40px;
   margin-top: auto;
   margin-bottom: auto;
-  background-color: darkgray !important;
-  border-radius: 10px;
+  background-color: darkgray !important; /*#343a40 --> The navbar color*/
+  border-radius: 5px;
   height: 450px !important;
 }
-.position-relative {
+.form-group {
   margin: 10px;
   padding: 5px;
   color: black;
@@ -34,4 +33,7 @@ body {
 .column {
   margin-left: 10px;
   padding-left: 10px;
+}
+.form-label {
+  color: white
 }
