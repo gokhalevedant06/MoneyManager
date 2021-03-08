@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth.models import auth, User
+
+from django.contrib import messages
 # Create your views here.
 
 
@@ -16,6 +18,8 @@ def login(request):
             auth.login(request, user)
             return redirect('/')
         else:
+            messages.warning(
+                request, "Username or Password is incorrect!", fail_silently=False)
             return redirect('login')
     else:
         return render(request, 'login.html')
