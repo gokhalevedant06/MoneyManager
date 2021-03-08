@@ -33,7 +33,7 @@
       <div class="list-group list-group-flush">
         <a href="#" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-wallet"></i> Expenses</a>
         <a href="#" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-seedling"></i> Investments</a>
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-address-card"></i> About Us</a>
+        <a href="{% url 'about' %}" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-address-card"></i> About Us</a>
        
       </div>
     </div>
@@ -51,7 +51,7 @@
   <div>
     <ul class="nav justify-content-center">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">About Us</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'about' %}">About Us</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Contact Us</a>
