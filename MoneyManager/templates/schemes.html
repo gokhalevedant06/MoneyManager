@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+ {% block title %}Home{% endblock title %} 
+ {% block content %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Investments</title>
+    <link rel="stylesheet" href="/static/css/schemes.css" />
+  </head>
+
+  <body>
+    <div class="main">
+      <h1>MONEY MANAGING BANKING SCHEMES</h1>
+      <ul>
+        <li class="item1">
+          <a href="/templates/fd.html/"
+            ><h2>
+              <i class="fas fa-chevron-circle-right"></i> FD(FIXED DEPOSIT)
+            </h2></a
+          >
+        </li>
+        <li class="item1">
+          <a href="/rd.html"
+            ><h2>
+              <i class="fas fa-chevron-circle-right"></i> RD(RECURRING DEPOSIT)
+            </h2></a
+          >
+        </li>
+        <li class="item1">
+          <a href="/ppf.html"
+            ><h2>
+              <i class="fas fa-chevron-circle-right"></i> PPF(PUBLIC PROVIDENT
+              FUND)
+            </h2></a
+          >
+        </li>
+        <li class="item1">
+          <a href="/mis.html"
+            ><h2>
+              <i class="fas fa-chevron-circle-right"></i> MIS(MONTHLY INCOME
+              SCHEME)
+            </h2></a
+          >
+        </li>
+        <li class="item1">
+          <a href="/nsc.html"
+            ><h2>
+              <i class="fas fa-chevron-circle-right"></i> NSC(NATIONAL SAVINGS
+              CERTIFICATE)
+            </h2></a
+          >
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
+
+{% endblock content %}
