@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path('', views.index, name="index"),
     path('about-us/', views.about, name="about"),
+    path('sensex-graph/', views.sensex_graph, name="sensex_graph"),
 ]
