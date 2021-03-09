@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $('#loader').show();
     $.ajax({
         url: endpoint,
         success: function (data) {
@@ -13,6 +14,7 @@ $(document).ready(function () {
                 hoverColor.push('#36b9cc');
                 backgroundColor.push('#36b9cc');
             }
+            $('#loader').hide();
             SensexChart();
         }
     });
@@ -30,7 +32,7 @@ function SensexChart() {
         data: {
             labels: Labels,
             datasets: [{
-                label: "Earnings",
+                label: "Sensex",
                 lineTension: 0.3,
                 backgroundColor: "rgba(78, 115, 223, 0.05)",
                 borderColor: "rgba(78, 115, 223, 1)",
@@ -38,9 +40,9 @@ function SensexChart() {
                 pointBackgroundColor: "rgba(78, 115, 223, 1)",
                 pointBorderColor: "rgba(78, 115, 223, 1)",
                 pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                pointHitRadius: 10,
+                pointHoverBackgroundColor: "#F80A0A",
+                pointHoverBorderColor: "#ffff",
+                pointHitRadius: 25,
                 pointBorderWidth: 2,
                 data: defaultData,
             }],
