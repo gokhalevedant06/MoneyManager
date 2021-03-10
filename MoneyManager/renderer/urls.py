@@ -7,15 +7,11 @@ urlpatterns = [
     path('login/', views.login),
     path('new/', views.new),
     path('user_info/', views.user_info),
-<<<<<<< HEAD
-    path('about/', views.about),
+    path('about/', views.about,name="about"),
     path('schemes/', views.schemes),
-    path('fd/', views.fd),
-    path('rd/', views.rd),
-    path('ppf/', views.ppf),
-    path('mis/', views.mis),
-    path('nsc/', views.nsc),
-=======
-    path('about_us/', views.about, name="about"),
->>>>>>> b165ad48515d43af971b456071bb169f30455e0f
+    path('fd/', views.fd,name="fd"),
+    path('rd/', views.rd,name="rd"),
+    path('ppf/', views.ppf,name="ppf"),
+    path('mis/', views.mis,name="mis"),
+    path('nsc/', views.nsc,name="nsc"),
 ]
