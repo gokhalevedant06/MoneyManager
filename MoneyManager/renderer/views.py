@@ -18,7 +18,6 @@ def new(request):
 def user_info(request):
     return render(request, 'user_info.html')
 
-
 def about(request):
     return render(request, "about.html")
 
