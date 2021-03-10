@@ -20,4 +20,4 @@ def user_info(request):
 
 
 def about(request):
-    return render(request, "about_us.html")
+    return render(request, "about.html")
