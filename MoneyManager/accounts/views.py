@@ -11,6 +11,8 @@ from django.core.serializers import serialize
 from django.core.serializers.json import DjangoJSONEncoder
 
 from django.http import JsonResponse
+
+from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 
 
@@ -24,12 +26,16 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user:
             auth.login(request, user)
-            return redirect('/')
+            if request.session.get('first_login'):
+                return redirect('user_info')
+            else:
+                return redirect('/')
         else:
             messages.warning(
                 request, "Username or Password is incorrect!", fail_silently=False)
             return redirect('login')
     else:
+
         return render(request, 'login.html')
 
 
@@ -88,7 +94,7 @@ def user_info_ajax(request):
         return JsonResponse(serialized_choices, safe=False)
 
 
-def user_info(request):
+def user_info_form(request):
     if request.method == 'POST':
         fname = request.POST.get('first_name')
         lname = request.POST.get('last_name')
@@ -102,14 +108,23 @@ def user_info(request):
             last_name=lname
         )
 
-        uinfo = UserInfo(
+        uinfo = UserInfo.objects.update_or_create(
             user=request.user,
             income=income,
             gender=gen,
             profession=prf
         )
-        uinfo.save()
 
         return redirect('user_info')
     else:
-        return render(request, "user_info.html")
+        if UserInfo.objects.filter(user=request.user).exists():
+            return redirect('user_info')
+        else:
+            return render(request, "user_info_form.html")
+
+
+def user_info(request):
+    context = {
+        'data': UserInfo.objects.filter(user=request.user)
+    }
+    return render(request, 'user_info.html', context)
