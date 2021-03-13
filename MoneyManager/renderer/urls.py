@@ -8,7 +8,7 @@ urlpatterns = [
     path('new/', views.new),
     path('user_info/', views.user_info),
     path('about/', views.about,name="about"),
-    path('schemes/', views.schemes),
+    path('schemes/', views.schemes,name="schemes"),
     path('fd/', views.fd,name="fd"),
     path('rd/', views.rd,name="rd"),
     path('ppf/', views.ppf,name="ppf"),
