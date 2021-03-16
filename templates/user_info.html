@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}User Information{% endblock title %}
+
+{% block content %}
+<div class="row p-4">
+    <table class="table table-sm table-flush">
+        <thead>
+            <tr>
+                <th scope="row">Name</th>
+                <th scope="row">Email</th>
+                <th scope="row">Income</th>
+                <th scope="row">Profession</th>
+                <th scope="row">Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in data %}
+            <tr>
+                <td>{{ request.user.first_name }} {{ request.user.last_name }}</td>
+                <td>{{ request.user.email }}</td>
+                <td>{{ d.income }}</td>
+                <td>{{ d.profession }}</td>
+                <td>{{ d.gender }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
