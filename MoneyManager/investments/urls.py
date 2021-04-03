@@ -15,4 +15,5 @@ urlpatterns = [
     path('form-ajax/', views.investment_form_ajax, name="investment_form_ajax"),
     path('form-ajax-interest/', views.investment_form_interest_rates,
          name="investment_form_ajax_interest"),
+
 ]
