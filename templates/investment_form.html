@@ -23,7 +23,9 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-pie pt-4 pb-2">
-                        <form id="investment_form" class="needs-validation" novalidate>
+                        <form id="investment_form" class="needs-validation" novalidate method="post"
+                            action="investment_form_ajax">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
@@ -111,14 +113,29 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label class="control-label">Timespan (Years)</label>
-                                                        <select id="i_time" class="form-control">
-                                                        </select>
+                                                        <div name="i_time" id="i_time_container"
+                                                            class="row range-field">
+                                                            <input type="range" class="col custom-range" id="i_time"
+                                                                min="1" max="25" value="1">
+                                                            <div id="i_time_value" class="col-sm-3 mt-1">Value: 1 year
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button class="btn btn-outline-primary btn-block"
+                                                        type="submit">Invest</button>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="row border-top border-dark mt-3 pt-3">
@@ -151,7 +168,6 @@
                                     <canvas id="scheme_graph"></canvas>
                                 </div>
                             </div>
-
                         </form>
                         <hr>
 

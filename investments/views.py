@@ -62,15 +62,21 @@ def investment_form_interest_rates(request):
     else:
         is_ppf = False
 
-    if '(MIS)' in scheme:
-        is_mis = True
-    else:
-        is_mis = False
-
     if '(NSC)' in scheme:
+        t1 = P * (pow((1 + r / 100), 5))
+        A = math.floor(t1)
         is_nsc = True
     else:
         is_nsc = False
+
+    if '(MIS)' in scheme:
+        t1 = r/100
+        t2 = 1 + t1
+        t3 = t2**t
+        A = math.floor(P * t3)
+        is_mis = True
+    else:
+        is_mis = False
 
     # Serializing rate objects into json format
     json_rate = serialize('json', rate, cls=DjangoJSONEncoder)
@@ -80,21 +86,36 @@ def investment_form_interest_rates(request):
         'is_fd': is_fd,
         'is_rd': is_rd,
         'is_ppf': is_ppf,
+        'is_nsc': is_nsc,
+        'is_mis': is_mis,
     }
     return JsonResponse(data)
 
 
 @login_required
 def investment_form_ajax(request):
-    bank = request.GET.get('bank')
+    if request.method == 'POST':
+        bank = request.POST.get('bank')
+        time = request.POST.get('time')
+        scheme = request.POST.get('scheme')
+        principle = request.POST.get('principle')
+        fd_time = request.POST.get('fd_time')
 
-    scheme = Schemes.objects.filter(bank_name=bank)
+        print(bank, time, scheme, principle, fd_time)
 
-    json_scheme = serialize('json', scheme, cls=DjangoJSONEncoder)
+        data = {
+            "success": True,
+        }
+    else:
+        bank = request.GET.get('bank')
 
-    data = {
-        "schemes": json_scheme,
-    }
+        scheme = Schemes.objects.filter(bank_name=bank)
+
+        json_scheme = serialize('json', scheme, cls=DjangoJSONEncoder)
+
+        data = {
+            "schemes": json_scheme,
+        }
     return JsonResponse(data)
 
 
