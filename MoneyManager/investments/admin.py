@@ -26,5 +26,4 @@ class SchemeRatesAdmin(admin.ModelAdmin):
     list_filter = [
         'intrest_rate',
         'time_span',
-        'scheme_name',
     ]
