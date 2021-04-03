@@ -1,21 +1,7 @@
 $(document).ready(function () {
 
-    var month = new Array();
-    month[0] = "January";
-    month[1] = "February";
-    month[2] = "March";
-    month[3] = "April";
-    month[4] = "May";
-    month[5] = "June";
-    month[6] = "July";
-    month[7] = "August";
-    month[8] = "September";
-    month[9] = "October";
-    month[10] = "November";
-    month[11] = "December";
 
     $('#i_scheme').addClass('is-invalid');
-
 
     $('#i_bank').change(function () {
         $.ajax({
@@ -41,18 +27,10 @@ $(document).ready(function () {
     $('#i_scheme').change(function () {
         $('#i_time').empty();
         if ($(this).val().includes('(PPF)')) {
-            for (var i = 15; i <= 50; i++) {
-                $('#i_time').append(
-                    new Option(i, i)
-                );
-            }
+            $('#i_time').val(15);
         }
-        else {
-            for (var i = 1; i <= 25; i++) {
-                $('#i_time').append(
-                    new Option(i, i)
-                );
-            }
+        if ($(this).val().includes('(NSC)')) {
+            $('#i_time').val(5);
         }
     })
     $('#i_invested_amount').keyup(function () {
@@ -76,6 +54,7 @@ $(document).ready(function () {
             else {
                 t = 'long';
             }
+
             $.ajax({
                 url: endpoint_int,
                 data: {
@@ -86,73 +65,127 @@ $(document).ready(function () {
                     'fd_time': $('#i_time').val(),
                 },
                 success: function (data) {
-                    var date = new Date();
                     defaultData = [];
                     d = JSON.parse(data.rate);
 
                     // -------------------------------------- Formula for FD ----------------------------------------- //
                     if (data.is_fd) {
-                        var r = parseFloat(d[0].fields.intrest_rate);
-                        $('#i_rate').text(r + " %");
 
+                        formChangeHndler(d[0].fields.intrest_rate, data.A);
+                        iTimeHandler(false, $("#i_time").val());
                         $('#amt_lbl').text('Monthly Investment');
 
-                        $('#i_maturity_amt').text(data.A + "  Rs.");
-                        $('#i_intr_payout').text(parseInt(data.A) - parseInt($('#i_invested_amount').val()) + "  Rs.");
-                        defaultData.push(parseInt(data.A) - parseInt($('#i_invested_amount').val()));
-                        defaultData.push(parseInt($('#i_invested_amount').val()));
-
-                        date.setFullYear(date.getFullYear() + parseInt($('#i_time').val()));
-                        $('#i_maturity_dt').text(month[date.getMonth()] + " " + date.getFullYear());
-
-                        ResetCanvas();
-                        myChart(defaultData, "Fixed Deposit");
                     }
+
                     // -------------------------------------- Formula for RD ----------------------------------------- //
                     if (data.is_rd) {
-                        var r = parseFloat(d[0].fields.intrest_rate);
-                        $('#i_rate').text(r + " %");
 
-                        $('#amt_lbl').text('Monthly Investment');
-
-                        $('#i_maturity_amt').text(data.A + "  Rs.");
-                        $('#i_intr_payout').text(parseInt(data.A) - parseInt($('#i_invested_amount').val()) + "  Rs.");
-                        defaultData.push(parseInt(data.A) - parseInt($('#i_invested_amount').val()));
-                        defaultData.push(parseInt($('#i_invested_amount').val()));
-
-                        date.setFullYear(date.getFullYear() + parseInt($('#i_time').val()));
-                        $('#i_maturity_dt').text(month[date.getMonth()] + " " + date.getFullYear());
-
-                        ResetCanvas();
-                        myChart(defaultData, "Recurring Deposit");
+                        formChangeHndler(d[0].fields.intrest_rate, data.A);
+                        iTimeHandler(false, $("#i_time").val());
                     }
+
                     // -------------------------------------- Formula for PPF ----------------------------------------- //
                     if (data.is_ppf) {
-                        var r = parseFloat(d[0].fields.intrest_rate);
-                        $('#i_rate').text(r + " %");
 
-                        $('#amt_lbl').text('Yearly Investment');
+                        formChangeHndler(d[0].fields.intrest_rate, data.A);
+                        iTimeHandler(false, $("#i_time").val(), 15, 40);
+                    }
 
-                        $('#i_maturity_amt').text(data.A + "  Rs.");
-                        $('#i_intr_payout').text(parseInt(data.A) - parseInt($('#i_invested_amount').val()) + "  Rs.");
-                        defaultData.push(parseInt(data.A) - parseInt($('#i_invested_amount').val()));
-                        defaultData.push(parseInt($('#i_invested_amount').val()));
+                    // -------------------------------------- Formula for NSC ----------------------------------------- //
+                    if (data.is_nsc) {
 
-                        date.setFullYear(date.getFullYear() + parseInt($('#i_time').val()));
-                        $('#i_maturity_dt').text(month[date.getMonth()] + " " + date.getFullYear());
+                        formChangeHndler(d[0].fields.intrest_rate, data.A);
 
-                        ResetCanvas();
-                        myChart(defaultData, "Public Provident Fund");
+                        iTimeHandler(true, 5, 1, 5);
+
+                    }
+
+                    // -------------------------------------- Formula for MIS ----------------------------------------- //
+                    if (data.is_mis) {
+
+                        formChangeHndler(d[0].fields.intrest_rate, data.A);
+                        $('#amt_lbl').text('Monthly Investment');
+                        iTimeHandler(false, $("#i_time").val());
                     }
                 }
             });
         }
     })
 
-    $('#investment_form').submit(function (e) {
-        e.preventDefault();
-    })
+    // $('#investment_form').submit(function (e) {
+    //     e.preventDefault();
+    //     $.ajax({
+    //         method: post,
+    //         url: endpoint_int,
+    //         data: {
+    //             'csrfmiddlewaretoken': $('csrfmiddlewaretoken').val(),
+    //             'bank': $('#i_bank').val(),
+    //             'time': t,
+    //             'scheme': $('#i_scheme').val(),
+    //             'principle': $('#i_invested_amount').val(),
+    //             'fd_time': $('#i_time').val(),
+    //         },
+    //         success: function (data) {
+    //             console.log(data);
+    //         }
+    //     });
+    // })
 })
+
+
+function iTimeHandler(state, value = 1, min = 1, max = 25) {
+    if (value === 1) {
+        $("#i_time_container").html(`
+    <input type="range" class="col custom-range" id="i_time" min="${min}" max="${max}" value="${value}">
+    <output for="i_time" onforminput="value = i_time.value;"></output>
+    <div id="i_time_value" class="col-sm-3 mt-1">Value: ${value} year</div>
+    `);
+    }
+    else {
+        $("#i_time_container").html(`
+    <input type="range" class="col custom-range" id="i_time" min="${min}" max="${max}" value="${value}">
+    <output for="i_time" onforminput="value = i_time.value;"></output>
+    <div id="i_time_value" class="col-sm-3 mt-1">Value: ${value} years</div>
+    `);
+    }
+
+    $("#i_time").prop("disabled", state);
+    $("#i_time").tooltip();
+}
+
+function formChangeHndler(intrest, total) {
+
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+
+    var date = new Date();
+    var r = parseFloat(intrest);
+
+    $('#i_rate').text(r + " %");
+    $('#amt_lbl').text('Yearly Investment');
+
+    $('#i_maturity_amt').text(total + "  Rs.");
+    $('#i_intr_payout').text(parseInt(total) - parseInt($('#i_invested_amount').val()) + "  Rs.");
+    defaultData.push(parseInt(total) - parseInt($('#i_invested_amount').val()));
+    defaultData.push(parseInt($('#i_invested_amount').val()));
+
+    date.setFullYear(date.getFullYear() + parseInt($('#i_time').val()));
+    $('#i_maturity_dt').text(month[date.getMonth()] + " " + date.getFullYear());
+
+    ResetCanvas();
+    myChart(defaultData, "National Savings Certificate");
+}
 
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';

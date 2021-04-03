@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -54,10 +55,18 @@ class Schemes(models.Model):
     scheme = models.CharField(max_length=100)
 
     def __str__(self):
-        return "%s => %s" % (self.scheme, self.bank_name)
+        return "%s  :  %s" % (self.bank_name, self.scheme)
 
 
 class SchemeRates(models.Model):
     scheme_name = models.ForeignKey(Schemes, on_delete=models.CASCADE)
     intrest_rate = models.FloatField()
     time_span = models.CharField(choices=TIME_CHOICES, max_length=100)
+
+
+class InvestmentInfo(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="investment_info")
+    scheme_name = models.ForeignKey(Schemes, on_delete=models.CASCADE)
+    invested_amount = models.IntegerField()
+    timespan = models.IntegerField()
