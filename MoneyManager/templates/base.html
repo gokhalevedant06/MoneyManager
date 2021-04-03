@@ -33,9 +33,30 @@
         <div class="sidebar-heading text-white"><span class="bullet"><img
               src="{% static 'img/coin4 No Background.png' %}" height="30px" alt=""></span>Money Manager</div>
         <div class="list-group list-group-flush">
-          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Profile</a>
-          <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Expenses</a>
-          <a href="{% url 'schemes' %}" class="list-group-item list-group-item-action bg-dark text-white">Investments</a>
+          
+          <a href="#" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-wallet"></i> Expenses</a>
+          
+          <!-- <a href="{% url 'schemes' %}" class="list-group-item list-group-item-action bg-dark text-white">Investments</a> -->
+          <a class="nav-link dropdown-toggle bg-dark text-white" href="" id="navbarDropdown" role="button" data-toggle="dropdown"
+                 >
+                 <i class="fas fa-seedling"></i> Investments
+                </a>
+                <div class="dropdown-menu dropdown-menu bg-dark " aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item bg-dark text-white" href="{% url 'schemes' %}"><i class=""></i> Banking Schemes</a>
+                  <div class="dropdown-divider "></div>
+                  <a class="dropdown-item bg-dark text-white" href="#"><i class=""></i> Cryptocurrency</a>
+                  <div class="dropdown-divider "></div>
+                  <a class="dropdown-item bg-dark text-white" href="#"><i class=""></i> Stock Market</a>
+                  <div class="dropdown-divider "></div>
+                  <a class="dropdown-item bg-dark text-white" href="#"><i class=""></i> Real Estate</a>
+                  <div class="dropdown-divider "></div>
+                  <a class="dropdown-item bg-dark text-white" href="#"><i class=""></i> Insurance</a>
+                  <div class="dropdown-divider "></div>
+                  <a class="dropdown-item bg-dark text-white" href="#"><i class=""></i> Coming Soon...</a>
+                </div>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-calculator"></i> Calculator</a>
+                <a href="{% url 'about' %}" class="list-group-item list-group-item-action bg-dark text-white"><i
+                  class="fas fa-question-circle"></i>  About Us</a>
 
         </div>
       </div>
@@ -151,9 +172,9 @@
       <!-- Grid container -->
 
       <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      <div class="text-center text-light p-3 bg-secondary" style="background-color: rgba(0, 0, 0, 0.2);">
         © 2021 Copyright:
-        <span class="text-dark">Team Money Manager</span>
+        <span class="text-light">Team Money Manager</span>
       </div>
       <!-- Copyright -->
     </footer>
