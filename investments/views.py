@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
 from django.contrib.auth.decorators import login_required
 
 from accounts.models import UserInfo
+from .models import InvestmentInfo, Schemes
 
 from .models import BANK_NAMES, Schemes, SchemeRates
 
@@ -101,10 +102,27 @@ def investment_form_ajax(request):
         principle = request.POST.get('principle')
         fd_time = request.POST.get('fd_time')
 
-        print(bank, time, scheme, principle, fd_time)
+        if scheme != '' and bank != '':
+            scheme_id = Schemes.objects.filter(
+                scheme__icontains=scheme).get(bank_name=bank)
+
+            investment_info = InvestmentInfo(
+                user=request.user,
+                scheme_name=scheme_id,
+                invested_amount=principle,
+                timespan=time,
+            )
+
+            try:
+                # investment_info.save()
+                success = True
+            except DoesNotExist:
+                success = False
+        else:
+            success = False
 
         data = {
-            "success": True,
+            "success": success,
         }
     else:
         bank = request.GET.get('bank')
