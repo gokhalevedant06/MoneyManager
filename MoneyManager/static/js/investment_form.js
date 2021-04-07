@@ -112,26 +112,103 @@ $(document).ready(function () {
         }
     })
 
-    // $('#investment_form').submit(function (e) {
-    //     e.preventDefault();
-    //     $.ajax({
-    //         method: post,
-    //         url: endpoint_int,
-    //         data: {
-    //             'csrfmiddlewaretoken': $('csrfmiddlewaretoken').val(),
-    //             'bank': $('#i_bank').val(),
-    //             'time': t,
-    //             'scheme': $('#i_scheme').val(),
-    //             'principle': $('#i_invested_amount').val(),
-    //             'fd_time': $('#i_time').val(),
-    //         },
-    //         success: function (data) {
-    //             console.log(data);
-    //         }
-    //     });
-    // })
+    $('#investment_form').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            method: 'post',
+            url: endpoint,
+            data: {
+                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+                'bank': $('#i_bank').val(),
+                'time': $("#i_time").val(),
+                'scheme': $('#i_scheme').val(),
+                'principle': $('#i_invested_amount').val(),
+                'fd_time': $('#i_time').val(),
+            },
+            success: function (data) {
+                if (data.success) {
+                    $('#resultModalContent').html(
+                        `<div class="modal-header text-success">
+                            <h5 class="modal-title">Success !</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                    <tr class="table-success">
+                                        <th>Fields</th>
+                                        <th>Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Bank Name</td>
+                                        <td>${$('#i_bank').val()}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Investment Scheme</td>
+                                        <td>${$('#i_scheme').val()}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monthly Investment</td>
+                                        <td>${$("#i_invested_amount").val()}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Timespan</td>
+                                        <td>${$("#i_time").val()}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Intrest Payout</td>
+                                        <td>${$("#i_intr_payout").text()}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer border border-none">
+                            <button id="modalBtn" type="button" class="btn btn-outline-success" data-dismiss="modal" onclick="resetForm();">Ok</button>
+                        </div>
+                        `
+                    )
+                }
+                else {
+                    $('#resultModalContent').html(
+                        `<div class="modal-header text-danger">
+                            <h5 class="modal-title">Error ! Something went Wrong</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Please check if you have filled all the fields
+                        </div>
+                        <div class="modal-footer">
+                            <button id="modalBtn" type="button" class="btn btn-outline-danger" data-dismiss="modal">Ok</button>
+                        </div>
+                        `
+                    )
+                }
+            }
+        });
+    })
 })
 
+function resetForm() {
+    // Reset the form
+    $('#investment_form').trigger('reset');
+    $('#i_time').val(1);
+    $('#i_time_value').text("Value: 1 year");
+
+    //Reset the Canvas
+    ResetCanvas();
+
+    // Reset the table
+    $("#i_rate").text("");
+    $("#i_maturity_amt").text("");
+    $("#i_intr_payout").text("");
+    $("#i_maturity_dt").text("");
+}
 
 function iTimeHandler(state, value = 1, min = 1, max = 25) {
     if (value === 1) {
