@@ -22,7 +22,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
-    {% block css %}{% endblock  %}
+    {% block css %}{% endblock %}
 
   </head>
 
@@ -40,12 +40,53 @@
           </a>
         </div>
         <div class="list-group list-group-flush">
-          <a href="{% url 'exp_index' %}" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-wallet"></i>
+          <a href="{% url 'exp_index' %}" class="list-group-item list-group-item-action bg-dark text-white"><i
+              class="fas fa-wallet"></i>
             Expenses</a>
-          <a href="{% url 'invest_index' %}" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-seedling"></i>
-            Investments</a>
+
+          <!-- <a href="{% url 'invest_index' %}" class="list-group-item list-group-item-action bg-dark text-white">Investments</a> -->
+          <a class="list-group-item list-group-item-action bg-dark text-white" data-toggle="collapse"
+            href="#sidenavCollapse" role="button" aria-expanded="false" aria-controls="sidenavCollapse">
+            <i class="fas fa-seedling"></i> Investments <i class="fas fa-caret-down ml-5"></i>
+          </a>
+          <div class="collapse" aria-labelledby="sidenavCollapse" id="sidenavCollapse">
+            <div class="card card-body bg-dark">
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light"
+                href="{% url 'invest_index' %}">
+                <i class="fas fa-university"></i> Schemes</a>
+
+              <div class="dropdown-divider "></div>
+
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="#">
+                <i class="fab fa-bitcoin"></i> Cryptocurrency</a>
+
+              <div class="dropdown-divider "></div>
+
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="#"><i
+                  class="fas fa-chart-line"></i> Stock
+                Market</a>
+
+              <div class="dropdown-divider "></div>
+
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="#"><i
+                  class="fas fa-home"></i> Real
+                Estate</a>
+
+              <div class="dropdown-divider "></div>
+
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="#">
+                <i class="fas fa-car-crash"></i> Insurance</a>
+
+              <div class="dropdown-divider "></div>
+
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="#"><img
+                  src="{% static 'img/coming_soon.gif'%}" width=180 /></a>
+            </div>
+          </div>
+          <a href=" {% url 'investment_form' %}" class="list-group-item list-group-item-action bg-dark text-white"><i
+              class="fas fa-calculator"></i> Calculator</a>
           <a href="{% url 'about' %}" class="list-group-item list-group-item-action bg-dark text-white"><i
-              class="fas fa-question-circle"></i>  About Us</a>
+              class="fas fa-question-circle"></i> About Us</a>
 
         </div>
       </div>
@@ -62,15 +103,15 @@
 
     </div>
     <!-- /#wrapper -->
-    
+
     <!-- Footer -->
     {% include 'footer.html' %}
     <!-- /Footer -->
-    
+
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    
+
     <!-- Page level plugins -->
     <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
