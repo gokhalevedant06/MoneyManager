@@ -121,7 +121,10 @@ def nifty_graph(request):
 
 
 def index(request):
-    if request.user.isauthenticated():
+    print(request.user)
+    if str(request.user) == 'AnonymousUser':
+        return render(request, 'index.html')
+    else:
         try:
             expended_amt_q = ExpenseData.objects.values_list(
                 'expense_amount', flat=True).filter(user=request.user)
@@ -135,8 +138,6 @@ def index(request):
             'expended_amt': expended_amt
         }
         return render(request, 'index.html', context)
-    else:
-        return render(request, 'index.html')
 
 
 def about(request):
