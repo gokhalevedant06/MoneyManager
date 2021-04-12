@@ -1,10 +1,17 @@
+html{
+    background-image: url('/static/img/login_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .main 
 {
     width: 100%;
     height: 100vh;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(to right,#9c279b ,#8ecdff );
+    
+    
 }
 .exp_nav
 {
@@ -105,4 +112,8 @@
     left: 0;
     top: 0;
 
+}
+.logo image{
+    border-radius: 10px;
+    color: aqua;
 }
