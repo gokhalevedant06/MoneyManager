@@ -10,6 +10,10 @@ urlpatterns = [
     path('monthly-income-scheme/', views.monthly_income, name="monthly_income"),
     path('national-savings-certificate/', views.national_savings_certificate,
          name="national_savings_certificate"),
+    path('crypto/', views.crypto, name="crypto"),
+    path('stock/', views.stock, name="stock"),
+    path('real-estate/', views.real, name="real"),
+     path('insurance/', views.insurance, name="insurance"),
 
     path('form/', views.investment_form, name="investment_form"),
     path('form-ajax/', views.investment_form_ajax, name="investment_form_ajax"),
