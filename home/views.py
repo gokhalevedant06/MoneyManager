@@ -6,6 +6,9 @@ import datetime
 from django.http import JsonResponse
 
 from django.contrib.auth.decorators import login_required
+
+from accounts.models import UserInfo
+from expenses.models import ExpenseData
 # Create your views here.
 
 
@@ -118,7 +121,16 @@ def nifty_graph(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    try:
+        expended_amt = ExpenseData.objects.values_list(
+            'expense_amount', flat=True).get(user=request.user)
+    except ExpenseData.DoesNotExist:
+        expended_amt = 0
+    context = {
+        'income': UserInfo.objects.values_list('income', flat=True).get(user=request.user),
+        'expended_amt': expended_amt
+    }
+    return render(request, 'index.html', context)
 
 
 def about(request):

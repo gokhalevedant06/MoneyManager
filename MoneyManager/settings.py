@@ -29,7 +29,8 @@ SECRET_KEY = 'unf0hhwpre%tik)m@ns$fk4*-o_a1v2o6!)wm+p6_xa7@!rk7o'
 DEBUG = (os.environ.get('DEBUG_VAL') == 'True')
 
 ALLOWED_HOSTS = [
-    'money-manager-vit-pune.herokuapp.com'
+    'money-manager-vit-pune.herokuapp.com',
+    '127.0.0.1'
 ]
 
 
@@ -46,7 +47,7 @@ INSTALLED_APPS = [
 
     'django.contrib.staticfiles',
 
-    # 'crispy_forms',
+    'crispy_forms',
 
     'accounts',
     'home',
@@ -155,4 +156,4 @@ django_heroku.settings(locals())
 try:
     from .local_settings import *
 except ImportError:
-    pass
+    print("Import ERROR!")

@@ -139,12 +139,15 @@ def investment_form_ajax(request):
 
 @ login_required
 def investment_form(request):
-    salary = UserInfo.objects.values_list(
-        'income', flat=True).get(user=request.user)
-    context = {
-        'salary': salary,
-    }
-    return render(request, 'investment_form.html', context)
+    if UserInfo.objects.filter(user=request.user).exists():
+        salary = UserInfo.objects.values_list(
+            'income', flat=True).get(user=request.user)
+        context = {
+            'salary': salary,
+        }
+        return render(request, 'investment_form.html', context)
+    else:
+        return redirect('user_info_form')
 
 
 def invest_index(request):
@@ -170,16 +173,18 @@ def monthly_income(request):
 def national_savings_certificate(request):
     return render(request, 'nsc.html')
 
+
 def crypto(request):
     return render(request, 'crypto.html')
 
+
 def stock(request):
     return render(request, 'stock.html')
-    
+
+
 def real(request):
     return render(request, 'real.html')
 
+
 def insurance(request):
     return render(request, 'insurance.html')
-
-
