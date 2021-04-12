@@ -122,8 +122,11 @@ def nifty_graph(request):
 
 def index(request):
     try:
-        expended_amt = ExpenseData.objects.values_list(
-            'expense_amount', flat=True).get(user=request.user)
+        expended_amt_q = ExpenseData.objects.values_list(
+            'expense_amount', flat=True).filter(user=request.user)
+        expended_amt = 0
+        for i in range(0, len(expended_amt_q)):
+            expended_amt = expended_amt + expended_amt_q[i]
     except ExpenseData.DoesNotExist:
         expended_amt = 0
     context = {

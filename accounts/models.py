@@ -18,7 +18,7 @@ class Choice(models.Model):
 
 class UserInfo(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='userinfo')
+        User, on_delete=models.CASCADE, related_name='profile')
     income = models.BigIntegerField()
     profession = models.CharField(max_length=100)
     gender = models.CharField(max_length=10)
