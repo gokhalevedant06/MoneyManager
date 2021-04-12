@@ -14,6 +14,73 @@
 
   {% if request.user.is_authenticated %}
   <div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Investible Amount</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ income }}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-rupee-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-danger shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Expended Ammount</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ expended_amt }}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-coins fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <a href="#" class="nav-link">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">Check Investments</div>
+                <div class="text-xs mb-0 font-weight-bold text-gray-800">Check how much your money has grown!</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <a href="{% url 'exp_form' %}" class="nav-link">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">Expenses</div>
+                <div class="text-xs mb-0 font-weight-bold text-gray-800">Reduce your Expenses for a better future</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-xl col-lg-5">
       <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
@@ -108,7 +175,7 @@
   <div class="col-md-5">
     <div class="card ml-4 mt-4" style="width: 18rem;">
       <img src="{% static 'img/index4.png' %}" class="card-img-top" alt="...">
-      
+
       <div class="card-body">
         <h5 class="card-title">Blog on Investments</h5>
         <p class="card-text"></p>
@@ -119,8 +186,8 @@
   <div class="col-md-5">
     <div class="card mt-4 ml-4" style="width: 18rem;">
       <img src="{% static 'img/img10.jfif' %}" class="card-img-top" alt="...">
-      
-     
+
+
       <div class="card-body">
         <h5 class="card-title">About Stock Market</h5>
         <p class="card-text"></p>
@@ -132,9 +199,9 @@
 <div class="row ml-4 justify-content-center mt-3">
   <div class="col-md-5">
     <div class="card ml-4 mt-4" style="width: 18rem;">
-      
+
       <img src="{% static 'img/index3.jpg' %}" class="card-img-top" alt="...">
-     
+
       <div class="card-body">
         <h5 class="card-title">More on Investments</h5>
         <p class="card-text"></p>
@@ -145,7 +212,7 @@
   <div class="col-md-5">
     <div class="card mt-4 ml-4" style="width: 18rem;">
       <img src="{% static 'img/img20.jfif' %}" class="card-img-top" alt="...">
-      
+
       <div class="card-body">
         <h5 class="card-title">About Share Market</h5>
         <p class="card-text"></p>
