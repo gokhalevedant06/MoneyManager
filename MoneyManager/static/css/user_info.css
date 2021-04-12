@@ -16,7 +16,7 @@ body {
   margin-right: 40px;
   margin-top: auto;
   margin-bottom: auto;
-  background-color: darkgray !important; /*#343a40 !important;*/
+  background-color: darkgray !important; /*#343a40 --> The navbar color*/
   border-radius: 5px;
   height: 450px !important;
 }
