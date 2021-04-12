@@ -8,6 +8,7 @@
 {% endblock css %}
 
 {% block content %}
+<<<<<<< HEAD
 <div class="main" id="logo">
     <nav class="exp_nav">
         <div class="logo"  >
@@ -20,6 +21,27 @@
             <img src="{% static 'img/arrow.png' %}" id="up">
             <h3>Move</h3>
             <img src="{% static 'img/arrow.png' %}" id="down">
+=======
+<div class="main">
+    <nav class="ml-3 exp_nav">
+        <div class="col justify-content-between">
+            <div class="row">
+                <div class="logo">
+                    <image src="{% static 'img/images (2).jpg' %}" height="100px" width="250px"
+                        alt="There was a supposed to be an image here"></image>
+                </div>
+            </div>
+            <div class="row mt-5 pt-5">
+                <div class="col-sm-3 mt-3">
+                    <ul class="list-group">
+                        <li id="daily_needs" class="list-group-item list-group-item-action">Daily Needs</li>
+                        <li id="bill" class="list-group-item list-group-item-action">Bill Payments</li>
+                        <li id="installment" class="list-group-item list-group-item-action">Istallments</li>
+                        <li id="other" class="list-group-item list-group-item-action">Other Needs</li>
+                    </ul>
+                </div>
+            </div>
+>>>>>>> f88d9596e2eb3484627c2ecaa0a0d2bf180bd3a3
         </div>
     </nav>
 
@@ -29,23 +51,26 @@
         <div id="circle">
 
 
-            <div class="feature one ">
-                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
-                        alt="there is supposed to be image"> </a>
+            <div class="feature one " id="daily_needs_cir">
+                <a class="nav-link text-white" href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image">
 
-                <div>
-                    <h2>Daily Needs</h2>
-                    <p>Grocery , Processed Foods</p>
-                </div>
+                    <div id="daily_needs_circ">
+                        <h2>Daily Needs</h2>
+                        <p>Grocery , Processed Foods</p>
+                    </div>
+                </a>
             </div>
-            <div class="feature two ">
-                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
-                        alt="there is supposed to be image"> </a>
-                <div>
-                    <h2>Bill Payments</h2>
-                    <p>Electricity,Internet etc.</p>
-                </div>
+            <div class="feature two" id="bill_cir">
+                <a class="nav-link text-white" href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image">
+                    <div id="bill_needs_circ">
+                        <h2>Bill Payments</h2>
+                        <p>Electricity,Internet etc.</p>
+                    </div>
+                </a>
             </div>
+<<<<<<< HEAD
             <div class="feature three ">
                 <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
                         alt="there is supposed to be image"> </a>
@@ -53,14 +78,24 @@
                     <h2>Installments</h2>
                     <p>Loan Amount etc.</p>
                 </div>
+=======
+            <div class="feature three" id="installment_cir">
+                <a class="nav-link text-white" href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image">
+                    <div id="installment_needs_circ">
+                        <h2>Istallments</h2>
+                        <p>Loan Amount etc.</p>
+                    </div>
+                </a>
+>>>>>>> f88d9596e2eb3484627c2ecaa0a0d2bf180bd3a3
             </div>
-            <div class="feature four ">
-                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
-                        alt="there is supposed to be image"> </a>
-                <div>
-                    <h2>Other Needs</h2>
-                    <p>What I ADD here</p>
-                </div>
+            <div class="feature four" id="other_cir">
+                <a class="nav-link text-white" href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image">
+                    <div id="other_needs_circ">
+                        <h2>Other Needs</h2>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -70,22 +105,32 @@
 {% block javascript %}
 <script>
     var circle = document.getElementById("circle");
-    var up = document.getElementById("up");
-    var down = document.getElementById("down");
+
+    var daily_needs = document.getElementById("daily_needs");
+    var bill = document.getElementById("bill");
+    var installment = document.getElementById("installment");
+    var other = document.getElementById("other");
     var rotateValue = circle.style.transform;
     var rotateSum;
 
-    up.onclick = function () {
-        rotateSum = rotateValue + "rotate(-90deg)";
-        circle.style.transform = rotateSum;
-        rotateValue = rotateSum;
-
+    daily_needs.onclick = function () {
+        rotation(0, -90, -180, -270);
     }
-    down.onclick = function () {
-        rotateSum = rotateValue + "rotate(90deg)";
-        circle.style.transform = rotateSum;
-        rotateValue = rotateSum;
+    bill.onclick = function () {
+        rotation(90, 0, -90, -180);
+    }
+    installment.onclick = function () {
+        rotation(180, 90, 0, -90);
+    }
+    other.onclick = function () {
+        rotation(270, 180, 90, 0);
+    }
 
+    function rotation(a, b, c, d) {
+        circle.style.transform = `rotate(${a}deg)`;
+        circle.style.transform = `rotate(${a}deg)`;
+        circle.style.transform = `rotate(${a}deg)`;
+        circle.style.transform = `rotate(${a}deg)`;
     }
 </script>
 {% endblock javascript %}
