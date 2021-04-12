@@ -8,10 +8,10 @@
 {% endblock css %}
 
 {% block content %}
-<div class="main">
+<div class="main" id="logo">
     <nav class="exp_nav">
-        <div class="logo">
-            <image src="{% static 'img/images (2).jpg' %}" height="100px" width="250px"
+        <div class="logo"  >
+            <image src="{% static 'img/images (2).jpg' %}" 
                 alt="There was a supposed to be an image here"></image>
         </div>
 
@@ -50,7 +50,7 @@
                 <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
                         alt="there is supposed to be image"> </a>
                 <div>
-                    <h2>Istallments</h2>
+                    <h2>Installments</h2>
                     <p>Loan Amount etc.</p>
                 </div>
             </div>
