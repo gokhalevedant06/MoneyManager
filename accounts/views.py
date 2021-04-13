@@ -26,10 +26,8 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user:
             auth.login(request, user)
-            if request.session.get('first_login'):
-                return redirect('user_info')
-            else:
-                return redirect('/')
+
+            return redirect('/')
         else:
             messages.warning(
                 request, "Username or Password is incorrect!", fail_silently=False)
@@ -61,7 +59,12 @@ def register(request):
                 email=email
             )
             user.save()
-        return redirect('/')
+            login_user = auth.authenticate(
+                username=username, password=password)
+            if login_user:
+                auth.login(request, login_user)
+
+        return redirect('user_info_form')
     else:
         if request.is_ajax():
             username = request.GET.get('username')

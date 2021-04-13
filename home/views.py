@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 import yfinance as yf
 import datetime
@@ -133,11 +133,14 @@ def index(request):
                 expended_amt = expended_amt + expended_amt_q[i]
         except ExpenseData.DoesNotExist:
             expended_amt = 0
-        context = {
-            'income': UserInfo.objects.values_list('income', flat=True).get(user=request.user),
-            'expended_amt': expended_amt
-        }
-        return render(request, 'index.html', context)
+        try:
+            context = {
+                'income': UserInfo.objects.values_list('income', flat=True).get(user=request.user),
+                'expended_amt': expended_amt
+            }
+            return render(request, 'index.html', context)
+        except UserInfo.DoesNotExist:
+            return redirect("user_info_form")
 
 
 def about(request):
