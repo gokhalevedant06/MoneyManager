@@ -70,3 +70,5 @@ class InvestmentInfo(models.Model):
     scheme_name = models.ForeignKey(Schemes, on_delete=models.CASCADE)
     invested_amount = models.IntegerField()
     timespan = models.IntegerField()
+    intrest_payout = models.IntegerField(default=0)
+    maturity_date = models.DateField(auto_now=True)

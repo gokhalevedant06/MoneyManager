@@ -38,7 +38,7 @@ $(document).ready(function () {
                 $("#exp_income").text(og_income);
             }
             else {
-                $("#exp_income").text(income - expense);
+                $("#exp_income").text(og_income - expense);
             }
         }
         else {

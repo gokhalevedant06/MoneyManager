@@ -1,0 +1,10 @@
+{% for d in data %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ d.scheme_name }}</td>
+        <td>{{ d.timespan }}</td>
+        <td>{{ d.invested_amount }}</td>
+        <td>{{ d.intrest_payout }}</td>
+        <td>{{ d.maturity_date }}</td>
+    </tr>
+{% endfor %}

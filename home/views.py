@@ -141,7 +141,3 @@ def index(request):
             return render(request, 'index.html', context)
         except UserInfo.DoesNotExist:
             return redirect("user_info_form")
-
-
-def about(request):
-    return render(request, 'about.html')
