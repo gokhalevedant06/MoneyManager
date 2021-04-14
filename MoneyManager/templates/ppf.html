@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Public Provident Fund{% endblock title %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>
+        </title>
+        <link rel="stylesheet" href="{% static 'css/ppf.css' %}" />
+
+    </head>
+
+    <body>
+        <!-- <img src="ppf.png" width="1000"> -->
+        <h1>PUBLIC PROVIDENT FUND</h1>
+        <p class="main">
+            PPF is long term investment which is risk free and tax free.
+            The interest rate is an attractive 8 % PA and the invested amount can be claimed under Section 80C to lower
+            your tax liability.
+            The lock-in period is 15 Years, after which you can choose to withdraw your corpus.
+            The minimum amount that needs to be deposited is just Rs 500 and the maximum amount is capped at Rs 1.5 Lakh
+            annually.
+            A very interesting fact about PPF money saving scheme that many investors are unaware of is that you can
+            take a loan against the amount you invested in PPF.
+
+        <p>
+
+
+        <div><img class="ppf1" src="{% static 'img/ppf.png' %}"></div>
+
+
+        <h2>Major Benefits </h2>
+        <ul class="main">
+            <li>1) The major reason why PPF is considered as a preferred choice can be attributed to it being a safe
+                investment option.</li>
+            <li> 2) Not only this, the interest earned on invested amount is also exempt from tax.</li>
+            <li> 3) As a saving scheme by the government, PPF gives an agreeable rate of interest and returns on
+                investments.</li>
+            <li>4) You can open a post office PPF account either by cheque or cash, whichever is more convenient.</li>
+        </ul>
+
+
+
+
+
+        <h2>Some Causions </h2>
+        <ul class="main">
+            <li>1) The lock period is 15 years.</li>
+            <li>2) You cant withdraw money before 15 years.</li>
+        </ul>
+
+        <div class="row justify-content-center">
+            <h4 class="mt-3 mb-3"><a href="#" class="btn btn-outline-success">Invest Now !</a></h4>
+        </div>
+    </body>
+
+</html>
+
+{% endblock content %}

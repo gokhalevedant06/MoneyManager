@@ -109,9 +109,103 @@
     <h2 class="text-muted">Welcome To Money Manager!</h2>
   </div>
   <hr>
+<<<<<<< HEAD
   <ul class="list-group">
     <li class="list-group-item">adasdasd</li>
   </ul>
+=======
+
+  {% if request.user.is_authenticated %}
+  <div class="row">
+    <div class="col-xl col-lg-5">
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 id="sen_header" class="m-0 font-weight-bold text-primary">Today's Sensex</h6>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="sensex_tab" data-toggle="tab" href="#sensex_body" role="tab"
+                aria-controls="sensex_body" aria-selected="true">BSE / Sensex</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nifty_tab" data-toggle="tab" href="#nifty_body" role="tab"
+                aria-controls="nifty_body" aria-selected="false">NIFTY</a>
+            </li>
+          </ul>
+          <div id="loader" style="display:none">
+            <div class="row justify-content-center">
+              <div class="col-md-2 h6">
+                <img class="ml-2 mt-3" src="{% static 'img/sensexLoader.gif' %}" width=250 />
+              </div>
+            </div>
+          </div>
+          <div class="chart-pie pt-4 pb-2">
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="sensex_body" role="tabpanel" aria-labelledby="sensex_tab">
+                <div class="row">
+                  <canvas id="sensex_graph_today"></canvas>
+                  <canvas id="sensex_graph_week"></canvas>
+                  <canvas id="sensex_graph_year"></canvas>
+                  <canvas id="sensex_graph_ten_years"></canvas>
+                </div>
+                <div class="row p-0">
+                  <div class="navbar">
+                    <div class="col">
+                      <buttton id="sen_today" class="badge btn-outline-primary" style="cursor:pointer;">Today</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="sen_week" class="badge btn-outline-primary" style="cursor:pointer;">This
+                        Week</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="sen_year" class="badge btn-outline-primary" style="cursor:pointer;">This
+                        Year</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="sen_ten_years" class="badge btn-outline-primary" style="cursor:pointer;">10
+                        Years</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nifty_body" role="tabpanel" aria-labelledby="nifty_tab">
+                <div class="row">
+                  <canvas id="nifty_graph_today"></canvas>
+                  <canvas id="nifty_graph_week"></canvas>
+                  <canvas id="nifty_graph_year"></canvas>
+                  <canvas id="nifty_graph_ten_years"></canvas>
+                </div>
+                <div class="row p-0">
+                  <div class="navbar">
+                    <div class="col">
+                      <buttton id="nifty_today" class="badge btn-outline-success" style="cursor:pointer;">Today</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="nifty_week" class="badge btn-outline-success" style="cursor:pointer;">This
+                        Week</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="nifty_year" class="badge btn-outline-success" style="cursor:pointer;">This
+                        Year</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="nifty_ten_years" class="badge btn-outline-success" style="cursor:pointer;">10
+                        Years</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+>>>>>>> 176303e... debugging 16
 </div>
 
 <div class="card ml-4 mt-4" style="width: 18rem;">
@@ -133,4 +227,18 @@
 <!--<span><a href=""><img src="/static/img/img30.jfif" alt=""></a></span> -->
 
 {% endblock content %}
+<<<<<<< HEAD
 >>>>>>> fe92550... debugging 14
+=======
+
+{% block javascript %}
+<script>
+  var endpoint = "{% url 'sensex_graph' %}";
+  var endpoint_nifty = "{% url 'nifty_graph' %}";
+</script>
+
+<script src="{% static 'js/graphs/sensex_graph.js' %}"></script>
+<script src="{% static 'js/graphs/nifty_graph.js' %}"></script>
+
+{% endblock javascript %}
+>>>>>>> 176303e... debugging 16

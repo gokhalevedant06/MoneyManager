@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 >>>>>>> b64e7d1... added dynamic choices and some icons to sidebar also added validation to login form
     'accounts',
     'home',
+    'investments',
 ]
 
 MIDDLEWARE = [
