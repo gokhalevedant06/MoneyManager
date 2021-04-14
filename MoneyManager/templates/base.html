@@ -50,8 +50,53 @@
         <div class="list-group list-group-flush">
           <a href="#" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-wallet"></i>
             Expenses</a>
+<<<<<<< HEAD
           <a href="{% url 'invest_index' %}" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-seedling"></i>
             Investments</a>
+=======
+
+          <!-- <a href="{% url 'invest_index' %}" class="list-group-item list-group-item-action bg-dark text-white">Investments</a> -->
+          <a class="list-group-item list-group-item-action bg-dark text-white" data-toggle="collapse"
+            href="#sidenavCollapse" role="button" aria-expanded="false" aria-controls="sidenavCollapse">
+            <i class="fas fa-seedling"></i> Investments <i class="fas fa-caret-down ml-5"></i>
+          </a>
+          <div class="collapse" aria-labelledby="sidenavCollapse" id="sidenavCollapse">
+            <div class="card card-body bg-dark">
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light"
+                href="{% url 'invest_index' %}">
+                <i class="fas fa-university"></i> Schemes</a>
+
+              <div class="dropdown-divider "></div>
+
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="{% url 'crypto' %}">
+                <i class="fab fa-bitcoin"></i> Cryptocurrency</a>
+
+              <div class="dropdown-divider "></div>
+
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="{% url 'stock' %}"><i
+                  class="fas fa-chart-line"></i> Stock
+                Market</a>
+
+              <div class="dropdown-divider "></div>
+
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="{% url 'real' %}"><i
+                  class="fas fa-home"></i> Real
+                Estate</a>
+
+              <div class="dropdown-divider "></div>
+
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="{% url 'insurance' %}">
+                <i class="fas fa-car-crash"></i> Insurance</a>
+
+              <div class="dropdown-divider "></div>
+
+              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="#"><img
+                  src="{% static 'img/coming_soon.gif'%}" width=180 /></a>
+            </div>
+          </div>
+          <a href=" {% url 'investment_form' %}" class="list-group-item list-group-item-action bg-dark text-white"><i
+              class="fas fa-calculator"></i> Calculator</a>
+>>>>>>> 8f071fe... debugging 18
           <a href="{% url 'about' %}" class="list-group-item list-group-item-action bg-dark text-white"><i
               class="fas fa-question-circle"></i>  About Us</a>
 
