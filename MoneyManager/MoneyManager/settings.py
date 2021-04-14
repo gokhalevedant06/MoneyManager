@@ -26,9 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'unf0hhwpre%tik)m@ns$fk4*-o_a1v2o6!)wm+p6_xa7@!rk7o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = (os.environ.get('DEBUG_VAL') == 'True')
 
-ALLOWED_HOSTS = ['money-manager-vit-pune.herokuapp.com']
+ALLOWED_HOSTS = [
+    'money-manager-vit-pune.herokuapp.com'
+]
 
 
 # Application definition
@@ -52,17 +54,18 @@ INSTALLED_APPS = [
     'accounts',
     'home',
     'investments',
+    'expenses',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'MoneyManager.urls'
@@ -153,7 +156,8 @@ SECURE_SSL_REDIRECT = True
 # Heroku setup
 django_heroku.settings(locals())
 
+# Configuring Local Settings
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     pass

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Expenses{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="main">
+    <nav class="exp_nav">
+        <div class="logo">
+            <image src="{% static 'img/images (2).jpg' %}" height="100px" width="250px"
+                alt="There was a supposed to be an image here"></image>
+        </div>
+
+
+        <div class="controls">
+            <img src="{% static 'img/arrow.png' %}" id="up">
+            <h3>Move</h3>
+            <img src="{% static 'img/arrow.png' %}" id="down">
+        </div>
+    </nav>
+
+    <div class="information">
+        <div class="overlayer"></div>
+
+        <div id="circle">
+
+
+            <div class="feature one ">
+                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image"> </a>
+
+                <div>
+                    <h2>Daily Needs</h2>
+                    <p>Grocery , Processed Foods</p>
+                </div>
+            </div>
+            <div class="feature two ">
+                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image"> </a>
+                <div>
+                    <h2>Bill Payments</h2>
+                    <p>Electricity,Internet etc.</p>
+                </div>
+            </div>
+            <div class="feature three ">
+                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image"> </a>
+                <div>
+                    <h2>Istallments</h2>
+                    <p>Loan Amount etc.</p>
+                </div>
+            </div>
+            <div class="feature four ">
+                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image"> </a>
+                <div>
+                    <h2>Other Needs</h2>
+                    <p>What I ADD here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script>
+    var circle = document.getElementById("circle");
+    var up = document.getElementById("up");
+    var down = document.getElementById("down");
+    var rotateValue = circle.style.transform;
+    var rotateSum;
+
+    up.onclick = function () {
+        rotateSum = rotateValue + "rotate(-90deg)";
+        circle.style.transform = rotateSum;
+        rotateValue = rotateSum;
+
+    }
+    down.onclick = function () {
+        rotateSum = rotateValue + "rotate(90deg)";
+        circle.style.transform = rotateSum;
+        rotateValue = rotateSum;
+
+    }
+</script>
+{% endblock javascript %}
