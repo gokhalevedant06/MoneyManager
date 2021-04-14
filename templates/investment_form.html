@@ -4,13 +4,55 @@
 
 {% block content %}
 <div class="p-4">
-    <div class="row">
-        <div class="col-md-4 h4">Name: {{ request.user.username }}</div>
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-md-6 mb-5">
+        <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+                <div class="text-xl font-weight-bold text-success text-uppercase mb-1">Name:</div>
+                <div class="text-lg mb-0 font-weight-bold text-gray-800">{{request.user.username}}</div>
+            </div>
+            <div class="col-auto">
+                <i class="fas fa-user fa-2x text-gray-300"></i>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-5">
+        <div class="card border-left-danger shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+                <div class="text-xl font-weight-bold text-danger text-uppercase mb-1">Investable ammount:</div>
+                <div id="investible_amt" class="text-lg mb-0 font-weight-bold text-gray-800">{{ salary }}</div>
+            </div>
+            <div class="col-auto">
+                <i class="fas fa-rupee-sign fa-2x text-gray-300"></i>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-5">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <a href="{% url 'investment_tbl' %}" class="nav-link">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">Check Investments</div>
+                    <div class="text-xs mb-0 font-weight-bold text-gray-800">Check how much your money has grown!</div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+                </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 h4">Investable ammount: {{ salary }}</div>
-    </div>
-    <div class="container-fluid mt-5 p-2 justify-content-center">
         <div class="row">
             <div class="col-xl col-lg-5">
                 <div class="chart-pie pt-4 pb-2">
@@ -175,7 +217,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
 </div>
 

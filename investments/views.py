@@ -12,6 +12,10 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.core.serializers import serialize
 
 import math
+import datetime
+
+from django.db.models import Q
+from django.template.loader import render_to_string
 # Create your views here.
 
 
@@ -101,6 +105,10 @@ def investment_form_ajax(request):
         scheme = request.POST.get('scheme')
         principle = request.POST.get('principle')
         fd_time = request.POST.get('fd_time')
+        intr_payout = request.POST.get('intr_payout')
+
+        temp_date = datetime.datetime.now().date()
+        maturity_date = temp_date.replace(year=temp_date.year + int(time))
 
         if scheme != '' and bank != '':
             scheme_id = Schemes.objects.filter(
@@ -111,18 +119,26 @@ def investment_form_ajax(request):
                 scheme_name=scheme_id,
                 invested_amount=principle,
                 timespan=time,
+                intrest_payout=intr_payout,
+                maturity_date=maturity_date,
             )
 
+            print(investment_info)
             try:
-                # investment_info.save()
+                investment_info.save()
+                updated_income = UserInfo.objects.values_list(
+                    'income', flat=True).get(user=request.user) - int(principle)
+                UserInfo.objects.filter(user=request.user).update(
+                    income=updated_income)
                 success = True
-            except DoesNotExist:
+            except InvestmentInfo.DoesNotExist:
                 success = False
         else:
             success = False
 
         data = {
             "success": success,
+            "updated_income": updated_income
         }
     else:
         bank = request.GET.get('bank')
@@ -150,41 +166,30 @@ def investment_form(request):
         return redirect('user_info_form')
 
 
-def invest_index(request):
-    return render(request, 'schemes.html')
+@login_required
+def investment_tbl(request):
+    context = {
+        'data': InvestmentInfo.objects.filter(user=request.user)
+    }
+    return render(request, 'investment_tbl.html', context)
 
 
-def fixed_deposit(request):
-    return render(request, 'fd.html')
+@login_required
+def investment_tbl_ajax(request):
+    query = request.GET.get('query', None)
+    q = InvestmentInfo.objects.filter(user=request.user)
+    if query is not None:
+        queryset = q.filter(
+            Q(scheme_name__scheme__icontains=query) |
+            Q(scheme_name__bank_name__icontains=query) |
+            Q(invested_amount__icontains=query) |
+            Q(timespan__icontains=query) |
+            Q(intrest_payout__icontains=query) |
+            Q(maturity_date__icontains=query)
+        )
 
-
-def recurring_deposit(request):
-    return render(request, 'rd.html')
-
-
-def provident_fund(request):
-    return render(request, 'ppf.html')
-
-
-def monthly_income(request):
-    return render(request, 'mis.html')
-
-
-def national_savings_certificate(request):
-    return render(request, 'nsc.html')
-
-
-def crypto(request):
-    return render(request, 'crypto.html')
-
-
-def stock(request):
-    return render(request, 'stock.html')
-
-
-def real(request):
-    return render(request, 'real.html')
-
-
-def insurance(request):
-    return render(request, 'insurance.html')
+    html = render_to_string(
+        'investment_tbl_query.html',
+        context={'data': queryset}
+    )
+    return JsonResponse({'html': html})

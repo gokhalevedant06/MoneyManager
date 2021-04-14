@@ -124,6 +124,7 @@ $(document).ready(function () {
                 'scheme': $('#i_scheme').val(),
                 'principle': $('#i_invested_amount').val(),
                 'fd_time': $('#i_time').val(),
+                'intr_payout': parseInt($('#i_intr_payout').text()),
             },
             success: function (data) {
                 if (data.success) {
@@ -171,6 +172,7 @@ $(document).ready(function () {
                         </div>
                         `
                     )
+                    $('#investible_amt').text(`Investable ammount: ${data.updated_income}`);
                 }
                 else {
                     $('#resultModalContent').html(
