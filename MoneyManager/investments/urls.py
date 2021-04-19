@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('options/', views.invest_index, name="invest_index"),
 
+<<<<<<< HEAD
     path('fixed-deposit/', views.fixed_deposit, name="fixed_deposit"),
     path('reccuring-deposit/', views.recurring_deposit, name="recurring_deposit"),
     path('public-provident-fund/', views.provident_fund, name="provident_fund"),
@@ -14,6 +15,14 @@ urlpatterns = [
     path('stock/', views.stock, name="stock"),
     path('real-estate/', views.real, name="real"),
      path('insurance/', views.insurance, name="insurance"),
+=======
+    path('fd/', views.fixed_deposit, name="fixed_deposit"),
+    path('rd/', views.recurring_deposit, name="recurring_deposit"),
+    path('ppf/', views.provident_fund, name="provident_fund"),
+    path('mis/', views.monthly_income, name="monthly_income"),
+    path('nsc/', views.national_savings_certificate,
+         name="national_savings_certificate"),
+>>>>>>> b89de65... origin error solving 5
 
     path('form/', views.investment_form, name="investment_form"),
     path('form-ajax/', views.investment_form_ajax, name="investment_form_ajax"),

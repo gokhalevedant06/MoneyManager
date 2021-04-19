@@ -88,6 +88,7 @@ def monthly_income(request):
 
 def national_savings_certificate(request):
     return render(request, 'nsc.html')
+<<<<<<< HEAD
 
 def crypto(request):
     return render(request, 'crypto.html')
@@ -102,3 +103,5 @@ def insurance(request):
     return render(request, 'insurance.html')
 
 
+=======
+>>>>>>> b89de65... origin error solving 5

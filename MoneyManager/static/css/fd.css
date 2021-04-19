@@ -1,0 +1,51 @@
+html,body{
+    background-image: url('/static/img/login_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fdtitle{
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+.main{
+    margin-left: 4%;
+    margin-right: 6%;
+    font-size: 20px;
+    list-style-type: none;
+    
+}
+h2{
+    text-align: center;
+    margin: 2%;
+}
+
+
+
+h2{
+    /* background-color: rgb(42, 43, 44);
+    color: whitesmoke;
+    height: 45px;
+    border-radius: 8px; */
+    margin-left: 100px;
+    margin-right: 100px;
+}
+h1{
+    background-color:  rgb(42, 43, 44);
+    color: whitesmoke;
+    height: 48px;
+    position: relative;
+    border-radius: 8px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.fd1{
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    display: block;
+    margin-top: 2%;
+    border-radius: 8px;
+    
+}

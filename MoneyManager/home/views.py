@@ -25,7 +25,10 @@ def perdelta(start, end, delta):
         curr += delta
 
 
+<<<<<<< HEAD
 @login_required
+=======
+>>>>>>> b89de65... origin error solving 5
 def sensex_graph(request):
 
     diff = int(request.GET.get('diff'))
@@ -75,7 +78,10 @@ def sensex_graph(request):
     return JsonResponse(data)
 
 
+<<<<<<< HEAD
 @login_required
+=======
+>>>>>>> b89de65... origin error solving 5
 def nifty_graph(request):
 
     diff = int(request.GET.get('diff'))
@@ -125,6 +131,7 @@ def nifty_graph(request):
     return JsonResponse(data)
 
 
+<<<<<<< HEAD
 >>>>>>> 9bc9982... added investment utility
 =======
 from .models import *
@@ -141,6 +148,9 @@ from django.http import JsonResponse
 
 
 >>>>>>> 7efb37a... origin error solving 3
+=======
+>>>>>>> 176303e... debugging 16
+>>>>>>> b89de65... origin error solving 5
 def index(request):
     return render(request, 'index.html')
 
