@@ -2,6 +2,7 @@ from django.shortcuts import render
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 import yfinance as yf
@@ -134,6 +135,8 @@ from django.core.serializers import serialize
 from django.core.serializers.json import DjangoJSONEncoder
 
 from django.http import JsonResponse
+=======
+>>>>>>> fcb4e46... origin error solving 4
 # Create your views here.
 
 
@@ -142,6 +145,7 @@ def index(request):
     return render(request, 'index.html')
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 def about(request):
     return render(request, 'about.html')
@@ -169,3 +173,7 @@ def user_info(request):
 
         return render(request, "user_info.html")
 >>>>>>> 7efb37a... origin error solving 3
+=======
+def about(request):
+    return render(request, 'about.html')
+>>>>>>> fcb4e46... origin error solving 4

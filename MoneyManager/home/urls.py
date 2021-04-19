@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.index, name="index"),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     path('about-us/', views.about, name="about"),
 <<<<<<< HEAD
 =======
@@ -18,4 +19,7 @@ urlpatterns = [
 =======
     path('user-info', views.user_info, name="user_info")
 >>>>>>> 7efb37a... origin error solving 3
+=======
+    path('about-us/', views.about, name="about"),
+>>>>>>> fcb4e46... origin error solving 4
 ]
