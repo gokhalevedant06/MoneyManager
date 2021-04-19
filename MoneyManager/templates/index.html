@@ -99,33 +99,38 @@
 </html>
 =======
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-  <div class="container-fluid">
-    <span class="homeop"><h1>Welcome To Money Manager Application!</h1></span>
+<div class="container-fluid">
+  <div class="row justify-content-center mt-3">
+    <h2 class="text-muted">Welcome To Money Manager!</h2>
+  </div>
+  <hr>
+  <ul class="list-group">
+    <li class="list-group-item">adasdasd</li>
+  </ul>
+</div>
 
-    
-    
+<div class="card ml-4 mt-4" style="width: 18rem;">
+  <img src="{% static 'img/img20.jfif' %}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Blog on Investments</h5>
+    <p class="card-text"></p>
+    <a href="#" class="btn btn-success">Click Here</a>
   </div>
-
-  <div class="card ml-4 mt-4" style="width: 18rem;">
-    <img src="/static/img/img20.jfif" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Blog on Investments</h5>
-      <p class="card-text"></p>
-      <a href="#" class="btn btn-success">Click Here</a>
-    </div>
+</div>
+<div class="card mt-4 ml-4" style="width: 18rem;">
+  <img src="/static/img/img10.jfif" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">About Share Market</h5>
+    <p class="card-text"></p>
+    <a href="#" class="btn btn-success">Click Here</a>
   </div>
-  <div class="card mt-4 ml-4" style="width: 18rem;">
-    <img src="/static/img/img10.jfif" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">About Share Market</h5>
-      <p class="card-text"></p>
-      <a href="#" class="btn btn-success">Click Here</a>
-    </div>
-  </div>
-  <!--<span><a href=""><img src="/static/img/img30.jfif" alt=""></a></span> -->
+</div>
+<!--<span><a href=""><img src="/static/img/img30.jfif" alt=""></a></span> -->
 
 {% endblock content %}
 >>>>>>> ff44179... canged theme of template
