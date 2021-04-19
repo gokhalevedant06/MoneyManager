@@ -19,6 +19,7 @@ urlpatterns = [
     path('stock/', views.stock, name="stock"),
     path('real-estate/', views.real, name="real"),
      path('insurance/', views.insurance, name="insurance"),
+<<<<<<< HEAD
 =======
     path('fd/', views.fixed_deposit, name="fixed_deposit"),
     path('rd/', views.recurring_deposit, name="recurring_deposit"),
@@ -29,6 +30,8 @@ urlpatterns = [
 >>>>>>> 6eddf23... origin error solving 6
          name="national_savings_certificate"),
 >>>>>>> b89de65... origin error solving 5
+=======
+>>>>>>> 215d5a7... origin error solving 6
 
     path('form/', views.investment_form, name="investment_form"),
     path('form-ajax/', views.investment_form_ajax, name="investment_form_ajax"),

@@ -46,13 +46,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
 
-    'livereload',
+    # 'livereload',
 
     'django.contrib.staticfiles',
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     'crispy_forms',
+=======
+    # 'crispy_forms',
+>>>>>>> 8f100e7... Investments Section Completed and made some changes on home page
 
 >>>>>>> b64e7d1... added dynamic choices and some icons to sidebar also added validation to login form
     'accounts',
