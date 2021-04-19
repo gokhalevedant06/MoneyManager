@@ -1,11 +1,22 @@
+html{
+    background-image: url('/static/img/login_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .main 
 {
     width: 100%;
     height: 100vh;
     position: relative;
     overflow: hidden;
+<<<<<<< HEAD
     background: linear-gradient(to right,#9c279b ,#8ecdff );
     font-family: apple color emoji, segoe ui emoji, noto color emoji, android emoji, emojisymbols, emojione mozilla, twemoji mozilla, segoe ui symbol;
+=======
+    
+    
+>>>>>>> d2c1932... merged vedant final frontend
 }
 .exp_nav
 {
@@ -106,4 +117,8 @@
     left: 0;
     top: 0;
 
+}
+.logo image{
+    border-radius: 10px;
+    color: aqua;
 }
