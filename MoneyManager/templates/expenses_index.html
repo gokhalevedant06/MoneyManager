@@ -11,6 +11,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6d9abd9... origin error solving 7
 <div class="main" id="logo">
     <nav class="exp_nav">
         <div class="logo"  >
@@ -36,6 +39,9 @@
             <h3>Move</h3>
             <img src="{% static 'img/arrow.png' %}" id="down">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6d9abd9... origin error solving 7
 =======
 <div class="main">
     <nav class="ml-3 exp_nav">
@@ -57,8 +63,11 @@
                 </div>
             </div>
 >>>>>>> f88d959... added the expenses form utility
+<<<<<<< HEAD
 =======
 >>>>>>> 6eddf23... origin error solving 6
+=======
+>>>>>>> 6d9abd9... origin error solving 7
         </div>
     </nav>
 
@@ -68,6 +77,7 @@
         <div id="circle">
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             <div class="feature one " id="daily_needs_cir">
                 <a class="nav-link text-white" href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
@@ -93,21 +103,32 @@
             <div class="feature one ">
                 <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
                         alt="there is supposed to be image"> </a>
+=======
+            <div class="feature one " id="daily_needs_cir">
+                <a class="nav-link text-white" href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image">
+>>>>>>> 6d9abd9... origin error solving 7
 
-                <div>
-                    <h2>Daily Needs</h2>
-                    <p>Grocery , Processed Foods</p>
-                </div>
+                    <div id="daily_needs_circ">
+                        <h2>Daily Needs</h2>
+                        <p>Grocery , Processed Foods</p>
+                    </div>
+                </a>
             </div>
-            <div class="feature two ">
-                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
-                        alt="there is supposed to be image"> </a>
-                <div>
-                    <h2>Bill Payments</h2>
-                    <p>Electricity,Internet etc.</p>
-                </div>
+            <div class="feature two" id="bill_cir">
+                <a class="nav-link text-white" href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image">
+                    <div id="bill_needs_circ">
+                        <h2>Bill Payments</h2>
+                        <p>Electricity,Internet etc.</p>
+                    </div>
+                </a>
             </div>
+<<<<<<< HEAD
 >>>>>>> 6eddf23... origin error solving 6
+=======
+<<<<<<< HEAD
+>>>>>>> 6d9abd9... origin error solving 7
             <div class="feature three ">
                 <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
                         alt="there is supposed to be image"> </a>
@@ -127,6 +148,7 @@
                     </div>
                 </a>
 >>>>>>> f88d959... added the expenses form utility
+<<<<<<< HEAD
             </div>
             <div class="feature four" id="other_cir">
                 <a class="nav-link text-white" href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
@@ -151,6 +173,16 @@
                     <p>What I ADD here</p>
                 </div>
 >>>>>>> 6eddf23... origin error solving 6
+=======
+            </div>
+            <div class="feature four" id="other_cir">
+                <a class="nav-link text-white" href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image">
+                    <div id="other_needs_circ">
+                        <h2>Other Needs</h2>
+                    </div>
+                </a>
+>>>>>>> 6d9abd9... origin error solving 7
             </div>
         </div>
     </div>
@@ -161,11 +193,15 @@
 <script>
     var circle = document.getElementById("circle");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6d9abd9... origin error solving 7
 
     var daily_needs = document.getElementById("daily_needs");
     var bill = document.getElementById("bill");
     var installment = document.getElementById("installment");
     var other = document.getElementById("other");
+<<<<<<< HEAD
     var rotateValue = circle.style.transform;
     var rotateSum;
 
@@ -190,21 +226,33 @@
 =======
     var up = document.getElementById("up");
     var down = document.getElementById("down");
+=======
+>>>>>>> 6d9abd9... origin error solving 7
     var rotateValue = circle.style.transform;
     var rotateSum;
 
-    up.onclick = function () {
-        rotateSum = rotateValue + "rotate(-90deg)";
-        circle.style.transform = rotateSum;
-        rotateValue = rotateSum;
-
+    daily_needs.onclick = function () {
+        rotation(0, -90, -180, -270);
     }
-    down.onclick = function () {
-        rotateSum = rotateValue + "rotate(90deg)";
-        circle.style.transform = rotateSum;
-        rotateValue = rotateSum;
+    bill.onclick = function () {
+        rotation(90, 0, -90, -180);
+    }
+    installment.onclick = function () {
+        rotation(180, 90, 0, -90);
+    }
+    other.onclick = function () {
+        rotation(270, 180, 90, 0);
+    }
 
+<<<<<<< HEAD
 >>>>>>> 6eddf23... origin error solving 6
+=======
+    function rotation(a, b, c, d) {
+        circle.style.transform = `rotate(${a}deg)`;
+        circle.style.transform = `rotate(${a}deg)`;
+        circle.style.transform = `rotate(${a}deg)`;
+        circle.style.transform = `rotate(${a}deg)`;
+>>>>>>> 6d9abd9... origin error solving 7
     }
 </script>
 {% endblock javascript %}
