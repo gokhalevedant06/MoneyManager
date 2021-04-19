@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name="index"),
 <<<<<<< HEAD
+<<<<<<< HEAD
     path('about-us/', views.about, name="about"),
 <<<<<<< HEAD
 =======
@@ -14,4 +15,7 @@ urlpatterns = [
 =======
 
 >>>>>>> 792a862... origin error solving 1
+=======
+    path('user-info', views.user_info, name="user_info")
+>>>>>>> 7efb37a... origin error solving 3
 ]

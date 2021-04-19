@@ -37,8 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+
+    'livereload',
+
     'django.contrib.staticfiles',
 
+<<<<<<< HEAD
+=======
+    'crispy_forms',
+
+>>>>>>> b64e7d1... added dynamic choices and some icons to sidebar also added validation to login form
     'accounts',
     'home',
 ]
@@ -51,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'MoneyManager.urls'

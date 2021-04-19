@@ -1,6 +1,7 @@
 from django.shortcuts import render
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 import yfinance as yf
@@ -124,10 +125,24 @@ def nifty_graph(request):
 
 
 >>>>>>> 9bc9982... added investment utility
+=======
+from .models import *
+
+from pathlib import Path
+
+from django.core.serializers import serialize
+from django.core.serializers.json import DjangoJSONEncoder
+
+from django.http import JsonResponse
+# Create your views here.
+
+
+>>>>>>> 7efb37a... origin error solving 3
 def index(request):
     return render(request, 'index.html')
 
 
+<<<<<<< HEAD
 def about(request):
     return render(request, 'about.html')
 =======
@@ -139,3 +154,18 @@ from pathlib import Path
 def index(request):
     return render(request, 'index.html')
 >>>>>>> 792a862... origin error solving 1
+=======
+def user_info(request):
+    if request.method == 'POST':
+        pass
+    else:
+        if request.is_ajax():
+            choices = Choice.objects.all()
+
+            serialized_choices = serialize(
+                'json', choices, cls=DjangoJSONEncoder)
+
+            return JsonResponse(serialized_choices, safe=False)
+
+        return render(request, "user_info.html")
+>>>>>>> 7efb37a... origin error solving 3
