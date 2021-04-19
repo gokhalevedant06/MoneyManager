@@ -1,5 +1,6 @@
 from django.shortcuts import render
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 import yfinance as yf
@@ -129,3 +130,12 @@ def index(request):
 
 def about(request):
     return render(request, 'about.html')
+=======
+
+from pathlib import Path
+# Create your views here.
+
+
+def index(request):
+    return render(request, 'index.html')
+>>>>>>> 792a862... origin error solving 1
