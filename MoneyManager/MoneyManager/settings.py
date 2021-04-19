@@ -24,9 +24,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'unf0hhwpre%tik)m@ns$fk4*-o_a1v2o6!)wm+p6_xa7@!rk7o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+<<<<<<< HEAD
 DEBUG = True
 
 ALLOWED_HOSTS = []
+=======
+DEBUG = (os.environ.get('DEBUG_VAL') == 'True')
+
+ALLOWED_HOSTS = [
+    'money-manager-vit-pune.herokuapp.com'
+]
+>>>>>>> 6eddf23... origin error solving 6
 
 
 # Application definition
@@ -50,17 +58,18 @@ INSTALLED_APPS = [
     'accounts',
     'home',
     'investments',
+    'expenses',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'MoneyManager.urls'
@@ -136,3 +145,23 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+<<<<<<< HEAD
+=======
+
+# Security of Django Website
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+
+
+# Heroku setup
+django_heroku.settings(locals())
+
+# Configuring Local Settings
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+>>>>>>> 6eddf23... origin error solving 6

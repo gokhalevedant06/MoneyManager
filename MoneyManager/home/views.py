@@ -3,6 +3,9 @@ from django.shortcuts import render
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6eddf23... origin error solving 6
 =======
 
 import yfinance as yf
@@ -11,7 +14,11 @@ import datetime
 from django.http import JsonResponse
 
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 >>>>>>> 74066b0... added the expenses utility 01
+=======
+>>>>>>> ad26835... debugging 17
+>>>>>>> 6eddf23... origin error solving 6
 # Create your views here.
 
 
@@ -26,9 +33,13 @@ def perdelta(start, end, delta):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @login_required
 =======
 >>>>>>> b89de65... origin error solving 5
+=======
+@login_required
+>>>>>>> 6eddf23... origin error solving 6
 def sensex_graph(request):
 
     diff = int(request.GET.get('diff'))
@@ -79,9 +90,13 @@ def sensex_graph(request):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @login_required
 =======
 >>>>>>> b89de65... origin error solving 5
+=======
+@login_required
+>>>>>>> 6eddf23... origin error solving 6
 def nifty_graph(request):
 
     diff = int(request.GET.get('diff'))

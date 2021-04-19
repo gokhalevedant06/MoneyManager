@@ -9,10 +9,17 @@
 
 {% block content %}
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="main" id="logo">
     <nav class="exp_nav">
         <div class="logo"  >
             <image src="{% static 'img/images (2).jpg' %}" 
+=======
+<div class="main">
+    <nav class="exp_nav">
+        <div class="logo">
+            <image src="{% static 'img/images (2).jpg' %}" height="100px" width="250px"
+>>>>>>> 6eddf23... origin error solving 6
                 alt="There was a supposed to be an image here"></image>
         </div>
 
@@ -21,6 +28,7 @@
             <img src="{% static 'img/arrow.png' %}" id="up">
             <h3>Move</h3>
             <img src="{% static 'img/arrow.png' %}" id="down">
+<<<<<<< HEAD
 =======
 <div class="main">
     <nav class="ml-3 exp_nav">
@@ -42,6 +50,8 @@
                 </div>
             </div>
 >>>>>>> f88d959... added the expenses form utility
+=======
+>>>>>>> 6eddf23... origin error solving 6
         </div>
     </nav>
 
@@ -51,6 +61,7 @@
         <div id="circle">
 
 
+<<<<<<< HEAD
             <div class="feature one " id="daily_needs_cir">
                 <a class="nav-link text-white" href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
                         alt="there is supposed to be image">
@@ -71,10 +82,30 @@
                 </a>
             </div>
 <<<<<<< HEAD
+=======
+            <div class="feature one ">
+                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image"> </a>
+
+                <div>
+                    <h2>Daily Needs</h2>
+                    <p>Grocery , Processed Foods</p>
+                </div>
+            </div>
+            <div class="feature two ">
+                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image"> </a>
+                <div>
+                    <h2>Bill Payments</h2>
+                    <p>Electricity,Internet etc.</p>
+                </div>
+            </div>
+>>>>>>> 6eddf23... origin error solving 6
             <div class="feature three ">
                 <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
                         alt="there is supposed to be image"> </a>
                 <div>
+<<<<<<< HEAD
                     <h2>Installments</h2>
                     <p>Loan Amount etc.</p>
                 </div>
@@ -96,6 +127,19 @@
                         <h2>Other Needs</h2>
                     </div>
                 </a>
+=======
+                    <h2>Istallments</h2>
+                    <p>Loan Amount etc.</p>
+                </div>
+            </div>
+            <div class="feature four ">
+                <a href="{% url 'exp_form' %}"> <img src="{% static 'img/Picture3.svg' %}"
+                        alt="there is supposed to be image"> </a>
+                <div>
+                    <h2>Other Needs</h2>
+                    <p>What I ADD here</p>
+                </div>
+>>>>>>> 6eddf23... origin error solving 6
             </div>
         </div>
     </div>
@@ -105,6 +149,7 @@
 {% block javascript %}
 <script>
     var circle = document.getElementById("circle");
+<<<<<<< HEAD
 
     var daily_needs = document.getElementById("daily_needs");
     var bill = document.getElementById("bill");
@@ -131,6 +176,24 @@
         circle.style.transform = `rotate(${a}deg)`;
         circle.style.transform = `rotate(${a}deg)`;
         circle.style.transform = `rotate(${a}deg)`;
+=======
+    var up = document.getElementById("up");
+    var down = document.getElementById("down");
+    var rotateValue = circle.style.transform;
+    var rotateSum;
+
+    up.onclick = function () {
+        rotateSum = rotateValue + "rotate(-90deg)";
+        circle.style.transform = rotateSum;
+        rotateValue = rotateSum;
+
+    }
+    down.onclick = function () {
+        rotateSum = rotateValue + "rotate(90deg)";
+        circle.style.transform = rotateSum;
+        rotateValue = rotateSum;
+
+>>>>>>> 6eddf23... origin error solving 6
     }
 </script>
 {% endblock javascript %}

@@ -5,11 +5,15 @@ urlpatterns = [
     path('options/', views.invest_index, name="invest_index"),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6eddf23... origin error solving 6
     path('fixed-deposit/', views.fixed_deposit, name="fixed_deposit"),
     path('reccuring-deposit/', views.recurring_deposit, name="recurring_deposit"),
     path('public-provident-fund/', views.provident_fund, name="provident_fund"),
     path('monthly-income-scheme/', views.monthly_income, name="monthly_income"),
     path('national-savings-certificate/', views.national_savings_certificate,
+<<<<<<< HEAD
          name="national_savings_certificate"),
     path('crypto/', views.crypto, name="crypto"),
     path('stock/', views.stock, name="stock"),
@@ -21,6 +25,8 @@ urlpatterns = [
     path('ppf/', views.provident_fund, name="provident_fund"),
     path('mis/', views.monthly_income, name="monthly_income"),
     path('nsc/', views.national_savings_certificate,
+=======
+>>>>>>> 6eddf23... origin error solving 6
          name="national_savings_certificate"),
 >>>>>>> b89de65... origin error solving 5
 
