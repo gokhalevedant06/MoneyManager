@@ -16,9 +16,9 @@
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
 
-  <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+  <link type="text/css" href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
 
 </head>
 
@@ -81,7 +81,7 @@
               <li class="nav-item"><p class="nav-link">or</p></li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign Up</a>
+                <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
               </li>
 
             {% endif %}
@@ -99,8 +99,6 @@
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-  {% block javascript %}{% endblock javascript %}
-
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
@@ -108,7 +106,8 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
-
+  
+  {% block javascript %}{% endblock javascript %}
 </body>
 
 </html>
