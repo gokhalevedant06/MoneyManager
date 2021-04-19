@@ -4,7 +4,7 @@ from django.contrib.auth.models import auth, User
 
 from django.contrib import messages
 
-from .models import *
+from .models import Choice, UserInfo
 
 
 from django.core.serializers import serialize
@@ -89,7 +89,37 @@ def register(request):
 
 @login_required
 def user_info_ajax(request):
-    if request.is_ajax():
+    if request.method == "POST":
+        value = request.POST.get('value')
+        elem_id = request.POST.get('id')
+        success = False
+        qs = UserInfo.objects.get(user=request.user)
+
+        if elem_id == "name":
+            User.objects.filter(id=request.user.id).update(
+                username=value
+            )
+            success = True
+        elif elem_id == "email":
+            User.objects.filter(id=request.user.id).update(
+                email=value
+            )
+            success = True
+        elif elem_id == "income":
+            qs.income = value
+            success = True
+        elif elem_id == "profession":
+            qs.profession = value
+            success = True
+        else:
+            success = False
+        qs.save()
+
+        data = {
+            'success': success
+        }
+        return JsonResponse(data)
+    else:
         choices = Choice.objects.all()
 
         serialized_choices = serialize(
