@@ -88,3 +88,17 @@ def monthly_income(request):
 
 def national_savings_certificate(request):
     return render(request, 'nsc.html')
+
+def crypto(request):
+    return render(request, 'crypto.html')
+
+def stock(request):
+    return render(request, 'stock.html')
+    
+def real(request):
+    return render(request, 'real.html')
+
+def insurance(request):
+    return render(request, 'insurance.html')
+
+
