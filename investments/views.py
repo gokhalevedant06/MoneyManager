@@ -174,7 +174,6 @@ def investment_tbl(request):
     return render(request, 'investment_tbl.html', context)
 
 
-<<<<<<< HEAD
 @login_required
 def investment_tbl_ajax(request):
     query = request.GET.get('query', None)
@@ -194,21 +193,3 @@ def investment_tbl_ajax(request):
         context={'data': queryset}
     )
     return JsonResponse({'html': html})
-=======
-def national_savings_certificate(request):
-    return render(request, 'nsc.html')
-
-def crypto(request):
-    return render(request, 'crypto.html')
-
-def stock(request):
-    return render(request, 'stock.html')
-    
-def real(request):
-    return render(request, 'real.html')
-
-def insurance(request):
-    return render(request, 'insurance.html')
-
-
->>>>>>> d2c1932... merged vedant final frontend

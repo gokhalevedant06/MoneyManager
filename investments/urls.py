@@ -17,18 +17,11 @@ urlpatterns = [
          TemplateView.as_view(template_name="mis.html"), name="monthly_income"),
     path('national-savings-certificate/', TemplateView.as_view(template_name="nsc.html"),
          name="national_savings_certificate"),
-<<<<<<< HEAD
     path('crypto/', TemplateView.as_view(template_name="crypto.html"), name="crypto"),
     path('stock/', TemplateView.as_view(template_name="stock.html"), name="stock"),
     path('real-estate/', TemplateView.as_view(template_name="real.html"), name="real"),
     path('insurance/', TemplateView.as_view(template_name="insurance.html"),
          name="insurance"),
-=======
-    path('crypto/', views.crypto, name="crypto"),
-    path('stock/', views.stock, name="stock"),
-    path('real-estate/', views.real, name="real"),
-     path('insurance/', views.insurance, name="insurance"),
->>>>>>> d2c1932... merged vedant final frontend
 
     path('form/', views.investment_form, name="investment_form"),
     path('form-ajax/', views.investment_form_ajax, name="investment_form_ajax"),
