@@ -12,7 +12,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 from django.http import JsonResponse
 
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 # Create your views here.
 
 
@@ -84,6 +84,7 @@ def register(request):
         return render(request, 'register.html')
 
 
+@login_required
 def user_info_ajax(request):
     if request.is_ajax():
         choices = Choice.objects.all()
@@ -94,6 +95,7 @@ def user_info_ajax(request):
         return JsonResponse(serialized_choices, safe=False)
 
 
+@login_required
 def user_info_form(request):
     if request.method == 'POST':
         fname = request.POST.get('first_name')
@@ -123,6 +125,7 @@ def user_info_form(request):
             return render(request, "user_info_form.html")
 
 
+@login_required
 def user_info(request):
     context = {
         'data': UserInfo.objects.filter(user=request.user)

@@ -1,4 +1,14 @@
 from django.shortcuts import render
+<<<<<<< HEAD
+=======
+
+import yfinance as yf
+import datetime
+
+from django.http import JsonResponse
+
+from django.contrib.auth.decorators import login_required
+>>>>>>> 74066b0... added the expenses utility 01
 # Create your views here.
 
 
@@ -12,6 +22,7 @@ def perdelta(start, end, delta):
         curr += delta
 
 
+@login_required
 def sensex_graph(request):
 
     diff = int(request.GET.get('diff'))
@@ -61,6 +72,7 @@ def sensex_graph(request):
     return JsonResponse(data)
 
 
+@login_required
 def nifty_graph(request):
 
     diff = int(request.GET.get('diff'))
