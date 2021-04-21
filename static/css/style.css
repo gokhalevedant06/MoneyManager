@@ -10,13 +10,8 @@ html{
     height: 100vh;
     position: relative;
     overflow: hidden;
-<<<<<<< HEAD
     background: linear-gradient(to right,#9c279b ,#8ecdff );
     font-family: apple color emoji, segoe ui emoji, noto color emoji, android emoji, emojisymbols, emojione mozilla, twemoji mozilla, segoe ui symbol;
-=======
-    
-    
->>>>>>> d2c1932... merged vedant final frontend
 }
 .exp_nav
 {
