@@ -152,8 +152,8 @@ SECURE_SSL_REDIRECT = True
 # Configurein Email Setup
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mitrajeetgolsangi@gmail.com'
-EMAIL_HOST_PASSWORD = 'flcztwjqvghnozmh'
+EMAIL_HOST_USER = 'noreply.moneymanager@gmail.com'
+EMAIL_HOST_PASSWORD = 'pekhkwtwpembaudk'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USER_SSL = True
@@ -166,4 +166,4 @@ django_heroku.settings(locals())
 try:
     from .local_settings import *
 except ImportError:
-    print("Import ERROR!")
+    pass

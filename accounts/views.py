@@ -18,6 +18,8 @@ from django.core.mail import send_mail
 from MoneyManager.settings import EMAIL_HOST_USER
 from django.template.loader import render_to_string
 
+from django.http import HttpResponseServerError
+import socket
 # Create your views here.
 
 
@@ -66,14 +68,19 @@ def register(request):
             user.save()
 
             subject = 'Welcome to Team Money Manager!'
-            html_message = render_to_string(template_name='edm.html')
-            send_mail(subject=subject, from_email=EMAIL_HOST_USER,
-                      to=[email], html_message=html_message)
+            html_message = render_to_string('edm.html')
+            msg = EmailMessage(subject, html_message,
+                               EMAIL_HOST_USER, [email])
+            msg.content_subtype = "html"
+            try:
+                msg.send()
+            except socket.gaierror:
+                return HttpResponseServerError()
 
-            login_user = auth.authenticate(
-                username=username, password=password)
-            if login_user:
-                auth.login(request, login_user)
+        login_user = auth.authenticate(
+            username=username, password=password)
+        if login_user:
+            auth.login(request, login_user)
 
         return redirect('user_info_form')
     else:

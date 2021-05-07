@@ -29,7 +29,6 @@ def sensex_graph(request):
 
     now = datetime.datetime.now().date()
     bef = now - datetime.timedelta(days=diff)
-    print(now)
 
     data_min = yf.download("^BSESN", start=str(bef),
                            end=str(now), interval=inter)  # Getting Sensex Data per Minute
@@ -79,7 +78,6 @@ def nifty_graph(request):
 
     now = datetime.datetime.now().date()
     bef = now - datetime.timedelta(days=diff)
-    print(now)
 
     data_min = yf.download("^NSEI", start=str(bef),
                            end=str(now), interval=inter)  # Getting Sensex Data per Minute
@@ -141,3 +139,18 @@ def index(request):
             return render(request, 'index.html', context)
         except UserInfo.DoesNotExist:
             return redirect("user_info_form")
+
+
+# Not found and Server Error Pages
+def handler404(request, *args, **argv):
+    response = render_to_response('404.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+
+def handler500(request, *args, **argv):
+    response = render_to_response('500.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
