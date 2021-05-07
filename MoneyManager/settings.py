@@ -149,6 +149,16 @@ CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 
 
+# Configurein Email Setup
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mitrajeetgolsangi@gmail.com'
+EMAIL_HOST_PASSWORD = 'flcztwjqvghnozmh'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USER_SSL = True
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
 # Heroku setup
 django_heroku.settings(locals())
 

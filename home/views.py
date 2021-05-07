@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from accounts.models import UserInfo
 from expenses.models import ExpenseData
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -121,7 +122,6 @@ def nifty_graph(request):
 
 
 def index(request):
-    print(request.user)
     if str(request.user) == 'AnonymousUser':
         return render(request, 'index.html')
     else:

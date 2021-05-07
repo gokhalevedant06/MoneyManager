@@ -13,6 +13,11 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.http import JsonResponse
 
 from django.contrib.auth.decorators import user_passes_test, login_required
+
+from django.core.mail import send_mail
+from MoneyManager.settings import EMAIL_HOST_USER
+from django.template.loader import render_to_string
+
 # Create your views here.
 
 
@@ -59,6 +64,12 @@ def register(request):
                 email=email
             )
             user.save()
+
+            subject = 'Welcome to Team Money Manager!'
+            html_message = render_to_string(template_name='edm.html')
+            send_mail(subject=subject, from_email=EMAIL_HOST_USER,
+                      to=[email], html_message=html_message)
+
             login_user = auth.authenticate(
                 username=username, password=password)
             if login_user:
