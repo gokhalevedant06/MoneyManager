@@ -14,7 +14,7 @@ from django.http import JsonResponse
 
 from django.contrib.auth.decorators import user_passes_test, login_required
 
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from MoneyManager.settings import EMAIL_HOST_USER
 from django.template.loader import render_to_string
 
@@ -67,20 +67,15 @@ def register(request):
             )
             user.save()
 
-            subject = 'Welcome to Team Money Manager!'
-            html_message = render_to_string('edm.html')
-            msg = EmailMessage(subject, html_message,
-                               EMAIL_HOST_USER, [email])
-            msg.content_subtype = "html"
-            try:
-                msg.send()
-            except socket.gaierror:
-                return HttpResponseServerError()
-
-        login_user = auth.authenticate(
-            username=username, password=password)
-        if login_user:
-            auth.login(request, login_user)
+        subject = 'Welcome to Team Money Manager!'
+        html_message = render_to_string('edm.html')
+        msg = EmailMessage(subject, html_message,
+                           EMAIL_HOST_USER, [request.POST.get('email')])
+        msg.content_subtype = "html"
+        try:
+            msg.send()
+        except socket.gaierror:
+            return HttpResponseServerError()
 
         return redirect('user_info_form')
     else:
