@@ -21,3 +21,8 @@
 - Hyperplanes classification
 
 ---
+## 04-06-2021
+
+- Learning about neural networks
+- Learning about the LSTM algorithm
+- 
