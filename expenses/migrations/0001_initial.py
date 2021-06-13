@@ -25,6 +25,3 @@ class Migration(migrations.Migration):
                 ('time', models.DateField(auto_now=True)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
                                            related_name='expensedata', to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
-    ]

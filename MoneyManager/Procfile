@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-web gunicorn MoneyManager.wsgi
-=======
-web gunicorn MoneyManager.wsgi --timeout 15 --keep-alive 5 --log-level debug
-<<<<<<< HEAD
->>>>>>> 74066b0... added the expenses utility 01
-=======
->>>>>>> ad26835... debugging 17
->>>>>>> 6eddf23... origin error solving 6
