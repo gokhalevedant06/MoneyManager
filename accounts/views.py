@@ -110,7 +110,7 @@ def user_info_ajax(request):
 
         if elem_id == "name":
             User.objects.filter(id=request.user.id).update(
-                username=value
+                username=value 
             )
             success = True
         elif elem_id == "email":

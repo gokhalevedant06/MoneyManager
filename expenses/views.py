@@ -9,7 +9,7 @@ from .models import EXPENSES, ExpenseData
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.serializers import serialize
 
-# Create your views here.
+# Create your views here
 
 
 @login_required

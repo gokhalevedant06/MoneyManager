@@ -1,177 +1,289 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<meta name="description" content="" />
+		<meta name="author" content="" />
 
-  <head>
+		<title>Money Manager | {% block title %}{% endblock title %}</title>
+		<link
+			rel="shortcut icon"
+			type="image/png"
+			href="{% static 'img/coin4 No Background.png' %}"
+		/>
+		<!-- Bootstrap core CSS -->
+		<link
+			href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"
+			rel="stylesheet"
+		/>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+		<!-- Custom fonts for this template-->
+		<link
+			href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"
+			rel="stylesheet"
+			type="text/css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+			rel="stylesheet"
+		/>
 
-    <title>Money Manager | {% block title %}{% endblock title %}</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'img/coin4 No Background.png' %}" />
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet" />
+		<!-- Custom styles for this template-->
+		<link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+		{% block css %}{% endblock %}
+	</head>
 
-    <!-- Custom fonts for this template-->
-    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet">
+	<body>
+		{% if request.user.is_authenticated %}
+		<div class="d-flex" id="wrapper">
+			<!-- Sidebar -->
+			<div class="bg-dark border-right" id="sidebar-wrapper">
+				<div class="sidebar-heading text-white">
+					<a href="{% url 'index' %}" class="text-white badge">
+						<span class="bullet badge">
+							<img
+								src="{% static 'img/coin4 No Background.png' %}"
+								height="30px"
+								alt=""
+							/> </span
+						>Money Manager
+					</a>
+				</div>
+				<div class="list-group list-group-flush">
+					<a
+						href="{% url 'exp_index' %}"
+						class="list-group-item list-group-item-action bg-dark text-white"
+						><i class="fas fa-wallet"></i> Expenses</a
+					>
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
-    {% block css %}{% endblock %}
+					<!-- <a href="{% url 'invest_index' %}" class="list-group-item list-group-item-action bg-dark text-white">Investments</a> -->
+					<a
+						class="list-group-item list-group-item-action bg-dark text-white"
+						data-toggle="collapse"
+						href="#sidenavCollapse"
+						role="button"
+						aria-expanded="false"
+						aria-controls="sidenavCollapse"
+					>
+						<i class="fas fa-seedling"></i> Investments
+						<i class="fas fa-caret-down ml-5"></i>
+					</a>
+					<div
+						class="collapse"
+						aria-labelledby="sidenavCollapse"
+						id="sidenavCollapse"
+					>
+						<div class="card card-body bg-dark">
+							<a
+								class="
+									list-group-item list-group-item-action
+									bg-dark
+									text-white
+									font-weight-light
+								"
+								href="{% url 'invest_index' %}"
+							>
+								<i class="fas fa-university"></i> Schemes</a
+							>
 
-  </head>
+							<div class="dropdown-divider"></div>
 
-  <body>
-    {% if request.user.is_authenticated %}
-    <div class="d-flex" id="wrapper">
+							<a
+								class="
+									list-group-item list-group-item-action
+									bg-dark
+									text-white
+									font-weight-light
+								"
+								href="{% url 'crypto' %}"
+							>
+								<i class="fab fa-bitcoin"></i> Cryptocurrency</a
+							>
 
-      <!-- Sidebar -->
-      <div class="bg-dark border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading text-white">
-          <a href="{% url 'index' %}" class="text-white badge">
-            <span class="bullet badge">
-              <img src="{% static 'img/coin4 No Background.png' %}" height="30px" alt="">
-            </span>Money Manager
-          </a>
-        </div>
-        <div class="list-group list-group-flush">
-          <a href="{% url 'exp_index' %}" class="list-group-item list-group-item-action bg-dark text-white"><i
-              class="fas fa-wallet"></i>
-            Expenses</a>
+							<div class="dropdown-divider"></div>
 
-          <!-- <a href="{% url 'invest_index' %}" class="list-group-item list-group-item-action bg-dark text-white">Investments</a> -->
-          <a class="list-group-item list-group-item-action bg-dark text-white" data-toggle="collapse"
-            href="#sidenavCollapse" role="button" aria-expanded="false" aria-controls="sidenavCollapse">
-            <i class="fas fa-seedling"></i> Investments <i class="fas fa-caret-down ml-5"></i>
-          </a>
-          <div class="collapse" aria-labelledby="sidenavCollapse" id="sidenavCollapse">
-            <div class="card card-body bg-dark">
-              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light"
-                href="{% url 'invest_index' %}">
-                <i class="fas fa-university"></i> Schemes</a>
+							<a
+								class="
+									list-group-item list-group-item-action
+									bg-dark
+									text-white
+									font-weight-light
+								"
+								href="{% url 'stock' %}"
+								><i class="fas fa-chart-line"></i> Stock Market</a
+							>
 
-              <div class="dropdown-divider "></div>
+							<div class="dropdown-divider"></div>
 
-              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="{% url 'crypto' %}">
-                <i class="fab fa-bitcoin"></i> Cryptocurrency</a>
+							<a
+								class="
+									list-group-item list-group-item-action
+									bg-dark
+									text-white
+									font-weight-light
+								"
+								href="{% url 'real' %}"
+								><i class="fas fa-home"></i> Real Estate</a
+							>
 
-              <div class="dropdown-divider "></div>
+							<div class="dropdown-divider"></div>
 
-              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="{% url 'stock' %}"><i
-                  class="fas fa-chart-line"></i> Stock
-                Market</a>
+							<a
+								class="
+									list-group-item list-group-item-action
+									bg-dark
+									text-white
+									font-weight-light
+								"
+								href="{% url 'insurance' %}"
+							>
+								<i class="fas fa-car-crash"></i> Insurance</a
+							>
 
-              <div class="dropdown-divider "></div>
+							<div class="dropdown-divider"></div>
 
-              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="{% url 'real' %}"><i
-                  class="fas fa-home"></i> Real
-                Estate</a>
+							<a
+								class="
+									list-group-item list-group-item-action
+									bg-dark
+									text-white
+									font-weight-light
+								"
+								href="#"
+								><img src="{% static 'img/coming_soon.gif'%}" width="180"
+							/></a>
+						</div>
+					</div>
+					<a
+						href=" {% url 'investment_form' %}"
+						class="list-group-item list-group-item-action bg-dark text-white"
+						><i class="fas fa-calculator"></i> Calculator</a
+					>
+					<a
+						href="{% url 'about' %}"
+						class="list-group-item list-group-item-action bg-dark text-white"
+						><i class="fas fa-question-circle"></i> About Us</a
+					>
+				</div>
+			</div>
+			{% endif %}
+			<!-- /#sidebar-wrapper -->
+			<!-- Page Content -->
+			<div id="page-content-wrapper">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+					{% if request.user.is_authenticated %}
+					<button class="btn btn-outline-success" id="menu-toggle">
+						<i class="fas fa-list"></i>
+					</button>
+					{% endif %}
+					<div class="row p-0">
+						<div class="col-sm-2 p-0">
+							<button
+								class="navbar-toggler"
+								type="button"
+								data-toggle="collapse"
+								data-target="#navbarSupportedContent"
+								aria-controls="navbarSupportedContent"
+								aria-expanded="false"
+								aria-label="Toggle navigation"
+							>
+								<span class="navbar-toggler-icon"></span>
+							</button>
+						</div>
 
-              <div class="dropdown-divider "></div>
+						<div class="col-xl">
+							{% block searchbar %}{% endblock searchbar %}
+						</div>
+					</div>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+							<li class="nav-item active">
+								<a class="nav-link mx-3" href="{% url 'index' %}"
+									><i class="fas fa-home"></i> Home
+									<span class="sr-only">(current)</span></a
+								>
+							</li>
+							{% if request.user.is_authenticated %}
+							<li class="nav-item dropdown">
+								<a
+									class="nav-link dropdown-toggle"
+									href="#"
+									id="navbarDropdown"
+									role="button"
+									data-toggle="dropdown"
+									aria-haspopup="true"
+									aria-expanded="false"
+								>
+									<i class="fas fa-cogs"></i> {{ request.user.username }}
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="navbarDropdown"
+								>
+									<a class="dropdown-item" href="{% url 'user_info_form' %}"
+										><i class="fas fa-user"></i> Profile</a
+									>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="{% url 'logout' %}"
+										><i class="fas fa-sign-out-alt"></i> Logout</a
+									>
+								</div>
+							</li>
+							{% else %}
+							<li class="nav-item">
+								<a class="nav-link mx-3" href="{% url 'login' %}"
+									><i class="fas fa-sign-in-alt"></i> Login</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link mx-3" href="{% url 'register' %}"
+									><i class="fas fa-user-plus"></i> Sign Up</a
+								>
+							</li>
+							{% endif %}
+						</ul>
+					</div>
+				</nav>
+				<div class="pb-4">{% block content %}{% endblock content %}</div>
+			</div>
+			<!-- /#page-content-wrapper -->
+		</div>
+		<!-- /#wrapper -->
 
-              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="{% url 'insurance' %}">
-                <i class="fas fa-car-crash"></i> Insurance</a>
+		<!-- Footer -->
+		{% include 'footer.html' %}
+		<!-- /Footer -->
 
-              <div class="dropdown-divider "></div>
+		<!-- Bootstrap core JavaScript -->
+		<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-              <a class="list-group-item list-group-item-action bg-dark text-white font-weight-light" href="#"><img
-                  src="{% static 'img/coming_soon.gif'%}" width=180 /></a>
-            </div>
-          </div>
-          <a href=" {% url 'investment_form' %}" class="list-group-item list-group-item-action bg-dark text-white"><i
-              class="fas fa-calculator"></i> Calculator</a>
-          <a href="{% url 'about' %}" class="list-group-item list-group-item-action bg-dark text-white"><i
-              class="fas fa-question-circle"></i> About Us</a>
+		<!-- Page level plugins -->
+		<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-        </div>
-      </div>
-      {% endif %}
-      <!-- /#sidebar-wrapper -->
-      <!-- Page Content -->
-      <div id="page-content-wrapper">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
-          {% if request.user.is_authenticated %}
-              <button class="btn btn-outline-success" id="menu-toggle"><i class="fas fa-list"></i></button>
-          {% endif %}
-          <div class="row p-0">
-            <div class="col-sm-2 p-0">
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-              </button>
-            </div>
+		<!-- Chatbot javascript code -->
+		<script>
+			const endpoint = "{% url 'chatbot' %}";
+		</script>
 
-            <div class="col-xl">
-              {% block searchbar %}{% endblock searchbar %}
-            </div>
-          </div>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-              <a class="nav-link mx-3" href="{% url 'index' %}"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
-          </li>
-          {% if request.user.is_authenticated %}
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-cogs"></i> {{ request.user.username }}
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{% url 'user_info_form' %}"><i class="fas fa-user"></i> Profile</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-              </div>
-          </li>
-          {% else %}
-          <li class="nav-item">
-              <a class="nav-link mx-3" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link mx-3" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
-          </li>
-          {% endif %}
+		<script src="{% static 'js/chatbot.js' %}">
 
-          
-          </ul>
-      </div>
-      </nav>
-        <div class="pb-4">
-          {% block content %}{% endblock content %}
-        </div>
-      </div>
-      <!-- /#page-content-wrapper -->
+			{% block javascript %}{% endblock javascript %}
 
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- Footer -->
-    {% include 'footer.html' %}
-    <!-- /Footer -->
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-    {% block javascript %}{% endblock javascript %}
-
-    <!-- Menu Toggle Script -->
-    <script>
-      $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-      });
-    </script>
-
-  </body>
-
+			<!-- Menu Toggle Script -->
+			<script>
+			  $("#menu-toggle").click(function (e) {
+			    e.preventDefault();
+			    $("#wrapper").toggleClass("toggled");
+			  });
+		</script>
+	</body>
 </html>

@@ -10,6 +10,10 @@ from django.contrib.auth.decorators import login_required
 from accounts.models import UserInfo
 from expenses.models import ExpenseData
 from django.contrib.auth.models import User
+
+# chatbot import
+from chatbot.chatbotEngine import chatbot
+
 # Create your views here.
 
 
@@ -141,7 +145,17 @@ def index(request):
             return redirect("user_info_form")
 
 
+def chatbot_request(request):
+    user_response = request.GET.get("user_response")
+
+    data = {
+        "bot_response": chatbot(user_response)
+    }
+    return JsonResponse(data)
+
 # Not found and Server Error Pages
+
+
 def handler404(request, *args, **argv):
     response = render_to_response('404.html', {},
                                   context_instance=RequestContext(request))
