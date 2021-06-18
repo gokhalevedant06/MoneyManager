@@ -21,8 +21,19 @@
 - Hyperplanes classification
 
 ---
+
 ## 04-06-2021
 
 - Learning about neural networks
 - Learning about the LSTM algorithm
-- 
+
+---
+
+## 11-06-2021
+
+- Vedant: chatbot UI and backend integration - 18/19-60-2021
+- Shriram: Intents
+- Mitrajeet: ML Model LSTM
+- Aayush: Responsiveness of website - 1 wk
+- Ashutosh: Midsem ppt - 1wk
+- Kaushal: Literature review - 1wk and conference paper
