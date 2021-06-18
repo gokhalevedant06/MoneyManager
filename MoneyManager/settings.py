@@ -47,11 +47,7 @@ INSTALLED_APPS = [
 
     'django.contrib.staticfiles',
 
-<<<<<<< HEAD
     # 'crispy_forms',
-=======
-    'crispy_forms',
->>>>>>> 3bd3f005c587f16a6a53426b61c9ae082ab9b557
 
     'accounts',
     'home',
@@ -153,7 +149,6 @@ CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 
 
-<<<<<<< HEAD
 # Configurein Email Setup
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -176,8 +171,6 @@ CHATTERBOT = {
 }
 
 
-=======
->>>>>>> 3bd3f005c587f16a6a53426b61c9ae082ab9b557
 # Heroku setup
 django_heroku.settings(locals())
 
@@ -185,8 +178,4 @@ django_heroku.settings(locals())
 try:
     from .local_settings import *
 except ImportError:
-<<<<<<< HEAD
     pass
-=======
-    print("Import ERROR!")
->>>>>>> 3bd3f005c587f16a6a53426b61c9ae082ab9b557

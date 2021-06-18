@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.ajax({
-        url: endpoint,
+        url: chatbot_endpoint,
         data: {
             "user_response": "hi" // put actual user response here
         },

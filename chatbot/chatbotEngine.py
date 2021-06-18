@@ -96,7 +96,7 @@ model.summary()
 if os.path.exists('chatbotModel'):
     models.load_model("chatbotModel")
 else:
-    history = model.fit(X.toarray(), y.toarray(), epochs=20, batch_size=1)
+    history = model.fit(X.toarray(), y.toarray(), epochs=50, batch_size=1)
     model.save("chatbotModel")
 
 # --------------------------------------------- Prediction of bot reponses ---------------------------------------------- #
@@ -122,11 +122,6 @@ def predict_intent_tag(message):
     prediction[y.argmax()] = 1
     tag = encoder.inverse_transform([prediction])[0][0]
     return tag
-
-
-print(predict_intent_tag('How you could help me?'))
-print(predict_intent_tag('swiggy chat bot'))
-print(predict_intent_tag('Where\'s my order'))
 
 
 def get_intent(tag):
@@ -167,7 +162,7 @@ def perform_action(action_code, intent):
 
 
 def chatbot(message):
-    bot_response = 'Bot: '
+    bot_response = 'bot: '
     # predict intent tag using trained neural network
     tag = predict_intent_tag(message)
     # get complete intent from intent tag
