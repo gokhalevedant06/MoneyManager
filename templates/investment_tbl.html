@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Previous Investments{% endblock title %}
+
+{% block searchbar %}
+<div class="input-group">
+    <div class="form-row">
+        <div class="col-md-11">
+            <div class="form-outline">
+                <input type="search" id="investment_search" class="form-control" placeholder="Search.."
+                    onblur="this.placeholder='Search..'" onfocus="this.placeholder=''" />
+            </div>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-3">
+    <h2 class="text-success" style="color: #65DE56;">
+        Previous Investments
+    </h2>
+</div>
+<hr>
+<div class="row mt-3 justify-content-center p-2 pl-3">
+    <div class="col-xl pl-2 pr-2">
+        <table class="table table-sm table-stripped">
+            <thead class="table-success">
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Scheme Name</th>
+                    <th>Timespan</th>
+                    <th>Amount Invested</th>
+                    <th>Intrest Payout</th>
+                    <th>Maturity Date</th>
+                </tr>
+            </thead>
+            <tbody id="regular_body">
+                    {% for d in data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ d.scheme_name }}</td>
+                        <td>{{ d.timespan }}</td>
+                        <td>{{ d.invested_amount }}</td>
+                        <td>{{ d.intrest_payout }}</td>
+                        <td>{{ d.maturity_date }}</td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+            <tbody id="query_body">
+                {% include 'investment_tbl_query.html' %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script>
+    var endpoint = "{% url 'investment_tbl_ajax' %}";
+</script>
+<script src="{% static 'js/investment_tbl.js' %}"></script>
+{% endblock javascript %}

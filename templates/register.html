@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Register {% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 mt-5">
+        <div class="card p-3 shadow border-left-success">
+            <div class="card-title pt-3">
+                <h5 class="text-center text-success">User Registration</h5>
+                <div class="border-bottom border-dark mb-4"></div>
+            </div>
+            <div class="card-body">
+                <form class="needs-validation" novalidate method='POST'>
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Username<sup class="text-danger">*</sup></label>
+                        <div class="col">
+                            <input id="r_username" type="text" placeholder="Enter Username"
+                                onfocus="this.placeholder=''" onblur="this.placeholder='Enter username'"
+                                class="form-control" required />
+                            <div class="valid-feedback">Looks Good!</div>
+                            <div class="invalid-feedback">This username is taken</div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Email<sup class="text-danger">*</sup></label>
+                        <div class="col">
+                            <input id="r_email" type="email" placeholder="Enter Email" onfocus="this.placeholder=''"
+                                onblur="this.placeholder='Enter Email'" class="form-control" required />
+                            <div class="valid-feedback">Looks Good!</div>
+                            <div class="invalid-feedback">This Email is already taken</div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Password<sup class="text-danger">*</sup></label>
+                        <div class="col">
+                            <input id="r_password" type="Password" placeholder="Enter Password"
+                                onfocus="this.placeholder=''" onblur="this.placeholder='Enter Password'"
+                                class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Confirm Password<sup class="text-danger">*</sup></label>
+                        <div class="col">
+                            <input id="r_confirm_password" type="Password" placeholder="Confirm Password"
+                                onfocus="this.placeholder=''" onblur="this.placeholder='Confirm Password'"
+                                class="form-control" required />
+
+                            <div class="valid-feedback">Your one Click away !</div>
+                            <div id="valid_password" class="invalid-feedback">Passwords don't match</div>
+                        </div>
+                    </div>
+                    <div class="border-bottom border-dark mb-4"></div>
+                    <button id="r_btn" class="btn btn-block btn-success" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript">
+    var endpoint = "{% url 'register' %}";
+</script>
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock %}

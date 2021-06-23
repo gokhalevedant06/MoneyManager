@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Form{% endblock %}
+
+
+{% block content %}
+<div class="row mt-5 justify-content-center">
+
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Username</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ request.user.username }}</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-user fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Available Income</div>
+            <div id="exp_income" class="h5 mb-0 font-weight-bold text-gray-800">{{ income }}</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-rupee-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row p-4 justify-content-center">
+  <table class="table table-sm">
+    <thead>
+      <tr class="p-3">
+        <form class="form-inline needs-validation" novalidate id="expenses_form">
+          {% csrf_token %}
+          <th>
+            <label class="control-label">Select Expense</label>
+            <select class="form-control" id="exp_select">
+              <option value="">------------------</option>
+            </select>
+          </th>
+          <th>
+            <label class="control-label">Expenditure Ammount</label>
+            <input id="exp_amt" type="number" class="form-control" readonly>
+          </th>
+          <th>
+            <button id="exp_submit" type="submit" class=" btn btn-outline-success btn-block">Submit</button>
+          </th>
+        </form>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <th>Expense</th>
+        <th>Amount</th>
+        <th>Available Amount</th>
+      </tr>
+    </thead>
+
+    <tbody id="expenses_tbl">
+      {% for d in data %}
+      <tr>
+        <td>{{d.time}}</td>
+        <td>{{d.expense_name}}</td>
+        <td>{{d.expense_amount}}</td>
+        <td>{{d.remaining_amount}}</td>
+      </tr>
+      {% endfor %}
+      <!-- Data Added Via Javascript -->
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+  var endpoint = "{% url 'exp_form_ajax' %}";
+</script>
+<script src="{% static 'js/exp_form.js' %}"></script>
+{% endblock %}

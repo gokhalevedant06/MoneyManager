@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Investement Options{% endblock title %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency</title>
+    <link rel="stylesheet" href="{% static 'css/crypto.css' %}" />
+    <style>
+        @media (max-width:817px){
+            h1 {font-size:180%;
+                width:95%;
+                margin-left: 3%;
+                padding-top: 1.2%;}
+        @media (max-width: 650px){
+            .rd1 {width:90%;
+            margin-left:5%;
+            margin-right:3%;
+            }
+        }
+        }
+    </style>
+</head>
+<body>
+    <h1>CRYPTOCURRENCY</h1>
+
+    <p class="main">
+        A cryptocurrency is a digital or virtual currency that is secured by cryptography, which makes it nearly impossible to counterfeit or double-spend.
+        A cryptocurrency is a form of digital asset based on a network that is distributed across a large number of computers. This decentralized structure allows them to exist outside the control of governments and central authorities.
+Blockchains, which are organizational methods for ensuring the integrity of transactional data, are an essential component of many cryptocurrencies.
+Many experts believe that blockchain and related technology will disrupt many industries, including finance and law.
+
+    </p>
+
+
+    <div class="crypto1"><img class="rd1" src="{% static 'img/crypto.jpeg' %}"></div>
+
+
+    <h2>Types of Cryptocurrency</h2>
+    <ul class="main">
+        
+        The first blockchain-based cryptocurrency was Bitcoin, which still remains the most popular and most valuable. Today, there are thousands of alternate cryptocurrencies with various functions and specifications. Some of these are clones or forks of Bitcoin, while others are new currencies that were built from scratch.
+        
+
+
+
+    <h2>Advantages and Disadvantages</h2>
+    <p><b>Advantages : </b>
+        Cryptocurrencies hold the promise of making it easier to transfer funds directly between two parties, without the need for a trusted third party like a bank or credit card company.
+In modern cryptocurrency systems, a user's "wallet," or account address, has a public key, while the private key is known only to the owner and is used to sign transactions.</p>
+<p><b>Disadvantages :</b>
+Bitcoin, for instance, is a relatively poor choice for conducting illegal business online, since the forensic analysis of the Bitcoin blockchain has helped authorities arrest and prosecute criminals. More privacy-oriented coins do exist, however, such as Dash, Monero, or ZCash, which are far more difficult to trace.</p>
+
+
+    <h2>FAQs</h2>
+   <p><b>How Do You Get Cryptocurrency?</b> <br>
+    Any investor can purchase cryptocurrency through crypto exchanges like Coinbase, Cash app, and more.</p><br>
+    <p><b>What Is the Point of Cryptocurrency?<br></b>
+    Cryptocurrency Many experts see blockchain technology as having serious potential for uses like online voting and crowdfunding, and major financial institutions such as JPMorgan Chase (JPM) see the potential to lower transaction costs by streamlining payment processing.</p><br>
+    <p><b>How Does Cryptocurrency Make Money?<br></b>
+    Cryptocurrencies allow for secure payments online which are denominated in terms of virtual "tokens," which are represented by ledger entries internal to the system. Investors can make money with cryptocurrency by mining Bitcoin, or simply selling their Bitcoin at a profit.<br>
+    </p>
+
+    <!-- <div class="row justify-content-center">
+        <h4 class="mt-3 mb-3"><a href="#" class="btn btn-outline-success">Invest Now !</a></h4>
+    </div> -->
+</body>
+</html>
+
+
+
+{% endblock content %}

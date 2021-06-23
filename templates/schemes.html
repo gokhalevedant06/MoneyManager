@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Investement Options{% endblock title %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Investments</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/schemes.css' %}" />
+  <!-- added media query -->
+  <style>
+    @media (max-width:450px) {
+      h1 {
+        font-size: 200%;
+        width: 90%;
+        margin-left: 5%;
+      }
+      .rtext {font-size:100%;
+      margin-left:5%}
+    }
+
+    @media (max-width:670px) {
+      ul {
+        font-size: 10rem;
+        margin-left: 0%;
+      }
+
+      h3 {
+        font-size: 250%;
+        width: 95%;
+      }
+
+
+    }
+
+    @media (max-width:530px) {
+      ul {
+        font-size: 8rem;
+        margin-left: 5%;
+      }
+
+      h3 {
+        font-size: 300%;
+        width: 100%;
+        margin-left: 0%;
+      }
+
+      .rd2 {
+        display:none;
+      }
+
+
+
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1>MONEY MANAGING BANKING SCHEMES</h1>
+    <div class="row justify-content-center">
+      <h4 class="mt-3 mb-3"><a href="{% url 'investment_form' %}" class="btn btn-outline-success">Invest Now
+          !<sup>*</sup></a></h4>
+    </div>
+    <div class="row justify-content-center">
+      <p class="text-xs rtext">* Please Read all the necessary information below before investing in any of the schemes
+      </p>
+    </div>
+    <ul>
+      <li class="item1 text-xs">
+        <a class="badge" href="{% url 'fixed_deposit' %}">
+          <h3>
+            <i class="fas fa-chevron-circle-right"></i> FD<span class="rd2">(FIXED DEPOSIT)</span>
+          </h3>
+        </a>
+      </li>
+      <li class="item1">
+        <a class="badge" href="{% url 'recurring_deposit' %}">
+          <h3>
+            <i class="fas fa-chevron-circle-right"></i> RD<span class="rd2">(RECURRING DEPOSIT)</span>
+          </h3>
+        </a>
+      </li>
+      <li class="item1">
+        <a class="badge" href="{% url 'provident_fund' %}">
+          <h3>
+            <i class="fas fa-chevron-circle-right"></i> PPF<span class="rd2">(PUBLIC PROVIDENT FUND)</span>
+          </h3>
+        </a>
+      </li>
+      <li class="item1">
+        <a class="badge" href="{% url 'monthly_income' %}">
+          <h3>
+            <i class="fas fa-chevron-circle-right"></i> MIS<span class="rd2">(MONTHLY INCOME
+              SCHEME)</span>
+          </h3>
+        </a>
+      </li>
+      <li class="item1">
+        <a class="badge" href="{% url 'national_savings_certificate' %}">
+          <h3>
+            <i class="fas fa-chevron-circle-right"></i> NSC<span class="rd2">(NATIONAL SAVINGS
+              CERTIFICATE)</span>
+          </h3>
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>
+
+{% endblock content %}

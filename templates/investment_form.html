@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Investment{% endblock title %}
+
+{% block content %}
+<div class="p-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-md-6 mb-5">
+        <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+                <div class="text-xl font-weight-bold text-success text-uppercase mb-1">Name:</div>
+                <div class="text-lg mb-0 font-weight-bold text-gray-800">{{request.user.username}}</div>
+            </div>
+            <div class="col-auto">
+                <i class="fas fa-user fa-2x text-gray-300"></i>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-5">
+        <div class="card border-left-danger shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+                <div class="text-xl font-weight-bold text-danger text-uppercase mb-1">Investable ammount:</div>
+                <div id="investible_amt" class="text-lg mb-0 font-weight-bold text-gray-800">{{ salary }}</div>
+            </div>
+            <div class="col-auto">
+                <i class="fas fa-rupee-sign fa-2x text-gray-300"></i>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-5">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <a href="{% url 'investment_tbl' %}" class="nav-link">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">Check Investments</div>
+                    <div class="text-xs mb-0 font-weight-bold text-gray-800">Check how much your money has grown!</div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+                </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-xl col-lg-5">
+                <div class="chart-pie pt-4 pb-2">
+                    <form id="investment_form" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class="control-label">Select Your Bank</label>
+                                                    <select id="i_bank" class="form-control">
+                                                        <option value="" selected>--------------</option>
+                                                        <optgroup label="Public Sector Banks">
+                                                            <option value="Bank of Maharashtra">Bank of
+                                                                Maharashtra
+                                                            </option>
+                                                            <option value="Bank of Baroda">Bank of Baroda
+                                                            </option>
+                                                            <option value="Bank of India">Bank of India</option>
+                                                            <option value="Canara Bank">Canara Bank</option>
+                                                            <option value="Central Bank of India">Central Bank
+                                                                of
+                                                                India
+                                                            </option>
+                                                            <option value="IDBI Bank">IDBI Bank</option>
+                                                            <option value="Indian Bank">Indian Bank</option>
+                                                            <option value="Indian Overseas Bank">Indian Overseas
+                                                                Bank
+                                                            </option>
+                                                            <option value="Punjab National Bank">Punjab National
+                                                                Bank
+                                                            </option>
+                                                            <option value="Punjab & Sind Bank">Punjab & Sind
+                                                                Bank
+                                                            </option>
+                                                            <option value="State Bank of India">State Bank of
+                                                                India
+                                                            </option>
+                                                            <option value="UCO Bank">UCO Bank</option>
+                                                            <option value="Union Bank">Union Bank</option>
+                                                        </optgroup>
+                                                        <optgroup label="Private Sector Banks">
+                                                            <option value="Axis Bank">Axis Bank</option>
+                                                            <option value="Bandhan Bank">Bandhan Bank</option>
+                                                            <option value="Catholic Syrian">Catholic Syrian
+                                                            </option>
+                                                            <option value="City Union Bank">City Union Bank
+                                                            </option>
+                                                            <option value="DCB Bank">DCB Bank</option>
+                                                            <option value="Dhanlaxmi Bank">Dhanlaxmi Bank
+                                                            </option>
+                                                            <option value="Federal Bank">Federal Bank</option>
+                                                            <option value="HDFC Bank">HDFC Bank</option>
+                                                            <option value="ICICI Bank">ICICI Bank</option>
+                                                            <option value="IDFC First Bank">IDFC First Bank
+                                                            </option>
+                                                            <option value="IndusInd Bank">IndusInd Bank</option>
+                                                            <option value="J & K Bank">J & K Bank</option>
+                                                            <option value="Karnataka Bank">Karnataka Bank
+                                                            </option>
+                                                            <option value="Kotak Bank">Kotak Bank</option>
+                                                            <option value="Karur Vysya Bank">Karur Vysya Bank
+                                                            </option>
+                                                            <option value="RBL Bank">RBL Bank</option>
+                                                            <option value="South Indian Bank">South Indian Bank
+                                                            </option>
+                                                            <option value="Tamilnad Mercantile Bank">Tamilnad
+                                                                Mercantile
+                                                                Bank
+                                                            </option>
+                                                            <option value="TNSC Bank">TNSC Bank</option>
+                                                            <option value="Yes Bank">Yes Bank</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class="control-label">Select Investment
+                                                        Scheme</label>
+                                                    <select id="i_scheme" class="form-control">
+
+                                                    </select>
+                                                    <div class="invalid-feedback">Please Select Bank First</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label id="amt_lbl" class="control-label">Monthly
+                                                        Investment</label>
+                                                    <input id="i_invested_amount" class="form-control" type="number"
+                                                        placeholder="Ammount" onblur="this.placeholder='Ammount'"
+                                                        onfocus="this.placeholder=''" value=5000 />
+                                                    <div class="invalid-feedback">The ammount exceeds your
+                                                        spending
+                                                        limit
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class="control-label">Timespan (Years)</label>
+                                                    <div name="i_time" id="i_time_container" class="row range-field">
+                                                        <input type="range" class="col custom-range" id="i_time" min="1"
+                                                            max="25" value="1">
+                                                        <div id="i_time_value" class="col-sm-3 mt-1">Value: 1
+                                                            year
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <button class="btn btn-outline-primary btn-block" type="submit"
+                                                    data-toggle="modal" data-target="#resultModal">Invest</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row border-top border-dark mt-3 pt-3">
+                                    <div class="col">
+                                        <table class="table table-bordered table-responsive-md">
+                                            <thead>
+                                                <tr>
+                                                    <th>Interest Rate</th>
+                                                    <th>Maturity amount</th>
+                                                    <th>Interest Payout</th>
+                                                    <th>Maturity Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+
+                                                    <td class="text-success" id="i_rate">-</td>
+                                                    <td class="text-success" id="i_maturity_amt"></td>
+                                                    <td class="text-success" id="i_intr_payout"></td>
+                                                    <td class="text-success" id="i_maturity_dt"></td>
+                                                </tr>
+                                            </tbody>
+                                            <tr>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="canvas_wrapper" class="col border-left border-dark p-0 m-3 pb-2">
+                                <canvas id="scheme_graph"></canvas>
+                            </div>
+                        </div>
+                    </form>
+                    <hr>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+<div id="resultModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div id="resultModalContent" class="modal-content">
+            <!-- Added via javascript -->
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script>
+    var endpoint = "{% url 'investment_form_ajax' %}";
+    var endpoint_int = "{% url 'investment_form_ajax_interest' %}";
+    var sal = parseInt('{{ salary }}');
+</script>
+<script src="{% static 'js/investment_form.js' %}">
+</script>
+{% endblock javascript %}

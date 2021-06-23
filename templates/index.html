@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center mt-3">
+    <h2 class="text-success" style="color: #65DE56;">
+      Welcome To Money Manager!
+    </h2>
+  </div>
+  <hr>
+
+  {% if request.user.is_authenticated %}
+  <div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Investible Amount</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ income }}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-rupee-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-danger shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Expended Ammount</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ expended_amt }}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-coins fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <a href="{% url 'investment_tbl' %}" class="nav-link">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">Check Investments</div>
+                <div class="text-xs mb-0 font-weight-bold text-gray-800">Check how much your money has grown!</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <a href="{% url 'exp_form' %}" class="nav-link">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">Expenses</div>
+                <div class="text-xs mb-0 font-weight-bold text-gray-800">Reduce your Expenses for a better future</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl col-lg-5">
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 id="sen_header" class="m-0 font-weight-bold text-primary">Today's Sensex</h6>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="sensex_tab" data-toggle="tab" href="#sensex_body" role="tab"
+                aria-controls="sensex_body" aria-selected="true">BSE / Sensex</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nifty_tab" data-toggle="tab" href="#nifty_body" role="tab"
+                aria-controls="nifty_body" aria-selected="false">NIFTY</a>
+            </li>
+          </ul>
+          <div id="loader" style="display:none">
+            <div class="row justify-content-center">
+              <div class="col-md-2 h6">
+                <img class="ml-2 mt-3" src="{% static 'img/sensexLoader.gif' %}" width=250 />
+              </div>
+            </div>
+          </div>
+          <div class="chart-pie pt-4 pb-2">
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="sensex_body" role="tabpanel" aria-labelledby="sensex_tab">
+                <div class="row">
+                  <canvas id="sensex_graph_today"></canvas>
+                  <canvas id="sensex_graph_week"></canvas>
+                  <canvas id="sensex_graph_year"></canvas>
+                  <canvas id="sensex_graph_ten_years"></canvas>
+                </div>
+                <div class="row p-0">
+                  <div class="navbar">
+                    <div class="col">
+                      <buttton id="sen_today" class="badge btn-outline-primary" style="cursor:pointer;">Today</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="sen_week" class="badge btn-outline-primary" style="cursor:pointer;">This
+                        Week</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="sen_year" class="badge btn-outline-primary" style="cursor:pointer;">This
+                        Year</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="sen_ten_years" class="badge btn-outline-primary" style="cursor:pointer;">10
+                        Years</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nifty_body" role="tabpanel" aria-labelledby="nifty_tab">
+                <div class="row">
+                  <canvas id="nifty_graph_today"></canvas>
+                  <canvas id="nifty_graph_week"></canvas>
+                  <canvas id="nifty_graph_year"></canvas>
+                  <canvas id="nifty_graph_ten_years"></canvas>
+                </div>
+                <div class="row p-0">
+                  <div class="navbar">
+                    <div class="col">
+                      <buttton id="nifty_today" class="badge btn-outline-success" style="cursor:pointer;">Today</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="nifty_week" class="badge btn-outline-success" style="cursor:pointer;">This
+                        Week</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="nifty_year" class="badge btn-outline-success" style="cursor:pointer;">This
+                        Year</button>
+                    </div>
+                    <div class="col">
+                      <buttton id="nifty_ten_years" class="badge btn-outline-success" style="cursor:pointer;">10
+                        Years</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<div class="row ml-4 justify-content-center">
+  <div class="col-md-5">
+    <div class="card ml-4 mt-4" style="width: 18rem;">
+      <img src="{% static 'img/index4.png' %}" class="card-img-top" alt="...">
+
+      <div class="card-body">
+        <h5 class="card-title">Blog on Investments</h5>
+        <p class="card-text"></p>
+        <a target="blank" href="https://myinvestment.blog/" class="btn btn-success">Click Here</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="card mt-4 ml-4" style="width: 18rem;">
+      <img src="{% static 'img/img10.jfif' %}" class="card-img-top" alt="...">
+
+
+      <div class="card-body">
+        <h5 class="card-title">About Stock Market</h5>
+        <p class="card-text"></p>
+        <a target="blank" href="https://www.indiratrade.com/blog" class="btn btn-success">Click Here</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row ml-4 justify-content-center mt-3">
+  <div class="col-md-5">
+    <div class="card ml-4 mt-4" style="width: 18rem;">
+
+      <img src="{% static 'img/index3.jpg' %}" class="card-img-top" alt="...">
+
+      <div class="card-body">
+        <h5 class="card-title">More on Investments</h5>
+        <p class="card-text"></p>
+        <a target="blank" href="https://myinvestment.blog/" class="btn btn-success">Click Here</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="card mt-4 ml-4" style="width: 18rem;">
+      <img src="{% static 'img/img20.jfif' %}" class="card-img-top" alt="...">
+
+      <div class="card-body">
+        <h5 class="card-title">About Share Market</h5>
+        <p class="card-text"></p>
+        <a target="blank" href="https://www.indiratrade.com/blog" class="btn btn-success">Click Here</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<span><a href=""><img src="/static/img/img30.jfif" alt=""></a></span> -->
+
+{% endblock content %}
+
+{% block javascript %}
+<script>
+  var endpoint = "{% url 'sensex_graph' %}";
+  var endpoint_nifty = "{% url 'nifty_graph' %}";
+</script>
+
+<script src="{% static 'js/graphs/sensex_graph.js' %}"></script>
+<script src="{% static 'js/graphs/nifty_graph.js' %}"></script>
+
+{% endblock javascript %}
