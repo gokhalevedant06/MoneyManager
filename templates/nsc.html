@@ -9,6 +9,58 @@
   <head>
     <title></title>
     <link rel="stylesheet" href="{% static 'css/nsc.css' %}" />
+
+    <style>             
+      /* media query added for image and heading */
+         @media (max-width:400px) and (min-width:356px) {
+             h1 {
+                 font-size: 140%;
+                 width: 95%;
+                 padding-bottom: 5%;
+                 text-align: center;
+                 margin-left: 3%;
+                 padding-top: 0%;
+             }
+         }
+ 
+         @media (max-width:970px) and (min-width:400px) {
+             h1 {
+                 font-size: 150%;
+                 width: 95%;
+                 padding-bottom: 5%;
+                 text-align: center;
+                 margin-left: 3%;
+                 padding-top: 1.5%;
+             }
+         }
+ 
+         @media (max-width:356px) {
+             h1 {
+                 color: white;
+                 background-color: rgba(0, 0, 0, 0.8);
+                 font-size: 100%;
+                 width: 95%;
+                 margin-left: 3%;
+                 padding-top: 4.5%;
+ 
+             }
+         }
+ 
+         @media (max-width:970px) {
+             .nsc1 {
+                 width: 100%;
+                 margin-left: 0%;
+                 margin-right: 100%;
+                 padding-left: 5%;
+                 padding-right: 5%;
+                 border-top-left-radius:8%;
+                 border-top-right-radius: 8%;
+                 border-bottom-left-radius:8% ;
+                 border-bottom-right-radius:8% ;
+ 
+             }
+         }
+     </style>
   </head>
 
   <body>

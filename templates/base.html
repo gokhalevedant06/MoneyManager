@@ -268,19 +268,20 @@
 		<!-- Page level plugins -->
 		<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-		
+
 		{% block javascript %}{% endblock javascript %}
-		
+
 		<!-- Chatbot javascript code -->
 		<script>
 			let chatbot_endpoint = "{% url 'chatbot' %}";
 		</script>
 
-		<script src="{% static 'js/chatbot.js' %}">
+		<script src="{% static 'js/chatbot.js' %}"></script>
 			<!-- Menu Toggle Script -->
 			<script>
-			  $("#menu-toggle").click(function (e) {
+			  $("#menu-toggle").on("click", function (e) {
 			    e.preventDefault();
+				console.log("a");
 			    $("#wrapper").toggleClass("toggled");
 			  });
 		</script>

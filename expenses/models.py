@@ -20,4 +20,4 @@ class ExpenseData(models.Model):
     expense_name = models.CharField(max_length=100)
     expense_amount = models.IntegerField()
     remaining_amount = models.IntegerField()
-    time = models.DateField(auto_now=True)
+    time = models.DateField(auto_now=False)

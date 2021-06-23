@@ -9,6 +9,57 @@
   <head>
     <title>Fixed Deposit</title>
     <link rel="stylesheet" href="{% static 'css/fd.css' %}" />
+
+    <style>
+      @media (max-width:400px) and (min-width:356px) {
+          h1 {
+              font-size: 160%;
+              width: 95%;
+              padding-bottom: 5%;
+              text-align: center;
+              margin-left: 3%;
+              padding-top: 2%;
+          }
+      }
+
+      @media (max-width:970px) and (min-width:400px) {
+          h1 {
+              font-size: 200%;
+              width: 95%;
+              padding-bottom: 5%;
+              text-align: center;
+              margin-left: 3%;
+              padding-top: 1%;
+          }
+      }
+
+      @media (max-width:356px) {
+          h1 {
+              color: white;
+              background-color: rgba(0, 0, 0, 0.8);
+              font-size: 130%;
+              width: 95%;
+              margin-left: 3%;
+              padding-top: 4%;
+
+          }
+      }
+
+      @media (max-width:970px) {
+          .fd1 {
+              width: 100%;
+              margin-left: 0%;
+              margin-right: 100%;
+              padding-left: 5%;
+              padding-right: 5%;
+              border-top-left-radius:8%;
+              border-top-right-radius: 8%;
+              border-bottom-left-radius:8% ;
+              border-bottom-right-radius:8% ;
+
+          }
+      }
+  </style>
   </head>
   <body>
     <h1 class="fdtitle">FIXED DEPOSIT</h1>

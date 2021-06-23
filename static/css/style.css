@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 html{
     background-image: url('/static/img/login_background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+=======
+>>>>>>> fd6859774f05fefc94f4ef6869d0c7d63c2e77aa
 .main 
 {
     width: 100%;
@@ -113,7 +116,10 @@ html{
     top: 0;
 
 }
+<<<<<<< HEAD
 .logo image{
     border-radius: 10px;
     color: aqua;
 }
+=======
+>>>>>>> fd6859774f05fefc94f4ef6869d0c7d63c2e77aa

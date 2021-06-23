@@ -1,7 +1,6 @@
 $(document).ready(function () {
     loader();
     callToday = ajaxCall(SensexChartToday, "#sensex_graph_today", 1, "1m");
-    call
     
     $('#sen_today').click(function () {
         loader();

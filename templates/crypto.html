@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Investement Options{% endblock title %}
-
 {% block content %}
 
 <!DOCTYPE html>
@@ -12,6 +11,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cryptocurrency</title>
     <link rel="stylesheet" href="{% static 'css/crypto.css' %}" />
+    <style>
+        @media (max-width:817px){
+            h1 {font-size:180%;
+                width:95%;
+                margin-left: 3%;
+                padding-top: 1.2%;}
+        @media (max-width: 650px){
+            .rd1 {width:90%;
+            margin-left:5%;
+            margin-right:3%;
+            }
+        }
+        }
+    </style>
 </head>
 <body>
     <h1>CRYPTOCURRENCY</h1>
@@ -25,7 +38,11 @@ Many experts believe that blockchain and related technology will disrupt many in
     </p>
 
 
+<<<<<<< HEAD
     <div><img class="rd1" src="{% static 'img/crypto.jpeg' %}"></div>
+=======
+    <div class="crypto1"><img class="rd1" src="{% static 'img/crypto.jpeg' %}"></div>
+>>>>>>> fd6859774f05fefc94f4ef6869d0c7d63c2e77aa
 
 
     <h2>Types of Cryptocurrency</h2>

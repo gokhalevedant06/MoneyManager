@@ -9,6 +9,27 @@ Options{% endblock title %} {% block content %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stock Market</title>
     <link rel="stylesheet" href="{% static 'css/stock.css' %}" />
+    <!-- ****added media query -->
+    <style>
+      @media (max-width:450px) and (min-width:305px){
+        h1 { font-size: 160%;
+             padding-top:2.5%;
+             width:95%;
+             margin-left: 3%;}
+            }
+      @media (max-width:305px){
+        h1 {font-size:130%;
+            width:80%;
+            margin-left:10%;
+            padding-top:4%;}
+          }
+      @media (max-width:700px){
+        .rd1 {width:90%;
+        margin-left:5%;}
+      }
+    </style>
+    <!-- ****added media query -->
+
   </head>
   <body>
     <h1>REAL ESTATE</h1>
