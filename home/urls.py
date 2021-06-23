@@ -1,3 +1,4 @@
+from chatbot.chatbotEngine import chatbot
 from django.urls import path
 
 from . import views
@@ -10,4 +11,5 @@ urlpatterns = [
     path('sensex-graph/', views.sensex_graph, name="sensex_graph"),
     path('nifty-graph/', views.nifty_graph, name="nifty_graph"),
     path('chatbot/', views.chatbot_request, name="chatbot"),
+    path('chatbot1/',views.chatbot,name='chatbot1')
 ]

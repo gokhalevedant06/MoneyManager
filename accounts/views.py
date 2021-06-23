@@ -15,7 +15,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import user_passes_test, login_required
 
 from django.core.mail import EmailMessage
-from MoneyManager.settings import EMAIL_HOST_USER
+# from MoneyManager.settings import EMAIL_HOST_USER
 from django.template.loader import render_to_string
 
 from django.http import HttpResponseServerError
@@ -68,7 +68,7 @@ def register(request):
             user.save()
 
 
-<< << << < HEAD
+
 
         subject = 'Welcome to Team Money Manager!'
         html_message = render_to_string('edm.html')
@@ -79,12 +79,12 @@ def register(request):
             msg.send()
         except socket.gaierror:
             return HttpResponseServerError()
-== == == =
+
             login_user = auth.authenticate(
                 username=username, password=password)
             if login_user:
                 auth.login(request, login_user)
->>>>>> > 3bd3f005c587f16a6a53426b61c9ae082ab9b557
+
 
         return redirect('user_info_form')
     else:
@@ -119,11 +119,7 @@ def user_info_ajax(request):
 
         if elem_id == "name":
             User.objects.filter(id=request.user.id).update(
-<<<<<<< HEAD
                 username=value 
-=======
-                username=value
->>>>>>> 3bd3f005c587f16a6a53426b61c9ae082ab9b557
             )
             success = True
         elif elem_id == "email":

@@ -47,11 +47,7 @@ INSTALLED_APPS = [
 
     'django.contrib.staticfiles',
 
-<<<<<<< HEAD
-    # 'crispy_forms',
-=======
     'crispy_forms',
->>>>>>> 3bd3f005c587f16a6a53426b61c9ae082ab9b557
 
     'accounts',
     'home',
@@ -146,47 +142,24 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Security of Django Website
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
 
 
-<<<<<<< HEAD
-# Configurein Email Setup
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'noreply.moneymanager@gmail.com'
-EMAIL_HOST_PASSWORD = 'pekhkwtwpembaudk'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USER_SSL = True
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
-
-
-# Chatterbot
-CHATTERBOT = {
-    'name': 'Money Manager Bot',
-    'logic_adapters': [
-        'chatterbot.logic.MathematicalEvaluation',
-        'chatterbot.logic.TimeLogicAdapter',
-        'chatterbot.logic.BestMatch'
-    ]
-}
-
-
-=======
->>>>>>> 3bd3f005c587f16a6a53426b61c9ae082ab9b557
 # Heroku setup
 django_heroku.settings(locals())
 
 # Configuring Local Settings
+# try:
+#     from .local_settings import *
+# except ImportError:
+#     print("Import ERROR!")
+
 try:
     from .local_settings import *
+    print("Success")
 except ImportError:
-<<<<<<< HEAD
     pass
-=======
-    print("Import ERROR!")
->>>>>>> 3bd3f005c587f16a6a53426b61c9ae082ab9b557
