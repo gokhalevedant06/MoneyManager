@@ -1,169 +1,26 @@
 $(document).ready(function () {
     loader();
-
-    var diff = 1;
-    var interval = '1m';
-
-    $.ajax({
-        url: endpoint,
-        data: {
-            'diff': diff,
-            'interval': interval,
-        },
-        success: function (data) {
-            defaultData = []
-            Labels = []
-            hoverColor = []
-            backgroundColor = []
-            Labels = data.min_x_lbl;
-            defaultData = data.min_x;
-
-            for (var i = 0; i < Labels.length; i++) {
-                hoverColor.push('#36b9cc');
-                backgroundColor.push('#36b9cc');
-            }
-            $('#loader').hide();
-            $('#sen_header').text("Today's Sensex")
-            SensexChartToday();
-            $("#sensex_graph_today").show();
-            $("#sensex_graph_week").hide();
-            $("#sensex_graph_year").hide();
-            $("#sensex_graph_ten_years").hide();
-        }
-    });
-
+    callToday = ajaxCall(SensexChartToday, "#sensex_graph_today", 1, "1m");
+    call
+    
     $('#sen_today').click(function () {
         loader();
-        diff = 1;
-        interval = '1m';
-
-        $.ajax({
-            url: endpoint,
-            data: {
-                'diff': diff,
-                'interval': interval,
-            },
-            success: function (data) {
-                defaultData = []
-                Labels = []
-                hoverColor = []
-                backgroundColor = []
-                Labels = data.min_x_lbl;
-                defaultData = data.min_x;
-
-                for (var i = 0; i < Labels.length; i++) {
-                    hoverColor.push('#36b9cc');
-                    backgroundColor.push('#36b9cc');
-                }
-                $('#loader').hide();
-                $('#sen_header').text("Today's Sensex")
-                SensexChartToday();
-                $("#sensex_graph_today").show();
-                $("#sensex_graph_week").hide();
-                $("#sensex_graph_year").hide();
-                $("#sensex_graph_ten_years").hide();
-            }
-        });
+        ajaxCall(SensexChartToday, "#sensex_graph_today", 1, "1m");
     });
 
     $('#sen_week').click(function () {
         loader();
-        diff = 7;
-        interval = '30m';
-
-        $.ajax({
-            url: endpoint,
-            data: {
-                'diff': diff,
-                'interval': interval,
-            },
-            success: function (data) {
-                defaultData = []
-                Labels = []
-                hoverColor = []
-                backgroundColor = []
-                Labels = data.min_x_lbl;
-                defaultData = data.min_x;
-
-                for (var i = 0; i < Labels.length; i++) {
-                    hoverColor.push('#36b9cc');
-                    backgroundColor.push('#36b9cc');
-                }
-                $('#loader').hide();
-                $('#sen_header').text("This Week's Sensex")
-                SensexChartWeek();
-                $("#sensex_graph_today").hide();
-                $("#sensex_graph_week").show();
-                $("#sensex_graph_year").hide();
-                $("#sensex_graph_ten_years").hide();
-            }
-        });
+        ajaxCall(SensexChartWeek, "#sensex_graph_week", 7, '30m');
     });
 
     $('#sen_year').click(function () {
         loader();
-        diff = 365;
-        interval = '1wk';
-        $.ajax({
-            url: endpoint,
-            data: {
-                'diff': diff,
-                'interval': interval,
-            },
-            success: function (data) {
-                defaultData = []
-                Labels = []
-                hoverColor = []
-                backgroundColor = []
-                Labels = data.min_x_lbl;
-                defaultData = data.min_x;
-
-                for (var i = 0; i < Labels.length; i++) {
-                    hoverColor.push('#36b9cc');
-                    backgroundColor.push('#36b9cc');
-                }
-                $('#loader').hide();
-                $('#sen_header').text("This Year's Sensex")
-                SensexChartYear();
-                $("#sensex_graph_today").hide();
-                $("#sensex_graph_week").hide();
-                $("#sensex_graph_year").show();
-                $("#sensex_graph_ten_years").hide();
-            }
-        });
+        ajaxCall(SensexChartYear, "#sensex_graph_year", 365, "1wk");
     });
 
     $('#sen_ten_years').click(function () {
         loader();
-        diff = 3650;
-        interval = '1mo';
-        $.ajax({
-            url: endpoint,
-            data: {
-                'diff': diff,
-                'interval': interval,
-            },
-            success: function (data) {
-                defaultData = []
-                Labels = []
-                hoverColor = []
-                backgroundColor = []
-                Labels = data.min_x_lbl;
-                defaultData = data.min_x;
-
-                for (var i = 0; i < Labels.length; i++) {
-                    hoverColor.push('#36b9cc');
-                    backgroundColor.push('#36b9cc');
-                }
-                $('#loader').hide();
-                $('#sen_header').text("Last 10 years Sensex")
-                SensexChartTenYears();
-                $("#sensex_graph_today").hide();
-                $("#sensex_graph_week").hide();
-                $("#sensex_graph_year").hide();
-                $("#sensex_graph_ten_years").show();
-            }
-        });
+        ajaxCall(SensexChartTenYears, "#sensex_graph_ten_years", 3650, "1mo");
     });
 })
 
@@ -370,4 +227,36 @@ function SensexChartTenYears() {
 
 function loader() {
     $('#loader').show();
+}
+
+function ajaxCall(fn, chart_name, diff, interval) {
+    $.ajax({
+        url: endpoint,
+        data: {
+            'diff': diff,
+            'interval': interval,
+        },
+        success: function (data) {
+            console.log(data)
+            defaultData = []
+            Labels = []
+            hoverColor = []
+            backgroundColor = []
+            Labels = data.min_x_lbl;
+            defaultData = data.min_x;
+
+            for (var i = 0; i < Labels.length; i++) {
+                hoverColor.push('#36b9cc');
+                backgroundColor.push('#36b9cc');
+            }
+            $('#loader').hide();
+            $('#sen_header').text("This Week's Sensex")
+            fn();
+            $("#sensex_graph_today").hide();
+            $("#sensex_graph_week").hide();
+            $("#sensex_graph_year").hide();
+            $("#sensex_graph_ten_years").hide();
+            $(chart_name).show();
+        }
+    });
 }
