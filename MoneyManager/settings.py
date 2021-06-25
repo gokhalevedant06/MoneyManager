@@ -134,7 +134,6 @@ USE_TZ = True
 mimetypes.add_type('text/css', '.css', True)
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]

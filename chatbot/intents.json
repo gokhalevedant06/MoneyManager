@@ -1,216 +1,647 @@
 {
-	"intents": [
-		{
-			"tag": "greeting",
-			"patterns": [
-				"Hi there",
-				"Is anyone there?",
-				"Hey",
-				"Hola",
-				"Hello",
-				"Good day"
-			],
-			"responses": [
-				"Hello, how can I help?",
-				"Good to see you again",
-				"Hi there, how can I help?"
-			]
-		},
-		{
-			"tag": "goodbye",
-			"patterns": [
-				"Bye",
-				"See you later",
-				"Goodbye",
-				"Nice chatting to you, bye",
-				"Till next time",
-				"No, that's it"
-			],
-			"responses": ["See you!", "Have a nice day", "Bye! Come back again soon."]
-		},
-		{
-			"tag": "thanks",
-			"patterns": [
-				"Thanks",
-				"Thank you",
-				"That's helpful",
-				"Awesome, thanks",
-				"Thanks for helping me"
-			],
-			"responses": ["Happy to help!", "Any time!", "My pleasure"]
-		},
-		{
-			"tag": "noanswer",
-			"patterns": [],
-			"responses": [
-				"Sorry, can't understand you",
-				"Please give me more info",
-				"Not sure I understand"
-			]
-		},
-		{
-			"tag": "options",
-			"patterns": [
-				"How you could help me?",
-				"What help you provide?",
-				"How you can be helpful?",
-				"What support is offered"
-			],
-			"responses": [
-				"I can help you with the tutorial of the program",
-				"I can tell you information about investment"
-			]
-		},
-		{
-			"tag": "joke",
-			"patterns": [
-				"Tell me a joke",
-				"I am feeling bored",
-				"Joke please",
-				"Make me laugh",
-				"I want to laugh"
-			],
-			"responses": [
-				"Here's a joke to lighten your mood \nMy roommate and I are ordering some Chinese food for delivery. \nShe asks \"what's a good tip for a delivery driver\"\nI reply \"always wear a seat belt\"\nShe won't talk to me now.",
-				"Guy staring at an ambulance in front of Whole Foods:\n “Somebody must have accidentally eaten gluten.",
-				"What has T in the beginning, T in the middle, and T at the end? \n- A teapot."
-			]
-		},
-		{
-			"tag": "cryptocurrency",
-			"patterns": [
-				"tell short about cryptocurrency",
-				"what is cryptocurrency",
-				"how can I get information about cryptocurrency"
-			],
-			"responses": [
-				"A cryptocurrency is a digital or virtual currency that is secured by cryptography, which makes it nearly impossible to counterfeit or double-spend. A cryptocurrency is a form of digital asset based on a network that is distributed across a large number of computers. This decentralized structure allows them to exist outside the control of governments and central authorities. "
-			]
-		},
-		{
-			"tag": "bitcoin",
-			"patterns": [
-				"what is bitcoin",
-				"how to get a bitcoin"
-			],
-			"responses": [
-
-			]
-		},
-		{
-			"tag": "schemes",
-			"patterns": [
-				"which schemes are you provided to users ",
-				"which scheme is best",
-				"how will you provide information of schemes"
-			],
-			"responses": [
-				"well. Saving Schemes are launched by the Government of India or public sector financial institutions or banks and they offer reliability and risk-free returns on investment.the schemes which provided by us to users are FD,RD,PPF,MIS,NSC etc. Public provident fund is one of the best scheme ever."
-			]
-		},
-		{
-			"tag": "fd",
-			"patterns": [
-				"what is FD",
-				"which subtypes included in FD",
-				"Is FD's are profitable",
-				"how can I invest in them"
-			],
-			"responses": [
-				"that's the good thing. fixed deposit (FD) is a financial instrument provided by banks or NBFCs which provides investors a higher rate of interest than a regular savings account, until the given maturity date. .there are also thier sub types which you can see in our website details."
-			]
-		},
-		{
-			"tag": "rd",
-			"patterns": [
-				"I'm excited to know how  RD is work.",
-				"advantages of RD",
-				"types of RD's"
-			],
-			"responses": [
-				"off course.our website gives brief info about  RD, thier types,scope,percentage of investment in it.In short A recurring deposit is a special kind of term deposit offered by banks which help people with regular incomes to deposit a fixed amount every month into their recurring deposit account and earn interest at the rate applicable to fixed deposits. "
-			]
-		},
-		{
-			"tag": "fd_rd",
-			"patterns": ["which is better RD or FD"],
-			"responses": [
-				"According to new definations or schemes of banks,The interest amount earned at the end of maturity of a Fixed Deposit is higher than the interest earned on an RD. The interest amount earned is lesser than the interest earned on an FD. The interest earned on an RD is paid on maturity along with the capital amount."
-			]
-		},
-		{
-			"tag": "stock-market",
-			"patterns": [
-				"give guidelines about stock market",
-				"have I invest my money in stocks",
-				"how you will give me information about stock market",
-				" why the stock market",
-				" What is stock market simple definition?"
-			],
-			"responses": [
-				"It is a place where shares of pubic listed companies are traded. The primary market is where companies float shares to the general public in an initial public offering (IPO) to raise capital. Thus, it is the meeting place of the stock buyers and sellers.For detail info check our stock market page."
-			]
-		},
-		{
-			"tag": " expenses ",
-			"patterns": ["how will I go to expenses page on your website"],
-			"responses": [
-				"1.after login to money manager application there are several options .2.Go to left corner and click on expenses tab,3.tab will be open, now you will be able to fillupt or manage your expenses"
-			]
-		},
-		{
-			"tag": "expenses-management",
-			"patterns": [
-				"I'm unable to fill \"manage your expenses\" on expenses tab, can you help me?",
-				"how to fill expenses give me short idea"
-			],
-			"responses": ["bot kay bolnar ahe te"]
-		},
-		{
-			"tag": "calculator",
-			"patterns": ["what facilities provided by banking calculator"],
-			"responses": [
-				"calculator gives short idea about which quantities you are filling.you will be able to select your bank,select investment scheme after that you will be able to see your current interest rate,maturity date, maturity ammount etc."
-			]
-		},
-		{
-			"tag": "profile",
-			"patterns": ["how I can make my own profile?"],
-			"responses": [
-				"when you will goes to money manager application..their is option for sign in or when you have not account then choose \"don't have an account\" option  then sign up."
-			]
-		},
-		{
-			"tag": "real_estate",
-			"patterns": [
-				"what is real estate",
-				"types of real estate",
-				" is it profitable to me",
-				"can I invest money in real estate"
-			],
-			"responses": [
-				"Real estate is property consisting of land and the buildings on it, along with its natural resources such as crops, minerals or water; immovable property of this nature; an interest vested in this an item of real property, buildings or housing in general.For more details browse our real estate page."
-			]
-		},
-		{
-			"tag": "investment",
-			"patterns": [
-				"as I invest money in FD's...can I see my previous investments?"
-			],
-			"responses": [
-				"yeah ! The great thing of our application is providing info to users which is easy to operate themselves. You can be able to check your investments, scheme name,their time span, amount invested and maturity amount as option."
-			]
-		},
-		{
-			"tag": "blogs",
-			"patterns": [
-				"Which things you added in your blogs",
-				"how can I get access to blogs",
-				"is there any configuration for reading blogs"
-			],
-			"responses": [
-				"That's the big deal. You will be able to read each portfolio on blogs by clicking on it.the providing information is very helpful to users because we can gave the successful example of a person who is financial expert. are u curious to read it then goes to respective page and inhance your knowledgeThank you, for asking such kind information."
-			]
-		}
-	]
+        "intents": [
+                {
+                        "tag": "greeting",
+                        "patterns": [
+                                "Hi there",
+                                "How are you",
+                                "Is anyone there?",
+                                "Hey",
+                                "Hola",
+                                "Hello",
+                                "Good day",
+                                "Hi"
+                        ],
+                        "responses": [
+                                "Hello, thanks for asking",
+                                "Good to see you again",
+                                "Hi there, how can I help?"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "goodbye",
+                        "patterns": [
+                                "Bye",
+                                "See you later",
+                                "Goodbye",
+                                "Nice chatting to you, bye",
+                                "Till next time"
+                        ],
+                        "responses": [
+                                "See you!",
+                                "Have a nice day",
+                                "Bye! Come back again soon."
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "thanks",
+                        "patterns": [
+                                "Thanks",
+                                "Thank you",
+                                "That's helpful",
+                                "Awesome, thanks",
+                                "Thanks for helping me"
+                        ],
+                        "responses": [
+                                "Happy to help!",
+                                "Any time!",
+                                "My pleasure"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "noanswer",
+                        "patterns": [],
+                        "responses": [
+                                "Sorry, can't understand you",
+                                "Please give me more info",
+                                "Not sure I understand"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "options",
+                        "patterns": [
+                                "How you could help me?",
+                                "What help you provide?",
+                                "How you can be helpful?"
+                        ],
+                        "responses": [
+                                "I can guide you through Adverse management problems, order tracking, person to be contacted and Department related queries",
+                                "I can provide support related to following problems technical query,management related query,order related query,tracking related query,procurement query,outsourcing problem,manufacturing delay,"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "order_tracking",
+                        "patterns": [
+                                "where is order with id 431B67?",
+                                "track order 562B78",
+                                "Where is my order with id 561A24?"
+                        ],
+                        "responses": [
+                                "Delayed",
+                                "Dispatched",
+                                "On the Way!"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "order_components",
+                        "patterns": [
+                                "order id 345A23 comprises of?",
+                                "List of components"
+                        ],
+                        "responses": [
+                                "order comprises of hardisk and bluetooth"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "missing_id",
+                        "patterns": [
+                                "where is the order",
+                                "where is my order",
+                                "locate the order",
+                                "Delivery date of order"
+                        ],
+                        "responses": [
+                                "Please enter with order ID"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "Location",
+                        "patterns": [
+                                "find order location 32712",
+                                "What is the Location of order 23A31?"
+                        ],
+                        "responses": [
+                                "It is in germany",
+                                "It is in Berlin",
+                                "It has reached china",
+                                "It has reached Banglore"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "search_person_by_id",
+                        "patterns": [
+                                "I want an appoitment with Manoj kumar",
+                                "set an appointment with Sujata Nandi"
+                        ],
+                        "responses": [
+                                "Fixing an appointment."
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "appointment status",
+                        "patterns": [
+                                "Is my appointment fixed?",
+                                "Do I have an appointment today?"
+                        ],
+                        "responses": [
+                                "Yes",
+                                "NO! Not Yet"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "check_leave",
+                        "patterns": [
+                                "Is Sujata Nandi on leave?",
+                                "Is Manish Kumar on leave?"
+                        ],
+                        "responses": [
+                                "No Not On Leave",
+                                "Yes On Leave"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "cost_lowering",
+                        "patterns": [
+                                "Cost Lowering changes to be made?",
+                                "what changes could lower cost?"
+                        ],
+                        "responses": [
+                                "Increase Transportation capacity utilisation,Increase supply chain velocity,Reduce order variability"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "forgot_password",
+                        "patterns": [
+                                "I forgot my Login password?",
+                                "what to do when someone forgets Login password?",
+                                "I forgot my Laptop password",
+                                "Forgot Wifi password"
+                        ],
+                        "responses": [
+                                "Please enter your email id ,we will send a link on your email"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "email_id",
+                        "patterns": [
+                                "abx@gmail.com",
+                                "abc@kiit.ac.in"
+                        ],
+                        "responses": [
+                                "Link has been shared.Please change your password"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "manufacturing_problems",
+                        "patterns": [
+                                "Find me a manufacturer nearby"
+                        ],
+                        "responses": [
+                                "The nearest manufacturer is Vietnam"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "search_department",
+                        "patterns": [
+                                "I want to know the various departments in this company"
+                        ],
+                        "responses": [
+                                "The department are:Projects,IT,Production,OutSource"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "competitors_in_market",
+                        "patterns": [
+                                "what are challenging events",
+                                "what are the threats in the market"
+                        ],
+                        "responses": [
+                                "Recent news of Demonetisation & recession"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "key_customers",
+                        "patterns": [
+                                "Our Target customers",
+                                "who are your key customers"
+                        ],
+                        "responses": [
+                                "Our target customers are in the range of age 20-40"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "supplier_info",
+                        "patterns": [
+                                "What information is shared with supplier?"
+                        ],
+                        "responses": [
+                                "Production Schedule,Delivery Schedule,Proxy information about cost"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "highest_grossing",
+                        "patterns": [
+                                "What is the highest grossing product?"
+                        ],
+                        "responses": [
+                                "Laptop with touch sensors and 360 rotation"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "connect_people",
+                        "patterns": [
+                                "I want to meet the head of HR/IT/Projects department",
+                                "I want to meet head IT Rakesh sharma."
+                        ],
+                        "responses": [
+                                "I will just check if he is available or on leave."
+                        ],
+                        "context": [
+                                "search_attendance_database_name_post"
+                        ]
+                },
+                {
+                        "tag": "project_handling_queries",
+                        "patterns": [
+                                "complaint has been raised for Insufficient Team Skills",
+                                "Miscommunication Conflicts needs to be resolved",
+                                "Risk Management issue has occured",
+                                "skilled employees needed urgently"
+                        ],
+                        "responses": [
+                                "Please contact the project depatment"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "solve_problems",
+                        "patterns": [
+                                "Lack of product clarity",
+                                "the specifications of product is not clear to customer. what should we do"
+                        ],
+                        "responses": [
+                                "Please enter product id and customer id.specifications shall be sent to user"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "version_update",
+                        "patterns": [
+                                "user needs the updated software version",
+                                "user demands software updation"
+                        ],
+                        "responses": [
+                                "version updation request raised"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "HR_related_problem",
+                        "patterns": [
+                                "problem related to Job design and analysis",
+                                "query based on Workforce planning",
+                                "Training and development issues are to be handled",
+                                "Compensation and benefits of the working employee",
+                                "Legal issues of department like accidents in the company"
+                        ],
+                        "responses": [
+                                "Please Contact the HR team for this problem."
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "factors_impacting_sale",
+                        "patterns": [
+                                "Impact on sale?",
+                                "factors impacting sale this year?"
+                        ],
+                        "responses": [
+                                "elections will impact our sale this year",
+                                "this year our sale might increase during durga puja",
+                                "this year sale might be impacted due to demonitisation"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "predict_performance",
+                        "patterns": [
+                                "how have we improved our sale from last year?",
+                                "what is the profit this year?"
+                        ],
+                        "responses": [
+                                "we have improved our sale by increasing our customers upto 2 lakh",
+                                "profit earned is 15%"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "customer_satisfaction",
+                        "patterns": [
+                                "how was the customer response",
+                                "Is the customer happy?",
+                                "what was the customer feedback?"
+                        ],
+                        "responses": [
+                                "Customer was happy and has given good rating"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "maintainence",
+                        "patterns": [
+                                "maintainence related queries recorded"
+                        ],
+                        "responses": [
+                                "lift is not working, projector misfuctioning"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "gadgets",
+                        "patterns": [
+                                "what are the gadgets in stock?",
+                                "which products we have?"
+                        ],
+                        "responses": [
+                                "hardisk,pendrives, wireless bluetooth,Laptops,Gaming Accessories"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "commission",
+                        "patterns": [
+                                "what is the Commission rate?",
+                                "Commission rate on each product?"
+                        ],
+                        "responses": [
+                                "Commission rate is 5% on laptops,25%on bluetooth device,10% on Desktop"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "invalid",
+                        "patterns": [
+                                "Marry me",
+                                "I love You",
+                                "date me",
+                                "chat with me",
+                                "I am bored"
+                        ],
+                        "responses": [
+                                "Please ask organisation related query."
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "noans",
+                        "patterns": [
+                                "why",
+                                "how",
+                                "when",
+                                "I",
+                                "you"
+                        ],
+                        "responses": [
+                                "Can't Understand Your Question",
+                                "please elaborate your question"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "turnover",
+                        "patterns": [
+                                "what is the turnover of the company at present?"
+                        ],
+                        "responses": [
+                                "10 Million Ton"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "predict_delay",
+                        "patterns": [
+                                "why is order 23A12 delayed"
+                        ],
+                        "responses": [
+                                "delay is due to manufacuring",
+                                "Delay is due to inavailable components"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "predict_delay",
+                        "patterns": [
+                                "why is order 23A12 delayed"
+                        ],
+                        "responses": [
+                                "delay is due to manufacuring",
+                                "Delay is due to inavailable components"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "name",
+                        "patterns": [
+                                "what is your name?",
+                                "what should I call you?"
+                        ],
+                        "responses": [
+                                "I'm Bruno",
+                                "Hey!I'm Bruno"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "about",
+                        "patterns": [
+                                "how you doing?",
+                                "how are you"
+                        ],
+                        "responses": [
+                                "Thanks For Asking!How can I help you?"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "configuration",
+                        "patterns": [
+                                "How to configure my laptop",
+                                "software configuration of laptop",
+                                "steps to configure laptop",
+                                "How to configure my computer",
+                                "software configuration of computer",
+                                "steps to configure computer",
+                                "How to configure my desktop",
+                                "software configuration of desktop",
+                                "steps to configure desktop"
+                        ],
+                        "responses": [
+                                "search tab->control panel->select specific application->download update->give permission"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "Weather",
+                        "patterns": [
+                                "what is the weather today?"
+                        ],
+                        "responses": [
+                                "It's 36C according to accuweather"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "leave",
+                        "patterns": [
+                                "Is Michel Sharma on leave?",
+                                "Is Siddhart Roy present today?",
+                                "Is Shantanu Bhatt in office?"
+                        ],
+                        "responses": [
+                                "Give me a moment!I'll just check",
+                                "yes",
+                                "no"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "hours",
+                        "patterns": [
+                                "Opening hours of the cafeteria?",
+                                "when does the cafeteria open",
+                                "office canteen opening time"
+                        ],
+                        "responses": [
+                                "It is open from Monday-Saturday 9:00am-7:30pm"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "cabin",
+                        "patterns": [
+                                "where is VP cabin?",
+                                "Where is Head IT cabin?",
+                                "Where is AI department",
+                                "Where is Project head department?",
+                                "where is cafeteria",
+                                "guide me to the canteen"
+                        ],
+                        "responses": [
+                                "Block-A 3rd floor 1st room",
+                                "Block-B 2nd Floor",
+                                "Block-D Ground Floor"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                },
+                {
+                        "tag": "domain",
+                        "patterns": [
+                                "How to improve team members domain knowledge",
+                                "improving domain knowledge of team members"
+                        ],
+                        "responses": [
+                                "set up key meetings and workshop,create a shared drive for information,Hold informal sharing session"
+                        ],
+                        "context": [
+                                ""
+                        ]
+                }
+        ]
 }

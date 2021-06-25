@@ -26,5 +26,5 @@ urlpatterns = [
     path('investment/', include('investments.urls')),
     path('expenses/', include('expenses.urls')),
     path('', include('home.urls')),
-    path('t/', TemplateView.as_view(template_name="edm.html"))
+    # path('t/', TemplateView.as_view(template_name="edm.html"))
 ]
