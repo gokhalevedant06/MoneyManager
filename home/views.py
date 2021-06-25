@@ -168,3 +168,6 @@ def handler500(request, *args, **argv):
                                   context_instance=RequestContext(request))
     response.status_code = 500
     return response
+
+def chatbot(request):
+    return render(request,'chatbot.html')

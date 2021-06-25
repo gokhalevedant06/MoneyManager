@@ -174,7 +174,13 @@ CHATTERBOT = {
 django_heroku.settings(locals())
 
 # Configuring Local Settings
+# try:
+#     from .local_settings import *
+# except ImportError:
+#     print("Import ERROR!")
+
 try:
     from .local_settings import *
+    print("Success")
 except ImportError:
     pass

@@ -15,7 +15,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import user_passes_test, login_required
 
 from django.core.mail import EmailMessage
-from MoneyManager.settings import EMAIL_HOST_USER
+# from MoneyManager.settings import EMAIL_HOST_USER
 from django.template.loader import render_to_string
 
 from django.http import HttpResponseServerError

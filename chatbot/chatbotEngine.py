@@ -96,7 +96,7 @@ model.summary()
 # if os.path.exists('chatbotModel'):
 #     models.load_model("chatbotModel")
 # else:
-history = model.fit(X.toarray(), y.toarray(), epochs=100, batch_size=1)
+history = model.fit(X.toarray(), y.toarray(), epochs=1, batch_size=1)
 # model.save("chatbotModel")
 
 # --------------------------------------------- Prediction of bot reponses ---------------------------------------------- #
