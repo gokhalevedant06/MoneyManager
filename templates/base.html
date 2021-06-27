@@ -263,72 +263,73 @@
     <!--
 	This button is for chatbot modal
 -->
-<div class="chatbotdiv" mx-6>
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-toggle="modal"
-      data-target=".bd-example-modal-lg"
-    >
-      Click Here For Chatbot
-    </button>
+    <div class="chatbotdiv" mx-6>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target=".bd-example-modal-lg"
+      >
+        Click Here For Chatbot
+      </button>
 
-    <div
-      class="modal fade bd-example-modal-lg"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myLargeModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="headerBar">
-            <div class="user-photo">
-              <img src="{% static 'img/user.png' %}" />
-            </div>
-            <p class="title">Money Manager Chatbot</p>
-          </div>
-
-          <div class="chatbox">
-            <div class="chatlogs" id="chatlogs">
-              <div class="chat friend">
-                <div class="user-photo">
-                  <img src="{% static 'img/user.png' %}" />
-                </div>
-                <p class="chat-message">Hello!</p>
+      <div
+        class="modal fade bd-example-modal-lg"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myLargeModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="headerBar">
+              <div class="user-photo">
+                <img src="{% static 'img/user.png' %}" />
               </div>
+              <p class="title">Money Manager Chatbot</p>
+            </div>
 
-              <div class="chat friend" style="display: none">
-                <div class="user-photo">
-                  <img src="{% static 'img/user.png' %}" />
+            <div class="chatbox">
+              <div class="chatlogs" id="chatlogs">
+                <div class="chat friend">
+                  <div class="user-photo">
+                    <img src="{% static 'img/user.png' %}" />
+                  </div>
+                  <p class="chat-message">Hello!</p>
+                </div>
+
+                <div class="chat friend" style="display: none">
+                  <div class="user-photo">
+                    <img src="{% static 'img/user.png' %}" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="chat-form">
-            <div id="inputDiv">
-              <div id="buttonDiv"></div>
-              <textarea
-                class="input"
-                id="message"
-                placeholder="Message"
-                rows="1"
-                data-min-rows="1"
-              ></textarea>
-            </div>
-            <div id="chat-form-buttons">
-              <input
-                type="image"
-                src="{% static 'img/send.png' %}"
-                onclick="message();"
-                width="45px"
-              />
+            <div class="chat-form">
+              <div id="inputDiv">
+                <div id="buttonDiv"></div>
+                <textarea
+                  class="input"
+                  id="message"
+                  placeholder="Message"
+                  rows="1"
+                  data-min-rows="1"
+                ></textarea>
+              </div>
+              <div id="chat-form-buttons">
+                <input
+                  type="image"
+                  src="{% static 'img/send.png' %}"
+                  onclick="message();"
+                  width="45px"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-</div>
+    <script src="{% static 'js/chatbot.js' %}"></script>
     <!-- /#wrapper -->
 
     <!-- Footer -->
@@ -343,21 +344,20 @@
     <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-    {% block javascript %}
-    Chatbot javascript code -->
+    {% block javascript %} Chatbot javascript code -->
     <script>
       const endpoint = "{% url 'chatbot' %}";
     </script>
 
     <script src="{% static 'js/chatbot.js' %}">
 
-  
-  Menu Toggle Script
-  <script>
-    $("#menu-toggle").click(function (e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
+
+      Menu Toggle Script
+      <script>
+        $("#menu-toggle").click(function (e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+        });
     </script>
     {% endblock javascript %}
   </body>
