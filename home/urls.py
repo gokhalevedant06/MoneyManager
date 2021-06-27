@@ -10,6 +10,6 @@ urlpatterns = [
     path('about-us/', TemplateView.as_view(template_name="about.html"), name="about"),
     path('sensex-graph/', views.sensex_graph, name="sensex_graph"),
     path('nifty-graph/', views.nifty_graph, name="nifty_graph"),
-    # path('chatbot/', views.chatbot_request, name="chatbot"),
-    path('chatbot/',views.chatbot,name='chatbot1')
+    path('chatbot-ajax/', views.chatbot_request, name="chatbot_ajax"),
+    path('chatbot/', TemplateView.as_view(template_name="chatbot.html"), name='chatbot')
 ]

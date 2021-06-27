@@ -273,17 +273,17 @@
 
 		<!-- Chatbot javascript code -->
 		<script>
-			let chatbot_endpoint = "{% url 'chatbot' %}";
+			const chatbot_endpoint = "{% url 'chatbot_ajax' %}";
 		</script>
 
 		<script src="{% static 'js/chatbot.js' %}"></script>
-			<!-- Menu Toggle Script -->
-			<script>
-			  $("#menu-toggle").on("click", function (e) {
-			    e.preventDefault();
+		<!-- Menu Toggle Script -->
+		<script>
+			$("#menu-toggle").on("click", function (e) {
+				e.preventDefault();
 				console.log("a");
-			    $("#wrapper").toggleClass("toggled");
-			  });
+				$("#wrapper").toggleClass("toggled");
+			});
 		</script>
 	</body>
 </html>

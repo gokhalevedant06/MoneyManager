@@ -96,7 +96,7 @@ model.summary()
 # if os.path.exists('chatbotModel'):
 #     models.load_model("chatbotModel")
 # else:
-history = model.fit(X.toarray(), y.toarray(), epochs=1, batch_size=1)
+history = model.fit(X.toarray(), y.toarray(), epochs=200, batch_size=1)
 # model.save("chatbotModel")
 
 # --------------------------------------------- Prediction of bot reponses ---------------------------------------------- #
@@ -162,7 +162,7 @@ def perform_action(action_code, intent):
 
 
 def chatbot(message):
-    bot_response = 'bot: '
+    bot_response = ''
     # predict intent tag using trained neural network
     tag = predict_intent_tag(message)
     # get complete intent from intent tag

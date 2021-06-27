@@ -147,7 +147,7 @@ def index(request):
 
 def chatbot_request(request):
     user_response = request.GET.get("user_response")
-
+    print(chatbot(user_response))
     data = {
         "bot_response": chatbot(user_response)
     }
@@ -168,6 +168,3 @@ def handler500(request, *args, **argv):
                                   context_instance=RequestContext(request))
     response.status_code = 500
     return response
-
-def chatbot(request):
-    return render(request,'chatbot.html')

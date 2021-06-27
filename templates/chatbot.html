@@ -1,20 +1,15 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Chatbot</title>
-    <link
+{% block title %}Chatbot{% endblock title %}
+{% block css %}
+<link
       rel="stylesheet"
       type="text/css"
       href="{% static 'css/chatbot.css' %}"
     />
-
-    
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  </head>
-
-  <body>
-    <div class="headerBar">
+{% endblock %}
+{% block content %}
+  <div class="headerBar">
       <div class="user-photo"><img src="{% static 'img/user.png' %}" /></div>
       <p class="title">Money Manager Chatbot</p>
     </div>
@@ -55,6 +50,8 @@
         />
       </div>
     </div>
+{% endblock %}
+{% block javascript %}
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
 		<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
@@ -62,5 +59,5 @@
 		<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="{% static 'js/chatbot.js' %}"></script>
-  </body>
-</html>
+{% endblock %}
+
