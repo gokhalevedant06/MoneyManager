@@ -11,6 +11,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import OneHotEncoder
 
 from tensorflow.keras import Sequential, models
+from tensorflow.keras.models import model_from_json, load_model
+
 from tensorflow.keras.layers import Dense, Dropout
 
 import random
@@ -91,13 +93,27 @@ model = Sequential([
 
 model.compile(loss='categorical_crossentropy',
               optimizer='adam', metrics=['accuracy'])
-model.summary()
 
-# if os.path.exists('chatbotModel'):
-#     models.load_model("chatbotModel")
-# else:
-history = model.fit(X.toarray(), y.toarray(), epochs=200, batch_size=1)
-# model.save("chatbotModel")
+if os.path.exists('./chatbotModel.json'):
+    # load json and create model
+    json_file = open('./chatbotModel.json', 'r')
+
+    loaded_model_json = json_file.read()
+    json_file.close()
+    model = model_from_json(loaded_model_json)
+
+    # load weights into new model
+    model.load_weights("./chatbotModel.h5")
+
+    model.save('./chatbotModel.hdf5')
+    model = load_model('./chatbotModel.hdf5')
+else:
+    model.fit(X.toarray(), y.toarray(), epochs=1000, batch_size=1)
+    with open("./chatbotModel.json", "w") as json_file:
+        json_file.write(model.to_json())
+    model.save_weights("./chatbotModel.h5")
+
+# model.fit(X.toarray(), y.toarray(), epochs=10, batch_size=1)
 
 # --------------------------------------------- Prediction of bot reponses ---------------------------------------------- #
 
@@ -139,30 +155,13 @@ def perform_action(action_code, intent):
       Function to perform an action which is required by intent
     """
 
-    if action_code == 'CHECK_ORDER_STATUS':
-        print('\n Checking database \n')
-        time.sleep(2)
-        order_status = ['in kitchen', 'with delivery executive']
-        delivery_time = []
-        return {'intent-tag': intent['next-intent-tag'][0],
-                'order_status': random.choice(order_status),
-                'delivery_time': random.randint(10, 30)}
-
-    elif action_code == 'ORDER_CANCEL_CONFIRMATION':
-        ch = input('BOT: Do you want to continue (Y/n) ?')
-        if ch == 'y' or ch == 'Y':
-            choice = 0
-        else:
-            choice = 1
-        return {'intent-tag': intent['next-intent-tag'][choice]}
-
-    elif action_code == 'ADD_DELIVERY_INSTRUCTIONS':
-        instructions = input('Your Instructions: ')
-        return {'intent-tag': intent['next-intent-tag'][0]}
+    if action_code == 'PROFILE':
+        return [{'intent-tag': intent['next-intent-tag'][0]}, "/accounts/user-info/"]
 
 
 def chatbot(message):
     bot_response = ''
+    action = None
     # predict intent tag using trained neural network
     tag = predict_intent_tag(message)
     # get complete intent from intent tag
@@ -175,12 +174,13 @@ def chatbot(message):
     if 'action' in intent.keys():
         action_code = intent['action']
         # perform action
-        data = perform_action(action_code, intent)
+        data = perform_action(action_code, intent)[0]
         # get follow up intent after performing action
         followup_intent = get_intent(data['intent-tag'])
         # generate random response from follow up intent
         response = random.choice(followup_intent['responses'])
 
+        action = perform_action(action_code, intent)[1]
         # print randomly selected response
         if len(data.keys()) > 1:
             bot_response += response.format(**data)
@@ -191,4 +191,4 @@ def chatbot(message):
     if tag == 'goodbye':
         return False
 
-    return bot_response
+    return bot_response, action

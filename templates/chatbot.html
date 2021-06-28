@@ -1,63 +1,58 @@
-{% extends "base.html" %}
 {% load static %}
-{% block title %}Chatbot{% endblock title %}
-{% block css %}
-<link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/chatbot.css' %}"
-    />
-{% endblock %}
-{% block content %}
-  <div class="headerBar">
-      <div class="user-photo"><img src="{% static 'img/user.png' %}" /></div>
-      <p class="title">Money Manager Chatbot</p>
-    </div>
+<div
+	class="modal fade"
+	tabindex="-1"
+	role="dialog"
+	aria-hidden="true"
+	style="position: fixed"
+	id="chatbotModal"
+>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header justify-content-center">
+				<div class="headerBar" style="width: 100%">
+					<h3 class="h3 title">Money Manager Chatbot</h3>
+				</div>
+			</div>
 
-    <div class="chatbox">
-      <div class="chatlogs" id="chatlogs">
-        <div class="chat friend">
-          <div class="user-photo">
-            <img src="{% static 'img/user.png' %}" />
-          </div>
-          <p class="chat-message">Hello!</p>
-        </div>
+			<div class="modal-body">
+				<div class="chatbox">
+					<div class="chatlogs" id="chatlogs">
+						<div class="chat friend">
+							<div class="user-photo">
+								<img src="{% static 'img/user.png' %}" />
+							</div>
+							<p class="chat-message">Hello! How can I help you ?</p>
+						</div>
 
-        <div class="chat friend" style="display: none">
-          <div class="user-photo">
-            <img src="{% static 'img/user.png' %}" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="chat-form">
-      <div id="inputDiv">
-        <div id="buttonDiv"></div>
-        <textarea
-          class="input"
-          id="message"
-          placeholder="Message"
-          rows="1"
-          data-min-rows="1"
-        ></textarea>
-      </div>
-      <div id="chat-form-buttons">
-        <input
-          type="image"
-          src="{% static 'img/send.png' %}"
-          onclick="message();"
-          width="45px"
-        />
-      </div>
-    </div>
-{% endblock %}
-{% block javascript %}
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-		<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-		<!-- Page level plugins -->
-		<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
-		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="{% static 'js/chatbot.js' %}"></script>
-{% endblock %}
-
+						<div class="chat friend" style="display: none">
+							<div class="user-photo">
+								<img src="{% static 'img/user.png' %}" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="chat-form">
+					<div id="inputDiv">
+						<div id="buttonDiv"></div>
+						<textarea
+							class="input"
+							id="message"
+							placeholder="Message"
+							rows="1"
+							data-min-rows="1"
+						></textarea>
+					</div>
+					<div id="chat-form-buttons">
+						<input
+							type="image"
+							src="{% static 'img/send.png' %}"
+							onclick="message();"
+							width="45px"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -16,6 +16,13 @@ from chatbot.chatbotEngine import chatbot
 
 # Create your views here.
 
+def chatbot_request(request):
+    user_response = request.GET.get("user_response")
+    data = {
+        "bot_response": chatbot(user_response)[0],
+        "url": chatbot(user_response)[1]
+    }
+    return JsonResponse(data)
 
 def perdelta(start, end, delta):
     curr = start
@@ -28,8 +35,14 @@ def perdelta(start, end, delta):
 @login_required
 def sensex_graph(request):
 
-    diff = int(request.GET.get('diff'))
-    inter = request.GET.get('interval')
+    diff = request.GET.get('diff', None)
+    inter = request.GET.get('interval', None)
+    if diff is None:
+        diff = 0
+    else:
+        diff = int(diff)
+    if inter is None:
+        inter = "1m"
 
     now = datetime.datetime.now().date()
     bef = now - datetime.timedelta(days=diff)
@@ -77,8 +90,15 @@ def sensex_graph(request):
 @login_required
 def nifty_graph(request):
 
-    diff = int(request.GET.get('diff'))
-    inter = request.GET.get('interval')
+    diff = request.GET.get('diff', None)
+    inter = request.GET.get('interval', None)
+    if diff is None:
+        diff = 0
+    else:
+        diff = int(diff)
+
+    if inter is None:
+        inter = "1m"
 
     now = datetime.datetime.now().date()
     bef = now - datetime.timedelta(days=diff)
@@ -143,15 +163,6 @@ def index(request):
             return render(request, 'index.html', context)
         except UserInfo.DoesNotExist:
             return redirect("user_info_form")
-
-
-def chatbot_request(request):
-    user_response = request.GET.get("user_response")
-    print(chatbot(user_response))
-    data = {
-        "bot_response": chatbot(user_response)
-    }
-    return JsonResponse(data)
 
 # Not found and Server Error Pages
 

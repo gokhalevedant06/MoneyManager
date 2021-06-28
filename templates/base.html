@@ -7,6 +7,11 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no"
 		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'css/chatbot.css' %}"
+		/>
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 
@@ -210,6 +215,16 @@
 									<span class="sr-only">(current)</span></a
 								>
 							</li>
+							<li class="nav-item active">
+								<a
+									class="nav-link mx-3"
+									href="#"
+									data-toggle="modal"
+									data-target="#chatbotModal"
+								>
+									<i class="fas fa-comments"></i> Chatbot
+								</a>
+							</li>
 							{% if request.user.is_authenticated %}
 							<li class="nav-item dropdown">
 								<a
@@ -254,7 +269,38 @@
 				<div class="pb-4">{% block content %}{% endblock content %}</div>
 			</div>
 			<!-- /#page-content-wrapper -->
+			<!-- Redirecting Modal-->
+			<div
+				class="modal fade"
+				id="redirectingModal"
+				tabindex="-1"
+				role="dialog"
+				aria-labelledby="redirectingModal"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="redirectingModalLabel">
+								Redirecting you
+							</h5>
+							<button
+								class="close"
+								type="button"
+								data-dismiss="modal"
+								aria-label="Close"
+							>
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							Please wait while we redirect you to the desired page
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+		{% include 'chatbot.html' %}
 		<!-- /#wrapper -->
 
 		<!-- Footer -->
@@ -268,22 +314,20 @@
 		<!-- Page level plugins -->
 		<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-		{% block javascript %}{% endblock javascript %}
-
 		<!-- Chatbot javascript code -->
 		<script>
 			const chatbot_endpoint = "{% url 'chatbot_ajax' %}";
 		</script>
 
 		<script src="{% static 'js/chatbot.js' %}"></script>
+
 		<!-- Menu Toggle Script -->
 		<script>
-			$("#menu-toggle").on("click", function (e) {
+			$("#menu-toggle").click(function (e) {
 				e.preventDefault();
-				console.log("a");
 				$("#wrapper").toggleClass("toggled");
 			});
 		</script>
+		{% block javascript %}{% endblock javascript %}
 	</body>
 </html>

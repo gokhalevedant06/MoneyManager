@@ -159,25 +159,8 @@ EMAIL_USER_SSL = True
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 
-# Chatterbot
-CHATTERBOT = {
-    'name': 'Money Manager Bot',
-    'logic_adapters': [
-        'chatterbot.logic.MathematicalEvaluation',
-        'chatterbot.logic.TimeLogicAdapter',
-        'chatterbot.logic.BestMatch'
-    ]
-}
-
-
 # Heroku setup
 django_heroku.settings(locals())
-
-# Configuring Local Settings
-# try:
-#     from .local_settings import *
-# except ImportError:
-#     print("Import ERROR!")
 
 try:
     from .local_settings import *

@@ -123,7 +123,6 @@ def investment_form_ajax(request):
                 maturity_date=maturity_date,
             )
 
-            print(investment_info)
             try:
                 investment_info.save()
                 updated_income = UserInfo.objects.values_list(
