@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Investment{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{%static 'css/invstfrm.css'%}">
+{% endblock %}
 
 {% block content %}
 <div class="p-4">
@@ -53,7 +56,7 @@
         </div>
         </div>
     </div>
-        <div class="row">
+        <div class="row hlo">
             <div class="col-xl col-lg-5">
                 <div class="chart-pie pt-4 pb-2">
                     <form id="investment_form" class="needs-validation" novalidate>
@@ -134,9 +137,9 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label class="control-label">Select Investment
+                                                    <label class="control-label invs">Select <span class="rmv">Investment</span>
                                                         Scheme</label>
-                                                    <select id="i_scheme" class="form-control">
+                                                    <select id="i_scheme" class="form-control invsf">
 
                                                     </select>
                                                     <div class="invalid-feedback">Please Select Bank First</div>
