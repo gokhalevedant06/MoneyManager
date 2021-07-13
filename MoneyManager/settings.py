@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import quandl
 import mimetypes
 from pathlib import Path
 import os
@@ -42,12 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-
-    # 'livereload',
-
     'django.contrib.staticfiles',
 
-    # 'crispy_forms',
+    'crispy_forms',
+
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
+    'channels',
+    'channels_redis',
 
     'accounts',
     'home',
@@ -126,6 +128,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -158,12 +161,46 @@ EMAIL_USE_TLS = True
 EMAIL_USER_SSL = True
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
-
 # Heroku setup
 django_heroku.settings(locals())
 
+# Plotly Dash Setup
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+# Adding ASGI Application
+ASGI_APPLICATION = "MoneyManager.routing.application"
+
+
+# be handled by the Django staticfiles infrastructure
+PLOTLY_COMPONENTS = [
+    "dash_core_components",
+    "dash_html_components",
+    "dash_bootstrap_components",
+    "dash_renderer",
+    "dpd_components",
+    "dpd_static_support",
+]
+
+# Staticfiles finders for locating dash app assets and related files (Dash static files)
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "django_plotly_dash.finders.DashAssetFinder",
+    "django_plotly_dash.finders.DashComponentFinder",
+    "django_plotly_dash.finders.DashAppDirectoryFinder",
+]
+
+# Channels config, to use channel layers
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379), ],
+        },
+    },
+}
+
 try:
     from .local_settings import *
-    print("Success")
 except ImportError:
     pass

@@ -151,12 +151,18 @@
 			"responses": [
 				"Here's a joke to lighten your mood \nMy roommate and I are ordering some Chinese food for delivery. \nShe asks \"what's a good tip for a delivery driver\"\nI reply \"always wear a seat belt\"\nShe won't talk to me now.",
 				"Guy staring at an ambulance in front of Whole Foods:\n “Somebody must have accidentally eaten gluten.",
-				"What has T in the beginning, T in the middle, and T at the end? \n- A teapot."
+				"What has T in the beginning, T in the middle, and T at the end? \n- A teapot.",
+				"A bear walks into a bar and says, \"Give me a whiskey and … cola.\"\"Why the big pause?\" asks the bartender. The bear shrugged. \"I’m not sure; I was born with them.\""
 			]
 		},
 		{
 			"tag": "cryptocurrency",
 			"patterns": [
+				"what is bitcoin",
+				"bitcoin",
+				"tell me about bitcoin",
+				"",
+				"",
 				"tell short about cryptocurrency",
 				"what is cryptocurrency",
 				"how can I get information about cryptocurrency"
@@ -168,7 +174,7 @@
 		{
 			"tag": "schemes",
 			"patterns": [
-				"which schemes are you provided to users ",
+				"which schemes are you provide",
 				"which scheme is best",
 				"how will you provide information of schemes"
 			],
@@ -182,7 +188,15 @@
 				"what is FD",
 				"which subtypes included in FD",
 				"Is FD's are profitable",
-				"how can I invest in them"
+				"how can I invest in FD",
+				"Fixed Deposit",
+				"what is Fixed Deposit",
+				"give me information on FD",
+				"give me information on Fixed Deposit",
+				"Information on Fixed Deposit",
+				"Info on Fixed Deposit",
+				"Info on FD"
+
 			],
 			"responses": [
 				"that's the good thing. fixed deposit (FD) is a financial instrument provided by banks or NBFCs which provides investors a higher rate of interest than a regular savings account, until the given maturity date. .there are also thier sub types which you can see in our website details."

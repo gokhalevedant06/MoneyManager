@@ -91,8 +91,6 @@ model = Sequential([
     Dense(y.shape[1], activation='softmax')
 ])
 
-model.compile(loss='categorical_crossentropy',
-              optimizer='adam', metrics=['accuracy'])
 
 if os.path.exists('./chatbotModel.json'):
     # load json and create model
@@ -112,6 +110,9 @@ else:
     with open("./chatbotModel.json", "w") as json_file:
         json_file.write(model.to_json())
     model.save_weights("./chatbotModel.h5")
+
+model.compile(loss='categorical_crossentropy',
+              optimizer='adam', metrics=['accuracy'])
 
 # model.fit(X.toarray(), y.toarray(), epochs=10, batch_size=1)
 

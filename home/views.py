@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 
-import yfinance as yf
+import investpy
+import quandl
+
 import datetime
+import os
 
 from django.http import JsonResponse
 
@@ -11,12 +14,15 @@ from accounts.models import UserInfo
 from expenses.models import ExpenseData
 from django.contrib.auth.models import User
 
-# chatbot import
-from chatbot.chatbotEngine import chatbot
 
 # Create your views here.
 
+
 def chatbot_request(request):
+
+    # chatbot import
+    from chatbot.chatbotEngine import chatbot
+
     user_response = request.GET.get("user_response")
     data = {
         "bot_response": chatbot(user_response)[0],
@@ -24,124 +30,21 @@ def chatbot_request(request):
     }
     return JsonResponse(data)
 
-def perdelta(start, end, delta):
-    curr = start
 
-    while curr < end:
-        yield curr
-        curr += delta
+def dataframe_to_json(df):
+    ''' Returns JSON data from the given dataframe '''
 
+    adjusted = df.drop(columns=['Volume', 'Currency'])
 
-@login_required
-def sensex_graph(request):
+    date = df.index.strftime("%b %d %Y").to_flat_index()
 
-    diff = request.GET.get('diff', None)
-    inter = request.GET.get('interval', None)
-    if diff is None:
-        diff = 0
-    else:
-        diff = int(diff)
-    if inter is None:
-        inter = "1m"
+    adjusted.reset_index(drop=True, inplace=True)
 
-    now = datetime.datetime.now().date()
-    bef = now - datetime.timedelta(days=diff)
+    adjusted.set_index(date, inplace=True, drop=True)
 
-    data_min = yf.download("^BSESN", start=str(bef),
-                           end=str(now), interval=inter)  # Getting Sensex Data per Minute
-    min_x = []
+    json_data = adjusted.to_json(orient='index')
 
-    min_x_lbl = []
-
-    for i in range(len(data_min)):
-        min_x.append(data_min['Open'][i])
-
-    if inter == '1m':
-        for i in perdelta(datetime.datetime.now() - datetime.timedelta(days=diff), datetime.datetime.now(), datetime.timedelta(minutes=1)):
-            if (len(min_x) > len(min_x_lbl)):
-                min_x_lbl.append(str(i.strftime("%I:%M %p")))
-            else:
-                break
-    elif inter == '30m':
-        for i in perdelta(datetime.datetime.now() - datetime.timedelta(days=diff), datetime.datetime.now(), datetime.timedelta(hours=1)):
-            if (len(min_x) > len(min_x_lbl)):
-                min_x_lbl.append(str(i.strftime("%I:%M %p")))
-            else:
-                break
-    elif inter == '1wk':
-        for i in perdelta(datetime.datetime.now() - datetime.timedelta(days=diff), datetime.datetime.now(), datetime.timedelta(days=7)):
-            if (len(min_x) > len(min_x_lbl)):
-                min_x_lbl.append(str(i.strftime("%d %b %y")))
-            else:
-                break
-    elif inter == '1mo':
-        for i in perdelta(datetime.datetime.now() - datetime.timedelta(days=diff), datetime.datetime.now(), datetime.timedelta(days=30)):
-            if (len(min_x) > len(min_x_lbl)):
-                min_x_lbl.append(str(i.strftime("%b %Y")))
-            else:
-                break
-    data = {
-        'min_x': min_x,
-        'min_x_lbl': min_x_lbl,
-    }
-    return JsonResponse(data)
-
-
-@login_required
-def nifty_graph(request):
-
-    diff = request.GET.get('diff', None)
-    inter = request.GET.get('interval', None)
-    if diff is None:
-        diff = 0
-    else:
-        diff = int(diff)
-
-    if inter is None:
-        inter = "1m"
-
-    now = datetime.datetime.now().date()
-    bef = now - datetime.timedelta(days=diff)
-
-    data_min = yf.download("^NSEI", start=str(bef),
-                           end=str(now), interval=inter)  # Getting Sensex Data per Minute
-    min_x = []
-
-    min_x_lbl = []
-
-    for i in range(len(data_min)):
-        min_x.append(data_min['Open'][i])
-
-    if inter == '1m':
-        for i in perdelta(datetime.datetime.now() - datetime.timedelta(days=diff), datetime.datetime.now(), datetime.timedelta(minutes=1)):
-            if (len(min_x) > len(min_x_lbl)):
-                min_x_lbl.append(str(i.strftime("%I:%M %p")))
-            else:
-                break
-    elif inter == '30m':
-        for i in perdelta(datetime.datetime.now() - datetime.timedelta(days=diff), datetime.datetime.now(), datetime.timedelta(hours=1)):
-            if (len(min_x) > len(min_x_lbl)):
-                min_x_lbl.append(str(i.strftime("%I:%M %p")))
-            else:
-                break
-    elif inter == '1wk':
-        for i in perdelta(datetime.datetime.now() - datetime.timedelta(days=diff), datetime.datetime.now(), datetime.timedelta(days=7)):
-            if (len(min_x) > len(min_x_lbl)):
-                min_x_lbl.append(str(i.strftime("%d %b %y")))
-            else:
-                break
-    elif inter == '1mo':
-        for i in perdelta(datetime.datetime.now() - datetime.timedelta(days=diff), datetime.datetime.now(), datetime.timedelta(days=30)):
-            if (len(min_x) > len(min_x_lbl)):
-                min_x_lbl.append(str(i.strftime("%b %Y")))
-            else:
-                break
-    data = {
-        'min_x': min_x,
-        'min_x_lbl': min_x_lbl,
-    }
-    return JsonResponse(data)
-
+    return json_data
 
 def index(request):
     if str(request.user) == 'AnonymousUser':

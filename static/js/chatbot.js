@@ -5,17 +5,14 @@ function ajaxCall(message) {
 			user_response: message,
 		},
 		success: function (data) {
-			console.log(data);
-			$("#chatlogs").append(
-				` 
-        <div class="chat friend">
-          <div class="user-photo">
-            <img src="/static/img/user.png" />
-          </div>
-          <p class="chat-message">${data.bot_response}</p>
-        </div>
-        `
-			);
+			$("#chatlogs").append(` 
+				<div class="chat friend">
+					<div class="user-photo">
+						<img src="/static/img/user.png" />
+					</div>
+					<p class="chat-message">${data.bot_response}</p>
+				</div>
+			`);
 			if (data.url != null) {
 				$(this)
 					.delay(3000)
