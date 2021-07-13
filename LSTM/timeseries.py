@@ -1,7 +1,7 @@
 import math
 import os
 import pandas as pd
-import yfinance as yf
+import investpy
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential, model_from_json, load_model
@@ -9,13 +9,19 @@ from tensorflow.keras.layers import Dense, LSTM, Dropout
 from tensorflow.keras.preprocessing.sequence import TimeseriesGenerator
 import matplotlib.pyplot as plt
 
+import datetime
+
 
 def get_data(name):
-    """ Fetches the data from the yahoo finance API\n 
+    """ Fetches the data from the Investing.com API\n 
         Takes the name as a parameter in format of 
         yfinance abbriviations """
 
-    df = yf.download(name)
+    now = datetime.datetime.now().date()
+    now = f'{now.day}/{now.month}/{now.year}'
+
+    df = investpy.get_index_historical_data(
+        index=name, from_date="01/01/1800", to_date=now, country="INDIA")
     dataset = df.filter(['Close'])
     return df, dataset
 
@@ -111,7 +117,7 @@ def plot_data(df, df_proj):
 def main():
     days = 365
 
-    df, dataset = get_data("^BSESN")
+    df, dataset = get_data("bse sensex")
     train, scalar = scale_data(dataset)
     future_dates = create_future_dates_list(df, days)
 
