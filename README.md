@@ -23,3 +23,11 @@ pip install numpy
 ```
 pip install nltk
 ```
+   - Install investpy
+```
+ pip install investpy
+```
+   - Install plotly and dash
+```
+pip install plotly dash django-dash redis channels channels-redis daphne
+```
