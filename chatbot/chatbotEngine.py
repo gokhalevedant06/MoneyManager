@@ -20,6 +20,8 @@ import time
 
 import os
 
+from pathlib import Path
+
 # downloading model to tokenize message
 nltk.download('punkt')
 # downloading stopwords
@@ -30,7 +32,7 @@ nltk.download('wordnet')
 stop_words = stopwords.words('english')
 
 # get the path in which intents file is stored
-intents_path = os.path.dirname(__file__)
+file_path = str(Path(__file__).resolve().parent.parent) + '/static/machine_learning/chatbot'
 
 
 def clean_corpus(corpus):
@@ -59,7 +61,7 @@ def clean_corpus(corpus):
     return cleaned_corpus
 
 
-with open(intents_path + '/intents.json') as file:
+with open(file_path + '/intents.json') as file:
     intents = json.load(file)
 
 corpus = []
@@ -92,24 +94,24 @@ model = Sequential([
 ])
 
 
-if os.path.exists('./chatbotModel.json'):
+if os.path.exists(file_path + '/chatbotModel.json'):
     # load json and create model
-    json_file = open('./chatbotModel.json', 'r')
+    json_file = open(file_path + '/chatbotModel.json', 'r')
 
     loaded_model_json = json_file.read()
     json_file.close()
     model = model_from_json(loaded_model_json)
 
     # load weights into new model
-    model.load_weights("./chatbotModel.h5")
+    model.load_weights(file_path + "/chatbotModel.h5")
 
-    model.save('./chatbotModel.hdf5')
-    model = load_model('./chatbotModel.hdf5')
+    model.save(file_path + '/chatbotModel.hdf5')
+    model = load_model(file_path + '/chatbotModel.hdf5')
 else:
     model.fit(X.toarray(), y.toarray(), epochs=1000, batch_size=1)
-    with open("./chatbotModel.json", "w") as json_file:
+    with open(file_path + "/chatbotModel.json", "w") as json_file:
         json_file.write(model.to_json())
-    model.save_weights("./chatbotModel.h5")
+    model.save_weights(file_path + "/chatbotModel.h5")
 
 model.compile(loss='categorical_crossentropy',
               optimizer='adam', metrics=['accuracy'])
