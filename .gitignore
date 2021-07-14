@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> fd6859774f05fefc94f4ef6869d0c7d63c2e77aa
 # Django #
 local_settings.py
 *.log
@@ -119,9 +115,4 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
-<<<<<<< HEAD
-=======
-=======
 node_modules
->>>>>>> 1da1cf9... base template addition and static root definition
->>>>>>> fd6859774f05fefc94f4ef6869d0c7d63c2e77aa
