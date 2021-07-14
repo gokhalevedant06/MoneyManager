@@ -1,8 +1,5 @@
 from django.shortcuts import render, redirect
 
-import investpy
-import quandl
-
 import datetime
 import os
 
@@ -29,22 +26,6 @@ def chatbot_request(request):
         "url": chatbot(user_response)[1]
     }
     return JsonResponse(data)
-
-
-def dataframe_to_json(df):
-    ''' Returns JSON data from the given dataframe '''
-
-    adjusted = df.drop(columns=['Volume', 'Currency'])
-
-    date = df.index.strftime("%b %d %Y").to_flat_index()
-
-    adjusted.reset_index(drop=True, inplace=True)
-
-    adjusted.set_index(date, inplace=True, drop=True)
-
-    json_data = adjusted.to_json(orient='index')
-
-    return json_data
 
 def index(request):
     if str(request.user) == 'AnonymousUser':

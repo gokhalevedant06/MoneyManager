@@ -6,6 +6,10 @@ html,body{
 h1{
     text-align: center;
     margin-top: 5%;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> fd6859774f05fefc94f4ef6869d0c7d63c2e77aa
 }
 ul{
     margin-top: 3%;
@@ -17,8 +21,16 @@ ul{
     list-style-type: none;
     font-size: small;
 }
-@media (max-width:450px){
-      .item1{font-style: italic;
-    color:chartreuse;}
-}    
+<<<<<<< HEAD
+=======
+@media (max-width: 400px) {
+    .item1{font-style: italic;
+            width:75%;
+            }
+    /* h1{ 
+        text-align: left;
+    } */
+        
 
+  }
+>>>>>>> fd6859774f05fefc94f4ef6869d0c7d63c2e77aa
