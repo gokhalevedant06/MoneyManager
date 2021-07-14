@@ -36,8 +36,8 @@ df_nifty = investpy.get_index_historical_data(
 df_sensex = investpy.get_index_historical_data(
     index="bse sensex", country="INDIA", from_date="01/01/2000", to_date=now, interval="Daily")
 
-df_nifty = prepare_dataframe(df_nifty)
-df_sensex = prepare_dataframe(df_sensex)
+df_nifty_prep = prepare_dataframe(df_nifty)
+df_sensex_prep = prepare_dataframe(df_sensex)
 
 
 # Dash app code
@@ -48,7 +48,15 @@ app = DjangoDash('sensex_nifty_graph', external_stylesheets=[
 # stup the layout
 
 ohlc_options = [{"label": "All", "value": "all"}]
-ohlc_options += [{'label': i, 'value': i} for i in df_nifty.columns]
+ohlc_options += [{'label': i, 'value': i} for i in df_nifty_prep.columns]
+
+timeseries_options = [
+    {"label": "This Week", 'value': 7},
+    {"label": "This Month", 'value': 30},
+    {"label": "This Year", 'value': 365},
+    {"label": "Ten Years", 'value': 3650},
+    {"label": "Max", 'value': 10000},
+]
 
 nifty_card = dbc.CardBody([
     dbc.Row([
@@ -62,19 +70,19 @@ nifty_card = dbc.CardBody([
         dbc.Col([
             dcc.Dropdown(
                 id="timeseries_selector_nifty",
-                options=[
-                    {"label": "This Week", 'value': 7},
-                    {"label": "This Month", 'value': 30},
-                    {"label": "This Year", 'value': 365},
-                    {"label": "Ten Years", 'value': 3650},
-                ],
-                value=7
+                options=timeseries_options,
+                value=10000
             )
         ]),
     ]),
     dbc.Row([
         dbc.Col([
-            dcc.Graph(id="nifty_graph")
+            dcc.Loading([
+                dcc.Graph(id="nifty_graph")],
+                type="dots",
+                fullscreen=False,
+                color="#119DFF"
+            )
         ]),
     ])
 ])
@@ -91,19 +99,19 @@ sensex_card = dbc.CardBody([
         dbc.Col([
             dcc.Dropdown(
                 id="timeseries_selector_sensex",
-                options=[
-                    {"label": "This Week", 'value': 7},
-                    {"label": "This Month", 'value': 30},
-                    {"label": "This Year", 'value': 365},
-                    {"label": "Ten Years", 'value': 3650},
-                ],
-                value=7
+                options=timeseries_options,
+                value=10000
             )
         ]),
     ]),
     dbc.Row([
         dbc.Col([
-            dcc.Graph(id="sensex_graph")
+            dcc.Loading([
+                dcc.Graph(id="sensex_graph")],
+                type="dots",
+                fullscreen=False,
+                color="#119DFF"
+            )
         ])
     ])
 ])
@@ -131,67 +139,83 @@ app.layout = html.Div([
 )
 def update_graph(selected_ohlc_nifty, selected_ohlc_sensex, timeseries_selector_nifty, timeseries_selector_sensex):
 
+    end = datetime.datetime.now().date()
+
+    nifty_start = str(end - datetime.timedelta(days=timeseries_selector_nifty))
+    sensex_start = str(
+        end - datetime.timedelta(days=timeseries_selector_sensex))
+
+    end = str(end)
+
+    nifty_data = df_nifty_prep[(df_nifty.index > str(nifty_start)) & (
+        df_nifty.index < str(end))]
+
+    sensex_data = df_sensex_prep[(df_sensex.index > str(sensex_start)) & (
+        df_sensex.index < str(end))]
+
+    colors = {'Open': '#4e73df', 'High': '#1cc88a',
+                  'Low': '#e74a3b', 'Close': '#36b9cc'}
+
     if selected_ohlc_nifty == 'all':
         nifty = go.Figure(
             go.Candlestick(
-                x=df_nifty.index,
-                open=df_nifty['Open'],
-                high=df_nifty['High'],
-                low=df_nifty['Low'],
-                close=df_nifty['Close'],
+                x=nifty_data.index,
+                open=nifty_data['Open'],
+                high=nifty_data['High'],
+                low=nifty_data['Low'],
+                close=nifty_data['Close'],
                 increasing_line_color='green',
                 decreasing_line_color='red'
             )
         )
-
         nifty.update_layout(xaxis_rangeslider_visible=False)
+        
+        sensex = px.line(
+            sensex_data['Open'],
+            title=f'Sensex 50 : {selected_ohlc_sensex}',
+            height=500,
+        )
 
     elif selected_ohlc_sensex == 'all':
         sensex = go.Figure(
             go.Candlestick(
-                x=df_sensex.index,
-                open=df_sensex['Open'],
-                high=df_sensex['High'],
-                low=df_sensex['Low'],
-                close=df_sensex['Close'],
+                x=sensex_data.index,
+                open=sensex_data['Open'],
+                high=sensex_data['High'],
+                low=sensex_data['Low'],
+                close=sensex_data['Close'],
                 increasing_line_color='green',
                 decreasing_line_color='red'
             )
         )
-
         sensex.update_layout(xaxis_rangeslider_visible=False)
 
+        nifty = px.line(
+            nifty_data['Open'],
+            title=f'Nifty 50 : {selected_ohlc_nifty}',
+            height=500,
+        )
     else:
-        end = datetime.datetime.now().date()
         
-        nifty_start = str(end - datetime.timedelta(days=timeseries_selector_nifty))
-        sensex_start = str(end - datetime.timedelta(days=timeseries_selector_sensex))
-
-        end = str(end)
-        
-        nifty_data = df_nifty[selected_ohlc_nifty]
-
-        sensex_data = df_sensex[selected_ohlc_sensex]
-
-        colors = {'Open': '#4e73df', 'High': '#1cc88a',
-                  'Low': '#e74a3b', 'Close': '#36b9cc'}
-
         color_seq_nifty = []
         color_seq_sensex = []
         color_seq_nifty.append(colors[selected_ohlc_nifty])
         color_seq_sensex.append(colors[selected_ohlc_sensex])
 
+        nifty_data = nifty_data[selected_ohlc_sensex]
+        sensex_data = sensex_data[selected_ohlc_sensex]
+
         nifty = px.line(
-            nifty_data, 
-            title=f'Nifty 50 : {selected_ohlc_nifty}', 
-            height=500, 
+            nifty_data,
+            title=f'Nifty 50 : {selected_ohlc_nifty}',
+            height=500,
             color_discrete_sequence=color_seq_nifty
         )
 
         sensex = px.line(
-            sensex_data, 
-            title=f'Sensex 50 : {selected_ohlc_sensex}', 
-            height=500, 
+            sensex_data,
+            title=f'Sensex 50 : {selected_ohlc_sensex}',
+            height=500,
             color_discrete_sequence=color_seq_sensex
         )
 
