@@ -319,7 +319,7 @@
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<!-- Chatbot javascript code -->
 		<script>
-			const chatbot_endpoint = "{% url 'chatbot_ajax' %}";
+			const chatbot_endpoint = null // {% comment %} "{% url 'chatbot_ajax' %}"; {% endcomment %}
 		</script>
 
 		<script src="{% static 'js/chatbot.js' %}"></script>

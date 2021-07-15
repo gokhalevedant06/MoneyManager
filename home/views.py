@@ -15,17 +15,17 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 
-def chatbot_request(request):
+# def chatbot_request(request):
 
-    # chatbot import
-    from chatbot.chatbotEngine import chatbot
+#     # chatbot import
+#     from chatbot.chatbotEngine import chatbot
 
-    user_response = request.GET.get("user_response")
-    data = {
-        "bot_response": chatbot(user_response)[0],
-        "url": chatbot(user_response)[1]
-    }
-    return JsonResponse(data)
+#     user_response = request.GET.get("user_response")
+#     data = {
+#         "bot_response": chatbot(user_response)[0],
+#         "url": chatbot(user_response)[1]
+#     }
+#     return JsonResponse(data)
 
 def index(request):
     if str(request.user) == 'AnonymousUser':
