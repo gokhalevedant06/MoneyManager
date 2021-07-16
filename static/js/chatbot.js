@@ -1,6 +1,6 @@
 const dev_host = "http://127.0.0.1:8080/";
-const production_host = "http://127.0.0.1:8080/";
-const chatbot_endpoint = host + "chatbot/";
+const production_host = "https://money-manager-vit-pune-api/";
+const chatbot_endpoint = production_host + "chatbot/";
 function ajaxCall(message) {
 	$.ajax({
 		method: "post",
