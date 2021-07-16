@@ -1,7 +1,5 @@
 import math
 import os
-from pathlib import Path
-
 import pandas as pd
 import investpy
 import numpy as np
@@ -9,13 +7,19 @@ from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential, model_from_json, load_model
 from tensorflow.keras.layers import Dense, LSTM, Dropout
 from tensorflow.keras.preprocessing.sequence import TimeseriesGenerator
-
+from tensorflow.keras.optimizers import SGD
+from tensorflow.keras.losses import MeanSquaredError
+import matplotlib.pyplot as plt
+import tensorflow as tf
 import datetime
 
 # get the path in which models are stored
-file_path = str(Path(__file__).resolve().parent.parent) + '/static/machine_learning/prediction'
+# <-- ----------- change this to your liking
+file_path = str(Path(__file__).resolve().parent.parent) + \
+    '/static/machine_learning/prediction'
 
-def get_data(name):
+
+def get_data(name, column):
     """ Fetches the data from the Investing.com API\n 
         Takes the name as a parameter in format of 
         yfinance abbriviations """
@@ -24,8 +28,9 @@ def get_data(name):
     now = f'{now.day}/{now.month}/{now.year}'
 
     df = investpy.get_index_historical_data(
-        index=name, from_date="01/01/1800", to_date=now, country="INDIA")
-    dataset = df.filter(['Close'])
+        index=name, from_date="01/01/2000", to_date=now, country="INDIA")
+    df.columns.drop(['Volume', 'Currency'])
+    dataset = df.filter([column])
     return df, dataset
 
 
@@ -64,64 +69,72 @@ def proj_dataset(scalar, pred_list, future_dates, n_input, df):
 
     df_predict = pd.DataFrame(scalar.inverse_transform(
         pred_list), index=future_dates[-n_input:].index, columns=['Prediction'])
-    df_proj = pd.concat([df['Close'], df_predict], axis=1)
+    df_proj = pd.concat([df, df_predict], axis=1)
     return df_proj
 
 
-def predict_data(epoch, n_input, train, name):
+def predict_data(epoch, n_input, train, name, column):
     """ Makes actual predictions of the data inputted """
 
     # creating a time series generator
     generator = TimeseriesGenerator(
-        train, train, length=n_input, batch_size=10, sampling_rate=1, stride=1)
+        train, train, length=n_input, batch_size=10, sampling_rate=1, stride=1
+    )
 
     # creating the LSTM model
     model = Sequential()
-    model.add(LSTM(200, activation='relu', input_shape=(n_input, 1)))
+    model.add(LSTM(200, activation="relu", input_shape=(n_input, 1)))
     model.add(Dropout(0.15))
-    model.add(Dense(1))
-    model.compile(optimizer='adam', loss='mse', metrics=['accuracy'])
+    model.add(Dense(1, activation="linear"))
+
+    model.compile(
+        optimizer=SGD(learning_rate=0.00001),
+        loss=MeanSquaredError(),
+        metrics=["mse"],
+    )
+
+    print(model.summary())
 
     # Train the model
-    if os.path.exists(file_path + f'/{name}/prediction.json'):
-        # load json and create model
-        json_file = open(
-            file_path + f'/{name}/prediction.json', 'r')
+    # if os.path.exists(file_path + f'/{name}/{column}/prediction.json'):
+    #     # load json and create model
+    #     json_file = open(
+    #         file_path + f'/{name}/{column}/prediction.json', 'r')
 
-        loaded_model_json = json_file.read()
-        json_file.close()
-        model = model_from_json(loaded_model_json)
+    #     loaded_model_json = json_file.read()
+    #     json_file.close()
+    #     model = model_from_json(loaded_model_json)
 
-        # load weights into new model
-        model.load_weights(
-            file_path + f'/{name}/prediction.h5')
+    #     # load weights into new model
+    #     model.load_weights(
+    #         file_path + f'/{name}/{column}/prediction.h5')
 
-        model.save(
-            file_path + f'/{name}/prediction.hdf5')
-        model = load_model(
-            file_path + f'/{name}/prediction.hdf5')
-    else:
-        model.fit(generator, epochs=epoch, verbose=1)
-        with open(file_path + f'/{name}/prediction.json', "w") as json_file:
-            json_file.write(model.to_json())
-        model.save_weights(
-            file_path + f'/{name}/prediction.h5')
-    # model.fit(generator, epochs=epoch, verbose=1)
+    #     model.save(
+    #         file_path + f'/{name}/{column}/prediction.hdf5')
+    #     model = load_model(
+    #         file_path + f'/{name}/{column}/prediction.hdf5')
+    # else:
+    #     model.fit(generator, epochs=epoch, verbose=1)
+    #     with open(file_path + f'/{name}/{column}/prediction.json', "w") as json_file:
+    #         json_file.write(model.to_json())
+    #     model.save_weights(
+    #         file_path + f'/{name}/{column}/prediction.h5')
+    history = model.fit(generator, epochs=epoch, verbose=1)
+
     return model
 
 
-def timeseries_prediction(days, index):
+def timeseries_prediction(days, index, column):
 
-    df, dataset = get_data(index)
+    df, dataset = get_data(index, column)
     train, scalar = scale_data(dataset)
     future_dates = create_future_dates_list(df, days)
 
-    model = predict_data(100, days, train, index)
+    model = predict_data(10, days, train, index, column)
 
     pred_list = create_prediction_list(train, days, model)
 
     df_proj = proj_dataset(scalar, pred_list, future_dates, days, df)
-    print(df_proj)
 
 
-timeseries_prediction(365, "nifty 50")
+timeseries_prediction(7, "nifty 50", 'Open')
