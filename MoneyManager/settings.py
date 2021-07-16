@@ -207,9 +207,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Allowing CORS origin
 
 CORS_ORIGIN_WHITELIST = (
-    'http://127.0.0.1:8080/',
-    'https://money-manager-vit-pune/',
-    'https://money-manager-vit-pune-api/',
+    'http://127.0.0.1:8080',
+    'https://money-manager-vit-pune',
+    'https://money-manager-vit-pune-api',
 )
 
 try:
