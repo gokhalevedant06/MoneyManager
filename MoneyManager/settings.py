@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
     'channels',
     'channels_redis',
+    'corsheaders',
 
     'accounts',
     'home',
@@ -66,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'MoneyManager.urls'
@@ -201,6 +203,12 @@ CHANNEL_LAYERS = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Allowing CORS origin
+
+CORS_ORIGIN_WHITELIST = (
+    'http://127.0.0.1:8080',
+)
 
 try:
     from .local_settings import *

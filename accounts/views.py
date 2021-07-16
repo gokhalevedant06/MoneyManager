@@ -27,20 +27,18 @@ def login(request):
     ''' Logs in  a user an authenticates him '''
 
     if request.method == 'POST':
-        username = request.POST.get('username', None)
-        password = request.POST.get('password', None)
+        username = request.POST.get('username', None) # abcd
+        password = request.POST.get('password', None) # pass
 
-        user = auth.authenticate(username=username, password=password)
+        user = auth.authenticate(username=username, password=password) # auth.authenticate(username=abcd, password=pass)
         if user:
             auth.login(request, user)
-
             return redirect('/')
         else:
             messages.warning(
                 request, "Username or Password is incorrect!", fail_silently=False)
             return redirect('login')
     else:
-
         return render(request, 'login.html')
 
 

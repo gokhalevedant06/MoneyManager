@@ -1,10 +1,15 @@
+const dev_host = "http://127.0.0.1:8080/";
+const production_host = "http://127.0.0.1:8080/";
+const chatbot_endpoint = host + "chatbot/";
 function ajaxCall(message) {
 	$.ajax({
+		method: "post",
 		url: chatbot_endpoint,
 		data: {
 			user_response: message,
 		},
 		success: function (data) {
+			console.log(data);
 			$("#chatlogs").append(` 
 				<div class="chat friend">
 					<div class="user-photo">
