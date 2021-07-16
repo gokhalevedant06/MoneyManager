@@ -150,8 +150,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
-
 
 # Configurein Email Setup
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
