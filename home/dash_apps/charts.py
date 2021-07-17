@@ -4,7 +4,6 @@ import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 
-import pandas as pd
 import investpy
 
 import plotly.express as px
