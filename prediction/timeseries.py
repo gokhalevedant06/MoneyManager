@@ -12,6 +12,7 @@ from tensorflow.keras.losses import MeanSquaredError
 import matplotlib.pyplot as plt
 import tensorflow as tf
 import datetime
+from pathlib import Path
 
 # get the path in which models are stored
 # <-- ----------- change this to your liking
@@ -88,38 +89,36 @@ def predict_data(epoch, n_input, train, name, column):
     model.add(Dense(1, activation="linear"))
 
     model.compile(
-        optimizer=SGD(learning_rate=0.00001),
-        loss=MeanSquaredError(),
+        optimizer=SGD(learning_rate=1e-8),
+        loss='categorical_crossentropy',
         metrics=["mse"],
     )
 
-    print(model.summary())
-
     # Train the model
-    # if os.path.exists(file_path + f'/{name}/{column}/prediction.json'):
-    #     # load json and create model
-    #     json_file = open(
-    #         file_path + f'/{name}/{column}/prediction.json', 'r')
+    if os.path.exists(file_path + f'/{name}/{column}/prediction.json'):
+        # load json and create model
+        json_file = open(
+            file_path + f'/{name}/{column}/prediction.json', 'r')
 
-    #     loaded_model_json = json_file.read()
-    #     json_file.close()
-    #     model = model_from_json(loaded_model_json)
+        loaded_model_json = json_file.read()
+        json_file.close()
+        model = model_from_json(loaded_model_json)
 
-    #     # load weights into new model
-    #     model.load_weights(
-    #         file_path + f'/{name}/{column}/prediction.h5')
+        # load weights into new model
+        model.load_weights(
+            file_path + f'/{name}/{column}/prediction.h5')
 
-    #     model.save(
-    #         file_path + f'/{name}/{column}/prediction.hdf5')
-    #     model = load_model(
-    #         file_path + f'/{name}/{column}/prediction.hdf5')
-    # else:
-    #     model.fit(generator, epochs=epoch, verbose=1)
-    #     with open(file_path + f'/{name}/{column}/prediction.json', "w") as json_file:
-    #         json_file.write(model.to_json())
-    #     model.save_weights(
-    #         file_path + f'/{name}/{column}/prediction.h5')
-    history = model.fit(generator, epochs=epoch, verbose=1)
+        model.save(
+            file_path + f'/{name}/{column}/prediction.hdf5')
+        model = load_model(
+            file_path + f'/{name}/{column}/prediction.hdf5')
+    else:
+        model.fit(generator, epochs=epoch, verbose=1)
+        with open(file_path + f'/{name}/{column}/prediction.json', "w") as json_file:
+            json_file.write(model.to_json())
+        model.save_weights(
+            file_path + f'/{name}/{column}/prediction.h5')
+    # history = model.fit(generator, epochs=epoch, verbose=1)
 
     return model
 
@@ -130,11 +129,11 @@ def timeseries_prediction(days, index, column):
     train, scalar = scale_data(dataset)
     future_dates = create_future_dates_list(df, days)
 
-    model = predict_data(10, days, train, index, column)
+    model = predict_data(100, days, train, index, column)
 
     pred_list = create_prediction_list(train, days, model)
 
     df_proj = proj_dataset(scalar, pred_list, future_dates, days, df)
 
 
-timeseries_prediction(7, "nifty 50", 'Open')
+timeseries_prediction(365, "nifty 50", 'Open')
