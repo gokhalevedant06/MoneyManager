@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('chatbot/', include('chatbot.urls')),
     path('prediction/', include('prediction.urls')),
+    path('whatsapp/', include('whatsapp_test.urls')),
 ]

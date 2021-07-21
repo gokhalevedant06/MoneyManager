@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-4flwpblast1&=b502+*z%hu-ng0jr-eo=h6sq2+0&2ulqii6v9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.43.155']
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     'chatbot',
     'prediction',
+    'whatsapp_test'
 ]
 
 MIDDLEWARE = [

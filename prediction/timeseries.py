@@ -1,9 +1,11 @@
+import investpy
+import matplotlib.pyplot as plt
 import math
 import os
 import pandas as pd
 import investpy
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, PolynomialFeatures
 from tensorflow.keras.models import Sequential, model_from_json, load_model
 from tensorflow.keras.layers import Dense, LSTM, Dropout
 from tensorflow.keras.preprocessing.sequence import TimeseriesGenerator
@@ -14,10 +16,8 @@ import tensorflow as tf
 import datetime
 from pathlib import Path
 
-# get the path in which models are stored
-# <-- ----------- change this to your liking
 file_path = str(Path(__file__).resolve().parent.parent) + \
-    '/static/machine_learning/prediction'
+    '\\static\\machine_learning\\prediction'
 
 
 def get_data(name, column):
@@ -30,7 +30,7 @@ def get_data(name, column):
 
     df = investpy.get_index_historical_data(
         index=name, from_date="01/01/2000", to_date=now, country="INDIA")
-    df.columns.drop(['Volume', 'Currency'])
+    df.drop(['Volume', 'Currency'], axis=1, inplace=True)
     dataset = df.filter([column])
     return df, dataset
 
@@ -79,61 +79,74 @@ def predict_data(epoch, n_input, train, name, column):
 
     # creating a time series generator
     generator = TimeseriesGenerator(
-        train, train, length=n_input, batch_size=10, sampling_rate=1, stride=1
-    )
+        train, train, length=n_input, batch_size=10)
 
     # creating the LSTM model
     model = Sequential()
-    model.add(LSTM(200, activation="relu", input_shape=(n_input, 1)))
-    model.add(Dropout(0.15))
-    model.add(Dense(1, activation="linear"))
+
+    model.add(LSTM(100, activation="relu", input_shape=(n_input, 1)))
+
+    model.add(Dropout(0.2))
+
+    model.add(Dense(1))
 
     model.compile(
-        optimizer=SGD(learning_rate=1e-8),
-        loss='categorical_crossentropy',
-        metrics=["mse"],
+        optimizer='adam',
+        loss='mse'
     )
 
     # Train the model
-    if os.path.exists(file_path + f'/{name}/{column}/prediction.json'):
-        # load json and create model
-        json_file = open(
-            file_path + f'/{name}/{column}/prediction.json', 'r')
+    # if os.path.exists(file_path + f'\\{name}\\{column}\\prediction.json'):
+    #     # load json and create model
+    #     json_file = open(
+    #         file_path + f'\\{name}\\{column}\\prediction.json', 'r')
 
-        loaded_model_json = json_file.read()
-        json_file.close()
-        model = model_from_json(loaded_model_json)
+    #     loaded_model_json = json_file.read()
+    #     json_file.close()
+    #     model = model_from_json(loaded_model_json)
 
-        # load weights into new model
-        model.load_weights(
-            file_path + f'/{name}/{column}/prediction.h5')
+    #     # load weights into new model
+    #     model.load_weights(
+    #         file_path + f'\\{name}\\{column}\\prediction.h5')
 
-        model.save(
-            file_path + f'/{name}/{column}/prediction.hdf5')
-        model = load_model(
-            file_path + f'/{name}/{column}/prediction.hdf5')
-    else:
-        model.fit(generator, epochs=epoch, verbose=1)
-        with open(file_path + f'/{name}/{column}/prediction.json', "w") as json_file:
-            json_file.write(model.to_json())
-        model.save_weights(
-            file_path + f'/{name}/{column}/prediction.h5')
-    # history = model.fit(generator, epochs=epoch, verbose=1)
+    #     model.save(
+    #         file_path + f'\\{name}\\{column}\\prediction.hdf5')
+    #     model = load_model(
+    #         file_path + f'\\{name}\\{column}\\prediction.hdf5')
+    # else:
+    #     model.fit(generator, epochs=epoch, verbose=1)
+    #     with open(file_path + f'\\{name}\\{column}\\prediction.json', "w") as json_file:
+    #         json_file.write(model.to_json())
+    #     model.save_weights(
+    #         file_path + f'\\{name}\\{column}\\prediction.h5')
+    history = model.fit(generator, epochs=epoch, verbose=1)
+    losses = history.history['loss']
+    plt.figure(figsize=(20, 8))
+    plt.xlabel("Epochs")
+    plt.ylabel("Loss")
+    plt.xticks(np.arange(0, epoch+1, 1))
+    plt.plot(range(len(losses)), losses)
 
     return model
 
 
-def timeseries_prediction(days, index, column):
+def timeseries_prediction(days, index, column, epoch):
 
     df, dataset = get_data(index, column)
     train, scalar = scale_data(dataset)
     future_dates = create_future_dates_list(df, days)
 
-    model = predict_data(100, days, train, index, column)
+    model = predict_data(epoch, days, train, index, column)
 
     pred_list = create_prediction_list(train, days, model)
 
     df_proj = proj_dataset(scalar, pred_list, future_dates, days, df)
 
+    return df_proj
 
-timeseries_prediction(365, "nifty 50", 'Open')
+
+df_prj = timeseries_prediction(30, "nifty 50", 'Open', 100)
+plt.figure(figsize=(20, 8))
+plt.legend(df_prj)
+plt.plot(df_prj)
+plt.show()
