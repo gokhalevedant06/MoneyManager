@@ -6,6 +6,7 @@ from django.http import JsonResponse
 import pywhatkit as kit
 import datetime
 
+
 # Create your views here.
 
 

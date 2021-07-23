@@ -46,7 +46,6 @@ INSTALLED_APPS = [
 
     'chatbot',
     'prediction',
-    'whatsapp_test'
 ]
 
 MIDDLEWARE = [
