@@ -57,16 +57,16 @@
         </div>
     </div>
         <div class="row hlo">
-            <div class="col-xl col-lg-5">
-                <div class="chart-pie pt-4 pb-2">
-                    <form id="investment_form" class="needs-validation" novalidate>
+            <div class="col-xl col-lg colm">
+                <div class="chart-pie pt-4 pb-2 inv">
+                    <form id="investment_form frm" class="needs-validation" novalidate>
                         {% csrf_token %}
                         <div class="row">
-                            <div class="col">
+                            <div class="col-xl-7 col-md-12 col-xs-12">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-xl-12 col-sm-12">
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col-xl-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="control-label">Select Your Bank</label>
                                                     <select id="i_bank" class="form-control">
@@ -166,7 +166,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label">Timespan (Years)</label>
                                                     <div name="i_time" id="i_time_container" class="row range-field">
-                                                        <input type="range" class="col custom-range" id="i_time" min="1"
+                                                        <input type="range" class="col-md-6 custom-range" id="i_time" min="1"
                                                             max="25" value="1">
                                                         <div id="i_time_value" class="col-sm-3 mt-1">Value: 1
                                                             year
