@@ -1,1 +1,1 @@
-web: gunicorn MachineLearningAPI.wsgi --timeout 120 --log-level debug
+web: gunicorn MachineLearningAPI.wsgi --timeout 120 --workers=1 --log-level debug
