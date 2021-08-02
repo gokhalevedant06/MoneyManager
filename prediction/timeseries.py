@@ -1,18 +1,12 @@
-import investpy
-import matplotlib.pyplot as plt
-import math
 import os
 import pandas as pd
 import investpy
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler, PolynomialFeatures
+from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential, model_from_json, load_model
 from tensorflow.keras.layers import Dense, LSTM, Dropout
 from tensorflow.keras.preprocessing.sequence import TimeseriesGenerator
-from tensorflow.keras.optimizers import SGD
-from tensorflow.keras.losses import MeanSquaredError
-import matplotlib.pyplot as plt
-import tensorflow as tf
+
 import datetime
 from pathlib import Path
 
