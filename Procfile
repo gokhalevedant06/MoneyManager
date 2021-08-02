@@ -1,1 +1,1 @@
-web: gunicorn MachineLearningAPI.wsgi -b :8080 --timeout 120 --workers=3 --threads=3 --worker-connections=1000
+web: gunicorn MachineLearningAPI.wsgi --timeout 120 --log-level debug
