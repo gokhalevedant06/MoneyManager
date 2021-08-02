@@ -1,6 +1,8 @@
 from django.urls import path
 
+from .views import sensex_prediction
+
 urlpatterns = [
-    # path('', viewName.as_view(), name=''),
+    path('', sensex_prediction, name='prediction'),
 ]
 

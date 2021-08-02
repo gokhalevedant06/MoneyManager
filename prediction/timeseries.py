@@ -85,47 +85,42 @@ def predict_data(epoch, n_input, train, name, column):
     model = Sequential()
 
     model.add(LSTM(100, activation="relu", input_shape=(n_input, 1)))
-
     model.add(Dropout(0.2))
-
     model.add(Dense(1))
 
-    model.compile(
-        optimizer='adam',
-        loss='mse'
-    )
+    model.compile(optimizer='adam', loss='mse')
 
     # Train the model
-    # if os.path.exists(file_path + f'\\{name}\\{column}\\prediction.json'):
-    #     # load json and create model
-    #     json_file = open(
-    #         file_path + f'\\{name}\\{column}\\prediction.json', 'r')
+    if os.path.exists(file_path + f'\\{name}\\{column}\\prediction.json'):
+        # load json and create model
+        json_file = open(
+            file_path + f'\\{name}\\{column}\\prediction.json', 'r')
 
-    #     loaded_model_json = json_file.read()
-    #     json_file.close()
-    #     model = model_from_json(loaded_model_json)
+        loaded_model_json = json_file.read()
+        json_file.close()
+        model = model_from_json(loaded_model_json)
 
-    #     # load weights into new model
-    #     model.load_weights(
-    #         file_path + f'\\{name}\\{column}\\prediction.h5')
+        # load weights into new model
+        model.load_weights(
+            file_path + f'\\{name}\\{column}\\prediction.h5')
 
-    #     model.save(
-    #         file_path + f'\\{name}\\{column}\\prediction.hdf5')
-    #     model = load_model(
-    #         file_path + f'\\{name}\\{column}\\prediction.hdf5')
-    # else:
-    #     model.fit(generator, epochs=epoch, verbose=1)
-    #     with open(file_path + f'\\{name}\\{column}\\prediction.json', "w") as json_file:
-    #         json_file.write(model.to_json())
-    #     model.save_weights(
-    #         file_path + f'\\{name}\\{column}\\prediction.h5')
-    history = model.fit(generator, epochs=epoch, verbose=1)
-    losses = history.history['loss']
-    plt.figure(figsize=(20, 8))
-    plt.xlabel("Epochs")
-    plt.ylabel("Loss")
-    plt.xticks(np.arange(0, epoch+1, 1))
-    plt.plot(range(len(losses)), losses)
+        model.save(
+            file_path + f'\\{name}\\{column}\\prediction.hdf5')
+        model = load_model(
+            file_path + f'\\{name}\\{column}\\prediction.hdf5')
+    else:
+        model.fit(generator, epochs=epoch, verbose=1)
+        with open(file_path + f'\\{name}\\{column}\\prediction.json', "w") as json_file:
+            json_file.write(model.to_json())
+        model.save_weights(
+            file_path + f'\\{name}\\{column}\\prediction.h5')
+    # history = model.fit(generator, epochs=epoch, verbose=1)
+    # losses = history.history['loss']
+    # plt.figure(figsize=(20, 8))
+    # plt.xlabel("Epochs")
+    # plt.ylabel("Loss")
+    # plt.xticks(np.arange(0, epoch+1, 1))
+    # plt.plot(range(len(losses)), losses)
 
     return model
 
@@ -145,8 +140,4 @@ def timeseries_prediction(days, index, column, epoch):
     return df_proj
 
 
-df_prj = timeseries_prediction(30, "nifty 50", 'Open', 100)
-plt.figure(figsize=(20, 8))
-plt.legend(df_prj)
-plt.plot(df_prj)
-plt.show()
+timeseries_prediction(30, "bse sensex", 'Open', 100)
