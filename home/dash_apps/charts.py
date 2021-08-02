@@ -117,7 +117,7 @@ sensex_card = dbc.CardBody([
 
 tabs = dbc.Tabs([
     dbc.Tab(sensex_card, label="Sensex"),
-    dbc.Tab(nifty_card, label="Nifty")
+    dbc.Tab(nifty_card, label="Nifty"),
 ])
 
 app.layout = html.Div([
@@ -153,7 +153,7 @@ def update_graph(selected_ohlc_nifty, selected_ohlc_sensex, timeseries_selector_
         df_sensex.index < str(end))]
 
     colors = {'Open': '#4e73df', 'High': '#1cc88a',
-                  'Low': '#e74a3b', 'Close': '#36b9cc'}
+              'Low': '#e74a3b', 'Close': '#36b9cc'}
 
     if selected_ohlc_nifty == 'all':
         nifty = go.Figure(
@@ -168,7 +168,7 @@ def update_graph(selected_ohlc_nifty, selected_ohlc_sensex, timeseries_selector_
             )
         )
         nifty.update_layout(xaxis_rangeslider_visible=False)
-        
+
         sensex = px.line(
             sensex_data['Open'],
             title=f'Sensex 50 : {selected_ohlc_sensex}',
@@ -195,9 +195,11 @@ def update_graph(selected_ohlc_nifty, selected_ohlc_sensex, timeseries_selector_
             height=500,
         )
     else:
-        
+
         color_seq_nifty = []
         color_seq_sensex = []
+
+
         color_seq_nifty.append(colors[selected_ohlc_nifty])
         color_seq_sensex.append(colors[selected_ohlc_sensex])
 

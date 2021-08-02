@@ -11,21 +11,12 @@ from accounts.models import UserInfo
 from expenses.models import ExpenseData
 from django.contrib.auth.models import User
 
+import requests
+from MoneyManager.settings import PREDICTION_URL
+import pandas as pd
+import json
 
 # Create your views here.
-
-
-# def chatbot_request(request):
-
-#     # chatbot import
-#     from chatbot.chatbotEngine import chatbot
-
-#     user_response = request.GET.get("user_response")
-#     data = {
-#         "bot_response": chatbot(user_response)[0],
-#         "url": chatbot(user_response)[1]
-#     }
-#     return JsonResponse(data)
 
 def index(request):
     if str(request.user) == 'AnonymousUser':
@@ -40,6 +31,7 @@ def index(request):
         except ExpenseData.DoesNotExist:
             expended_amt = 0
         try:
+            
             context = {
                 'income': UserInfo.objects.values_list('income', flat=True).get(user=request.user),
                 'expended_amt': expended_amt
@@ -49,7 +41,6 @@ def index(request):
             return redirect("user_info_form")
 
 # Not found and Server Error Pages
-
 
 def handler404(request, *args, **argv):
     response = render_to_response('404.html', {},

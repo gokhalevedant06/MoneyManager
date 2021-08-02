@@ -223,6 +223,8 @@ CORS_ORIGIN_WHITELIST = (
     'https://money-manager-vit-pune-api',
 )
 
+PREDICTION_URL = "https://money-manager-vit-pune-api/prediction/"
+
 try:
     from .local_settings import *
 except ImportError:

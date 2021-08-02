@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load plotly_dash %}
+
+{% block title %}Predictions{% endblock %}
+
+{% block content %}
+    <div class="row">
+    <div class="col-xl col-lg-5">
+      <div class="{% plotly_class name="sensex_nifty_prediction_graph" %}">{% plotly_app_bootstrap name="sensex_nifty_prediction_graph" aspect='16by9' %}</div>
+    </div>
+  </div>
+{% endblock %}
