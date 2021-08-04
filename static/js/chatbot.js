@@ -1,6 +1,6 @@
-const dev_host = "http://127.0.0.1:8080/";
+const dev_host = "http://127.0.0.1:3000/";
 const production_host = "https://money-manager-vit-pune-api.herokuapp.com/";
-const chatbot_endpoint = production_host + "chatbot/";
+const chatbot_endpoint = dev_host + "chatbot/";
 function ajaxCall(message) {
 	$.ajax({
 		method: "post",
