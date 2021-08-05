@@ -10,7 +10,7 @@ from rest_framework.response import Response
 def chatbotAPI(request):
     if request.method == 'POST':
         return Response({
-            "bot_response": chatbotEngine.chatbot(request.data["user_response"])[0],
+            "bot_response": chatbotEngine.chatbot(request.data["user_response"])[0], 
             "url": chatbotEngine.chatbot(request.data["user_response"])[1]
         })
     return Response({
